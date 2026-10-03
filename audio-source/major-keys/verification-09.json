@@ -1,0 +1,42 @@
+{
+  "title": "STAR POP EXPRESS",
+  "premaster": {
+    "input_i": "-14.69",
+    "input_tp": "-2.06",
+    "input_lra": "5.50",
+    "input_thresh": "-25.04",
+    "output_i": "-14.21",
+    "output_tp": "-1.74",
+    "output_lra": "2.30",
+    "output_thresh": "-24.38",
+    "normalization_type": "dynamic",
+    "target_offset": "0.21"
+  },
+  "final_mp3": {
+    "input_i": "-14.02",
+    "input_tp": "-1.52",
+    "input_lra": "5.40",
+    "input_thresh": "-24.38",
+    "output_i": "-14.11",
+    "output_tp": "-1.58",
+    "output_lra": "2.20",
+    "output_thresh": "-24.28",
+    "normalization_type": "dynamic",
+    "target_offset": "0.11"
+  },
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    ],
+    "format": {
+      "duration": "40.333061",
+      "size": "1291665"
+    }
+  },
+  "checks": "2-channel 44.1 kHz MP3 decodes; loudness in range; true peak below 0 dBTP"
+}

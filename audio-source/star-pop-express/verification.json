@@ -1,0 +1,677 @@
+{
+  "title": "STAR POP EXPRESS",
+  "bpm": 126,
+  "key": "Db major",
+  "sample_rate": 44100,
+  "loop_frames": 5376000,
+  "loop_seconds": 121.9047619047619,
+  "intro_body_start_seconds": 7.619047619047619,
+  "full_seconds": 139.54285714285714,
+  "body_bars": 64,
+  "intro_bars": 4,
+  "outro_bars": 4,
+  "tail_seconds": 2.4,
+  "scale_pitch_classes": [
+    0,
+    1,
+    3,
+    5,
+    6,
+    8,
+    10
+  ],
+  "sections": [
+    {
+      "name": "main hook",
+      "bar_start": 0,
+      "bars": 16
+    },
+    {
+      "name": "night groove",
+      "bar_start": 16,
+      "bars": 8
+    },
+    {
+      "name": "lift",
+      "bar_start": 24,
+      "bars": 8
+    },
+    {
+      "name": "hook return",
+      "bar_start": 32,
+      "bars": 16
+    },
+    {
+      "name": "starlight break",
+      "bar_start": 48,
+      "bars": 8
+    },
+    {
+      "name": "final hook",
+      "bar_start": 56,
+      "bars": 8
+    }
+  ],
+  "body_plan": [
+    {
+      "id": 0,
+      "chord": "Gbmaj9",
+      "phrase": "call",
+      "mode": "hook",
+      "local": 0,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 1,
+      "chord": "Ab13",
+      "phrase": "answer",
+      "mode": "hook",
+      "local": 1,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 2,
+      "chord": "Fm7",
+      "phrase": "call_minor",
+      "mode": "hook",
+      "local": 2,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 3,
+      "chord": "Bbm9",
+      "phrase": "answer_minor",
+      "mode": "hook",
+      "local": 3,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 4,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "hook",
+      "local": 4,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 5,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "hook",
+      "local": 5,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 6,
+      "chord": "Db6/9",
+      "phrase": "tonic_hook",
+      "mode": "hook",
+      "local": 6,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 7,
+      "chord": "Ab13",
+      "phrase": "lift",
+      "mode": "hook",
+      "local": 7,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 8,
+      "chord": "Gbmaj9",
+      "phrase": "return_call",
+      "mode": "hook",
+      "local": 8,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 9,
+      "chord": "Ab13",
+      "phrase": "return_answer",
+      "mode": "hook",
+      "local": 9,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 10,
+      "chord": "Fm7",
+      "phrase": "call_minor",
+      "mode": "hook",
+      "local": 10,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 11,
+      "chord": "Bbm9",
+      "phrase": "answer_minor",
+      "mode": "hook",
+      "local": 11,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 12,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "hook",
+      "local": 12,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 13,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "hook",
+      "local": 13,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 14,
+      "chord": "Db6/9",
+      "phrase": "tonic_hook",
+      "mode": "hook",
+      "local": 14,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 15,
+      "chord": "Ab13",
+      "phrase": "lift",
+      "mode": "hook",
+      "local": 15,
+      "length": 16,
+      "section": "main hook"
+    },
+    {
+      "id": 16,
+      "chord": "Bbm9",
+      "phrase": "verse_a",
+      "mode": "verse",
+      "local": 0,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 17,
+      "chord": "Fm7",
+      "phrase": "verse_b",
+      "mode": "verse",
+      "local": 1,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 18,
+      "chord": "Gbmaj9",
+      "phrase": "verse_c",
+      "mode": "verse",
+      "local": 2,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 19,
+      "chord": "Dbmaj9",
+      "phrase": "tonic_hook",
+      "mode": "verse",
+      "local": 3,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 20,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "verse",
+      "local": 4,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 21,
+      "chord": "Fm7",
+      "phrase": "verse_b",
+      "mode": "verse",
+      "local": 5,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 22,
+      "chord": "Gbmaj9",
+      "phrase": "verse_c",
+      "mode": "verse",
+      "local": 6,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 23,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "verse",
+      "local": 7,
+      "length": 8,
+      "section": "night groove"
+    },
+    {
+      "id": 24,
+      "chord": "Ebm9",
+      "phrase": "pre_a",
+      "mode": "pre",
+      "local": 0,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 25,
+      "chord": "Fm7",
+      "phrase": "pre_b",
+      "mode": "pre",
+      "local": 1,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 26,
+      "chord": "Gbmaj9",
+      "phrase": "call",
+      "mode": "pre",
+      "local": 2,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 27,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "pre",
+      "local": 3,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 28,
+      "chord": "Ebm9",
+      "phrase": "pre_a",
+      "mode": "pre",
+      "local": 4,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 29,
+      "chord": "Gbmaj9",
+      "phrase": "return_call",
+      "mode": "pre",
+      "local": 5,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 30,
+      "chord": "Ab7sus4",
+      "phrase": "launch",
+      "mode": "pre",
+      "local": 6,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 31,
+      "chord": "Ab13",
+      "phrase": "pre_lift",
+      "mode": "pre",
+      "local": 7,
+      "length": 8,
+      "section": "lift"
+    },
+    {
+      "id": 32,
+      "chord": "Gbmaj9",
+      "phrase": "return_call",
+      "mode": "return",
+      "local": 0,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 33,
+      "chord": "Ab13",
+      "phrase": "return_answer",
+      "mode": "return",
+      "local": 1,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 34,
+      "chord": "Fm7",
+      "phrase": "call_minor",
+      "mode": "return",
+      "local": 2,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 35,
+      "chord": "Bbm9",
+      "phrase": "answer_minor",
+      "mode": "return",
+      "local": 3,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 36,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "return",
+      "local": 4,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 37,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "return",
+      "local": 5,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 38,
+      "chord": "Db6/9",
+      "phrase": "tonic_hook",
+      "mode": "return",
+      "local": 6,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 39,
+      "chord": "Ab13",
+      "phrase": "lift",
+      "mode": "return",
+      "local": 7,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 40,
+      "chord": "Gbmaj9",
+      "phrase": "return_call",
+      "mode": "return",
+      "local": 8,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 41,
+      "chord": "Ab13",
+      "phrase": "return_answer",
+      "mode": "return",
+      "local": 9,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 42,
+      "chord": "Fm7",
+      "phrase": "call_minor",
+      "mode": "return",
+      "local": 10,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 43,
+      "chord": "Bbm9",
+      "phrase": "answer_minor",
+      "mode": "return",
+      "local": 11,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 44,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "return",
+      "local": 12,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 45,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "return",
+      "local": 13,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 46,
+      "chord": "Db6/9",
+      "phrase": "tonic_hook",
+      "mode": "return",
+      "local": 14,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 47,
+      "chord": "Ab13",
+      "phrase": "lift",
+      "mode": "return",
+      "local": 15,
+      "length": 16,
+      "section": "hook return"
+    },
+    {
+      "id": 48,
+      "chord": "Bbm9",
+      "phrase": null,
+      "mode": "break",
+      "local": 0,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 49,
+      "chord": "Fm7",
+      "phrase": null,
+      "mode": "break",
+      "local": 1,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 50,
+      "chord": "Gbmaj9",
+      "phrase": "break",
+      "mode": "break",
+      "local": 2,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 51,
+      "chord": "Dbmaj9",
+      "phrase": null,
+      "mode": "break",
+      "local": 3,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 52,
+      "chord": "Ebm9",
+      "phrase": "break",
+      "mode": "break",
+      "local": 4,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 53,
+      "chord": "Gbmaj9",
+      "phrase": "call",
+      "mode": "break",
+      "local": 5,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 54,
+      "chord": "Ab7sus4",
+      "phrase": "launch",
+      "mode": "break",
+      "local": 6,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 55,
+      "chord": "Ab13",
+      "phrase": "pre_lift",
+      "mode": "break",
+      "local": 7,
+      "length": 8,
+      "section": "starlight break"
+    },
+    {
+      "id": 56,
+      "chord": "Gbmaj9",
+      "phrase": "return_call",
+      "mode": "final",
+      "local": 0,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 57,
+      "chord": "Ab13",
+      "phrase": "return_answer",
+      "mode": "final",
+      "local": 1,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 58,
+      "chord": "Fm7",
+      "phrase": "call_minor",
+      "mode": "final",
+      "local": 2,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 59,
+      "chord": "Bbm9",
+      "phrase": "answer_minor",
+      "mode": "final",
+      "local": 3,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 60,
+      "chord": "Ebm9",
+      "phrase": "call_ii",
+      "mode": "final",
+      "local": 4,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 61,
+      "chord": "Ab7sus4",
+      "phrase": "suspension",
+      "mode": "final",
+      "local": 5,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 62,
+      "chord": "Ab13",
+      "phrase": "lift",
+      "mode": "final",
+      "local": 6,
+      "length": 8,
+      "section": "final hook"
+    },
+    {
+      "id": 63,
+      "chord": "Db6/9",
+      "phrase": "loop_turn",
+      "mode": "final",
+      "local": 7,
+      "length": 8,
+      "section": "final hook"
+    }
+  ],
+  "synth_stem_rms_dbfs": {
+    "kick": -21.84000015258789,
+    "clap": -28.459999084472656,
+    "hats": -31.459999084472656,
+    "percussion": -37.290000915527344,
+    "bass": -23.579999923706055,
+    "chords": -27.34000015258789,
+    "pad": -32.4900016784668,
+    "lead": -23.239999771118164,
+    "bells": -37.540000915527344,
+    "arp": -180.0,
+    "fx": -43.75
+  },
+  "gain_db": 0.76,
+  "periodic_effect_state_max_error": 1.1920928955078125e-07,
+  "boundary_step": 0.002838134765625,
+  "adjacent_step_p999": 0.327972412109375,
+  "loop_loudness": {
+    "input_i": "-14.00",
+    "input_tp": "-1.92",
+    "input_lra": "1.90",
+    "input_thresh": "-24.00",
+    "output_i": "-14.16",
+    "output_tp": "-1.93",
+    "output_lra": "1.90",
+    "output_thresh": "-24.16",
+    "normalization_type": "dynamic",
+    "target_offset": "0.16"
+  },
+  "full_mp3_loudness": {
+    "input_i": "-14.01",
+    "input_tp": "-1.55",
+    "input_lra": "2.00",
+    "input_thresh": "-24.11",
+    "output_i": "-14.16",
+    "output_tp": "-1.64",
+    "output_lra": "2.00",
+    "output_thresh": "-24.21",
+    "normalization_type": "dynamic",
+    "target_offset": "0.16"
+  },
+  "loop_format": "44.1 kHz stereo PCM16 WAV, exactly 256 beats, no encoder delay or fade",
+  "player": "one-shot intro overlaps its release with a sample-accurate AudioBufferSourceNode body loop",
+  "audible_listening_performed": false
+}

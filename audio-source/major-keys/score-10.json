@@ -1,0 +1,5063 @@
+{
+  "title": "SUGAR SATELLITE",
+  "audition": "10",
+  "bpm": 124,
+  "key": "Gb major / strictly diatonic; Cb written as B in MIDI",
+  "description_ja": "跳ねる5度のフックと半音の返事。夜のディスコを照らす、甘く明るい変ト長調のシンセポップ。",
+  "duration_seconds": 40.91,
+  "sample_rate": 44100,
+  "seed": 2026100310,
+  "swing_delay_beats": 0.0,
+  "sections": [
+    {
+      "name": "intro",
+      "seconds": [
+        0,
+        3.871
+      ]
+    },
+    {
+      "name": "hook",
+      "seconds": [
+        3.871,
+        19.355
+      ]
+    },
+    {
+      "name": "break",
+      "seconds": [
+        19.355,
+        23.226
+      ]
+    },
+    {
+      "name": "return",
+      "seconds": [
+        23.226,
+        36.774
+      ]
+    },
+    {
+      "name": "ending",
+      "seconds": [
+        36.774,
+        40.91
+      ]
+    }
+  ],
+  "chords": [
+    "Cbmaj9",
+    "Gbmaj9",
+    "Cbmaj9",
+    "Gbmaj9",
+    "Abm9",
+    "Db13",
+    "Ebm7",
+    "Bbm7",
+    "Abm9",
+    "Db9",
+    "Cbmaj9",
+    "Db13",
+    "Cbmaj9",
+    "Gbmaj9",
+    "Abm9",
+    "Db13",
+    "Ebm7",
+    "Bbm7",
+    "Db9",
+    "Gb6/9"
+  ],
+  "voicings": {
+    "Cbmaj9": [
+      35,
+      [
+        58,
+        61,
+        63,
+        66
+      ]
+    ],
+    "Gbmaj9": [
+      42,
+      [
+        58,
+        61,
+        65,
+        68
+      ]
+    ],
+    "Abm9": [
+      44,
+      [
+        59,
+        63,
+        66,
+        70
+      ]
+    ],
+    "Db13": [
+      37,
+      [
+        59,
+        65,
+        70,
+        75
+      ]
+    ],
+    "Ebm7": [
+      39,
+      [
+        58,
+        61,
+        66,
+        70
+      ]
+    ],
+    "Bbm7": [
+      46,
+      [
+        56,
+        61,
+        65,
+        70
+      ]
+    ],
+    "Db9": [
+      37,
+      [
+        59,
+        63,
+        65,
+        68
+      ]
+    ],
+    "Gb6/9": [
+      42,
+      [
+        58,
+        61,
+        63,
+        68
+      ]
+    ]
+  },
+  "phrases": {
+    "signature": [
+      [
+        0,
+        82,
+        0.3,
+        1.0
+      ],
+      [
+        0.5,
+        87,
+        0.55,
+        1.0
+      ],
+      [
+        1.25,
+        85,
+        0.3,
+        0.93
+      ],
+      [
+        2,
+        83,
+        0.32,
+        0.87
+      ],
+      [
+        2.5,
+        82,
+        0.55,
+        0.95
+      ],
+      [
+        3.25,
+        78,
+        0.5,
+        0.93
+      ]
+    ],
+    "signature_answer": [
+      [
+        0,
+        82,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        80,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        78,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        77,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        80,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        78,
+        0.4,
+        0.96
+      ]
+    ],
+    "satellite_call": [
+      [
+        0,
+        75,
+        0.3,
+        1.0
+      ],
+      [
+        0.5,
+        82,
+        0.55,
+        0.94
+      ],
+      [
+        1.25,
+        83,
+        0.3,
+        0.91
+      ],
+      [
+        2,
+        82,
+        0.32,
+        0.87
+      ],
+      [
+        2.5,
+        78,
+        0.55,
+        0.96
+      ],
+      [
+        3.25,
+        75,
+        0.5,
+        0.91
+      ]
+    ],
+    "tonic_answer": [
+      [
+        0,
+        82,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        80,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        78,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        77,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        80,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        78,
+        0.4,
+        0.96
+      ]
+    ],
+    "minor_call": [
+      [
+        0,
+        75,
+        0.3,
+        1.0
+      ],
+      [
+        0.5,
+        82,
+        0.55,
+        0.94
+      ],
+      [
+        1.25,
+        83,
+        0.3,
+        0.91
+      ],
+      [
+        2,
+        80,
+        0.32,
+        0.87
+      ],
+      [
+        2.5,
+        75,
+        0.55,
+        0.96
+      ],
+      [
+        3.25,
+        73,
+        0.5,
+        0.91
+      ]
+    ],
+    "dominant_answer": [
+      [
+        0,
+        77,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        78,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        77,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        75,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        73,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        77,
+        0.4,
+        0.96
+      ]
+    ],
+    "orbit_call": [
+      [
+        0,
+        78,
+        0.3,
+        1.0
+      ],
+      [
+        0.5,
+        85,
+        0.55,
+        0.94
+      ],
+      [
+        1.25,
+        87,
+        0.3,
+        0.91
+      ],
+      [
+        2,
+        85,
+        0.32,
+        0.87
+      ],
+      [
+        2.5,
+        82,
+        0.55,
+        0.96
+      ],
+      [
+        3.25,
+        78,
+        0.5,
+        0.91
+      ]
+    ],
+    "soft_answer": [
+      [
+        0,
+        80,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        78,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        77,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        75,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        73,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        77,
+        0.4,
+        0.96
+      ]
+    ],
+    "launch_answer": [
+      [
+        0,
+        77,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        75,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        73,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        71,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        73,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        77,
+        0.4,
+        0.96
+      ]
+    ],
+    "break_ping": [
+      [
+        0,
+        83,
+        0.52,
+        0.87
+      ],
+      [
+        1.5,
+        82,
+        0.35,
+        0.81
+      ],
+      [
+        3,
+        78,
+        0.62,
+        0.88
+      ]
+    ],
+    "break_launch": [
+      [
+        0,
+        77,
+        0.58,
+        0.9
+      ],
+      [
+        1.5,
+        80,
+        0.33,
+        0.86
+      ],
+      [
+        2.5,
+        82,
+        0.26,
+        0.89
+      ],
+      [
+        3,
+        85,
+        0.55,
+        0.98
+      ]
+    ],
+    "return_call": [
+      [
+        0,
+        75,
+        0.3,
+        1.0
+      ],
+      [
+        0.5,
+        82,
+        0.55,
+        0.94
+      ],
+      [
+        1.25,
+        83,
+        0.3,
+        0.91
+      ],
+      [
+        2,
+        82,
+        0.32,
+        0.87
+      ],
+      [
+        2.5,
+        78,
+        0.55,
+        0.96
+      ],
+      [
+        3.25,
+        82,
+        0.5,
+        0.91
+      ]
+    ],
+    "return_answer": [
+      [
+        0,
+        82,
+        0.65,
+        0.98
+      ],
+      [
+        1,
+        80,
+        0.25,
+        0.85
+      ],
+      [
+        1.5,
+        78,
+        0.55,
+        0.94
+      ],
+      [
+        2.5,
+        77,
+        0.3,
+        0.85
+      ],
+      [
+        3,
+        80,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        82,
+        0.4,
+        0.96
+      ]
+    ],
+    "last_answer": [
+      [
+        0,
+        85,
+        0.65,
+        0.99
+      ],
+      [
+        1,
+        83,
+        0.25,
+        0.89
+      ],
+      [
+        1.5,
+        82,
+        0.55,
+        0.95
+      ],
+      [
+        2.5,
+        80,
+        0.3,
+        0.86
+      ],
+      [
+        3,
+        77,
+        0.25,
+        0.87
+      ],
+      [
+        3.5,
+        77,
+        0.4,
+        0.98
+      ]
+    ],
+    "end": [
+      [
+        0,
+        78,
+        0.82,
+        1.0
+      ],
+      [
+        1.25,
+        82,
+        0.37,
+        0.89
+      ],
+      [
+        2,
+        80,
+        0.37,
+        0.84
+      ],
+      [
+        2.75,
+        78,
+        1.05,
+        0.99
+      ]
+    ]
+  },
+  "lead_bars_zero_based": {
+    "0": "signature",
+    "1": "signature_answer",
+    "2": "satellite_call",
+    "3": "tonic_answer",
+    "4": "minor_call",
+    "5": "dominant_answer",
+    "6": "orbit_call",
+    "7": "soft_answer",
+    "8": "minor_call",
+    "9": "launch_answer",
+    "10": "break_ping",
+    "11": "break_launch",
+    "12": "return_call",
+    "13": "return_answer",
+    "14": "minor_call",
+    "15": "dominant_answer",
+    "16": "orbit_call",
+    "17": "soft_answer",
+    "18": "last_answer",
+    "19": "end"
+  },
+  "intro_kind": "hit-and-answer",
+  "black_key_chord": null,
+  "premaster_peak_dbfs": -2.48,
+  "premaster_rms_dbfs": -17.48,
+  "stereo_correlation": 0.925,
+  "stem_rms_dbfs": {
+    "kick": -22.23,
+    "clap": -29.01,
+    "hats": -32.1,
+    "percussion": -38.19,
+    "bass": -23.56,
+    "chords": -27.86,
+    "pad": -32.22,
+    "lead": -23.96,
+    "bells": -36.17,
+    "arp": -180.0,
+    "fx": -40.08
+  },
+  "pitched_events": [
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 0.0,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 0.3629,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 0.60484,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 0.96774,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 1.33065,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 1.57258,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 1.81452,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 0.0,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 0.004,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 0.008,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 0.012,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 0.72581,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 0.72981,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 0.73381,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 0.73781,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 1.20968,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 1.21368,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 1.21768,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 1.22168,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 1.69355,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 1.69755,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 1.70155,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 1.70555,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 0.0,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 87,
+      "seconds": 0.24194,
+      "duration_beats": 0.55,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 0.60484,
+      "duration_beats": 0.3,
+      "gain": 0.2027
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 0.96774,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 1.20968,
+      "duration_beats": 0.55,
+      "gain": 0.2071
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 1.57258,
+      "duration_beats": 0.5,
+      "gain": 0.2027
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 1.93548,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 2.29839,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 2.54032,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 2.90323,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 3.26613,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 3.50806,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 3.75,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 1.93548,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 1.93948,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 1.94348,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 1.94748,
+      "duration_beats": 0.82,
+      "gain": 0.0795
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 2.66129,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 2.66529,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 2.66929,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 2.67329,
+      "duration_beats": 0.28,
+      "gain": 0.0561
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 3.14516,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 3.14916,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 3.15316,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 3.15716,
+      "duration_beats": 0.38,
+      "gain": 0.0646
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 3.62903,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 3.63303,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 3.63703,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 3.64103,
+      "duration_beats": 0.23,
+      "gain": 0.0568
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 1.93548,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 2.41935,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 2.66129,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 3.14516,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 3.3871,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 3.62903,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 82,
+      "seconds": 3.26613,
+      "duration_beats": 0.2,
+      "gain": 0.091
+    },
+    {
+      "part": "bells",
+      "midi": 85,
+      "seconds": 3.50806,
+      "duration_beats": 0.2,
+      "gain": 0.091
+    },
+    {
+      "part": "bells",
+      "midi": 78,
+      "seconds": 3.75,
+      "duration_beats": 0.2,
+      "gain": 0.091
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 3.87097,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 4.23387,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 4.47581,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 4.83871,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 5.20161,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 5.44355,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 5.68548,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 4.1129,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 4.1169,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 4.1209,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 4.1249,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 4.59677,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 4.60077,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 4.60477,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 4.60877,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 5.08065,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 5.08465,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 5.08865,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 5.09265,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 5.32258,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 5.32658,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 5.33058,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 5.33458,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 5.56452,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 5.56852,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 5.57252,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 5.57652,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 3.87097,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 4.1129,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 4.47581,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 4.83871,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 5.08065,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 5.44355,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 5.80645,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 6.16935,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 6.41129,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 6.77419,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 7.1371,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 7.37903,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 7.62097,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 6.04839,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 6.05239,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 6.05639,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 6.06039,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 6.53226,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 6.53626,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 6.54026,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 6.54426,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 7.01613,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 7.02013,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 7.02413,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 7.02813,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 7.25806,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 7.26206,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 7.26606,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 7.27006,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 7.5,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 7.504,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 7.508,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 7.512,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 5.80645,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 6.29032,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 6.53226,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 7.01613,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 7.25806,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 7.5,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 85,
+      "seconds": 7.37903,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 7.62097,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 7.74194,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 8.10484,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 8.34677,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 8.70968,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 9.07258,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 9.31452,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 9.55645,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 7.98387,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 7.98787,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 7.99187,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 7.99587,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 8.46774,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 8.47174,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 8.47574,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 8.47974,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 8.95161,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 8.95561,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 8.95961,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 8.96361,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 9.19355,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 9.19755,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 9.20155,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 9.20555,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 9.43548,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 9.43948,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 9.44348,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 9.44748,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 7.74194,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 7.98387,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 8.34677,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 8.70968,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 8.95161,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 9.31452,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 9.67742,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 10.04032,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 10.28226,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 10.64516,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 11.00806,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 11.25,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 11.49194,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 9.91935,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 9.92335,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 9.92735,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 9.93135,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 10.40323,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 10.40723,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 10.41123,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 10.41523,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 10.8871,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 10.8911,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 10.8951,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 10.8991,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 11.12903,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 11.13303,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 11.13703,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 11.14103,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 11.37097,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 11.37497,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 11.37897,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 11.38297,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 9.67742,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 10.16129,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 10.40323,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 10.8871,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 11.12903,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 11.37097,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 11.25,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 94,
+      "seconds": 11.49194,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 11.6129,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 11.97581,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 12.21774,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 12.58065,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 12.94355,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 13.18548,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 13.42742,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 11.85484,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 11.85884,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 11.86284,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 11.86684,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 12.33871,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 12.34271,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 12.34671,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 12.35071,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 12.82258,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 12.82658,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 12.83058,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 12.83458,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 13.06452,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 13.06852,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 13.07252,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 13.07652,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 13.30645,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 13.31045,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 13.31445,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 13.31845,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 11.6129,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 11.85484,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 87,
+      "seconds": 12.21774,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 12.58065,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 12.82258,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 13.18548,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 13.54839,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 58,
+      "seconds": 13.91129,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 14.15323,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 14.51613,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 53,
+      "seconds": 14.87903,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 15.12097,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 58,
+      "seconds": 15.3629,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 13.79032,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 13.79432,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 13.79832,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 13.80232,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 14.27419,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 14.27819,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 14.28219,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 14.28619,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 14.75806,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 14.76206,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 14.76606,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 14.77006,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 15.0,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 15.004,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 15.008,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 15.012,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 15.24194,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 15.24594,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 15.24994,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 15.25394,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 13.54839,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 14.03226,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 14.27419,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 14.75806,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 15.0,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 15.24194,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 85,
+      "seconds": 15.12097,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 15.3629,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 15.48387,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 15.84677,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 16.08871,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 16.45161,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 16.81452,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 17.05645,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 17.29839,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 15.72581,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 15.72981,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 15.73381,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 15.73781,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 16.20968,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 16.21368,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 16.21768,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 16.22168,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 16.69355,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 16.69755,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 16.70155,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 16.70555,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 16.93548,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 16.93948,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 16.94348,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 16.94748,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 17.17742,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 17.18142,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 17.18542,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 17.18942,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 15.48387,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 15.72581,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 16.08871,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 16.45161,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 16.69355,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 17.05645,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 17.41935,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 17.78226,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 18.02419,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 18.3871,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 18.75,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 18.99194,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 19.23387,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 17.66129,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 17.66529,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 17.66929,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 17.67329,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 18.14516,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 18.14916,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 18.15316,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 18.15716,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 18.62903,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 18.63303,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 18.63703,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 18.64103,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 18.87097,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 18.87497,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 18.87897,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 18.88297,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 19.1129,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 19.1169,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 19.1209,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 19.1249,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 17.41935,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 17.90323,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 18.14516,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 71,
+      "seconds": 18.62903,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 18.87097,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 19.1129,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 19.35484,
+      "duration_beats": 1.3,
+      "gain": 0.2405
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 19.35484,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 19.35884,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 19.36284,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 19.36684,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 19.35484,
+      "duration_beats": 0.52,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 20.08065,
+      "duration_beats": 0.35,
+      "gain": 0.1766
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 20.80645,
+      "duration_beats": 0.62,
+      "gain": 0.1918
+    },
+    {
+      "part": "bells",
+      "midi": 70,
+      "seconds": 19.35484,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 75,
+      "seconds": 19.59677,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 73,
+      "seconds": 19.83871,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 78,
+      "seconds": 20.08065,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 70,
+      "seconds": 20.32258,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 75,
+      "seconds": 20.56452,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 73,
+      "seconds": 20.80645,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 78,
+      "seconds": 21.04839,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 21.29032,
+      "duration_beats": 1.3,
+      "gain": 0.2405
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 21.29032,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 21.29432,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 21.29832,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 21.30232,
+      "duration_beats": 3.1,
+      "gain": 0.0405
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 21.29032,
+      "duration_beats": 0.58,
+      "gain": 0.1962
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 22.01613,
+      "duration_beats": 0.33,
+      "gain": 0.1875
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 22.5,
+      "duration_beats": 0.26,
+      "gain": 0.194
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 22.74194,
+      "duration_beats": 0.55,
+      "gain": 0.2136
+    },
+    {
+      "part": "bells",
+      "midi": 71,
+      "seconds": 21.29032,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 82,
+      "seconds": 21.53226,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 77,
+      "seconds": 21.77419,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 87,
+      "seconds": 22.01613,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 71,
+      "seconds": 22.25806,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 82,
+      "seconds": 22.5,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 77,
+      "seconds": 22.74194,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bells",
+      "midi": 87,
+      "seconds": 22.98387,
+      "duration_beats": 0.2,
+      "gain": 0.092
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 23.22581,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 23.58871,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 23.83065,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 24.19355,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 24.55645,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 35,
+      "seconds": 24.79839,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 47,
+      "seconds": 25.04032,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 23.46774,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 23.47174,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 23.47574,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 23.47974,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 23.95161,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 23.95561,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 23.95961,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 23.96361,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 24.43548,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 24.43948,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 24.44348,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 24.44748,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 24.67742,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 24.68142,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 24.68542,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 24.68942,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 24.91935,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 24.92335,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 24.92735,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 24.93135,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 23.22581,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "bells",
+      "midi": 87,
+      "seconds": 23.23681,
+      "duration_beats": 0.2,
+      "gain": 0.037
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 23.46774,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 23.83065,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 24.19355,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 24.43548,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 24.79839,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 25.16129,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 25.52419,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 25.76613,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 26.12903,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 26.49194,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 26.73387,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 54,
+      "seconds": 26.97581,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 25.40323,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 25.40723,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 25.41123,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 25.41523,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 25.8871,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 25.8911,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 25.8951,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 25.8991,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 26.37097,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 26.37497,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 26.37897,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 26.38297,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 26.6129,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 26.6169,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 26.6209,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 26.6249,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 26.85484,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 26.85884,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 26.86284,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 26.86684,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 25.16129,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "bells",
+      "midi": 94,
+      "seconds": 25.17229,
+      "duration_beats": 0.2,
+      "gain": 0.0363
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 25.64516,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 25.8871,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "bells",
+      "midi": 90,
+      "seconds": 25.8981,
+      "duration_beats": 0.2,
+      "gain": 0.0348
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 26.37097,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 26.6129,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 26.85484,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 85,
+      "seconds": 26.73387,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 26.97581,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 27.09677,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 27.45968,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 27.70161,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 28.06452,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 28.42742,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 28.66935,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 56,
+      "seconds": 28.91129,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 27.33871,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 27.34271,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 27.34671,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 27.35071,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 27.82258,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 27.82658,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 27.83058,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 27.83458,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 28.30645,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 28.31045,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 28.31445,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 28.31845,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 28.54839,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 28.55239,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 28.55639,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 28.56039,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 28.79032,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 28.79432,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 28.79832,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 28.80232,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 27.09677,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "bells",
+      "midi": 87,
+      "seconds": 27.10777,
+      "duration_beats": 0.2,
+      "gain": 0.037
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 27.33871,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 27.70161,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 28.06452,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 28.30645,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 28.66935,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 29.03226,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 29.39516,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 29.6371,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 30.0,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 30.3629,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 30.60484,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 30.84677,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 29.27419,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 29.27819,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 29.28219,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 29.28619,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 29.75806,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 29.76206,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 29.76606,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 29.77006,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 30.24194,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 30.24594,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 30.24994,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 30.25394,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 30.48387,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 30.48787,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 30.49187,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 30.49587,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 30.72581,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 30.72981,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 30.73381,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 75,
+      "seconds": 30.73781,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 29.03226,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 29.04326,
+      "duration_beats": 0.2,
+      "gain": 0.0363
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 29.51613,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 29.75806,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 29.76906,
+      "duration_beats": 0.2,
+      "gain": 0.0348
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 30.24194,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 30.48387,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 30.72581,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 30.60484,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 94,
+      "seconds": 30.84677,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 30.96774,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 31.33065,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 31.57258,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 31.93548,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 32.29839,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 39,
+      "seconds": 32.54032,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 51,
+      "seconds": 32.78226,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 31.20968,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 31.21368,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 31.21768,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 31.22168,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 31.69355,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 31.69755,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 31.70155,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 31.70555,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 32.17742,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 32.18142,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 32.18542,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 32.18942,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 32.41935,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 32.42335,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 32.42735,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 32.43135,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 32.66129,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 32.66529,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 66,
+      "seconds": 32.66929,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 32.67329,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 30.96774,
+      "duration_beats": 0.3,
+      "gain": 0.218
+    },
+    {
+      "part": "bells",
+      "midi": 90,
+      "seconds": 30.97874,
+      "duration_beats": 0.2,
+      "gain": 0.037
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 31.20968,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "lead",
+      "midi": 87,
+      "seconds": 31.57258,
+      "duration_beats": 0.3,
+      "gain": 0.1984
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 31.93548,
+      "duration_beats": 0.32,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 32.17742,
+      "duration_beats": 0.55,
+      "gain": 0.2093
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 32.54032,
+      "duration_beats": 0.5,
+      "gain": 0.1984
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 32.90323,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 58,
+      "seconds": 33.26613,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 33.50806,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 33.87097,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 53,
+      "seconds": 34.23387,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 46,
+      "seconds": 34.47581,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 58,
+      "seconds": 34.71774,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 33.14516,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 33.14916,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 33.15316,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 33.15716,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 33.62903,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 33.63303,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 33.63703,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 33.64103,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 34.1129,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 34.1169,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 34.1209,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 34.1249,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 34.35484,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 34.35884,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 34.36284,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 34.36684,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 56,
+      "seconds": 34.59677,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 34.60077,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 34.60477,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 70,
+      "seconds": 34.60877,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 32.90323,
+      "duration_beats": 0.65,
+      "gain": 0.2136
+    },
+    {
+      "part": "bells",
+      "midi": 92,
+      "seconds": 32.91423,
+      "duration_beats": 0.2,
+      "gain": 0.0363
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 33.3871,
+      "duration_beats": 0.25,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 33.62903,
+      "duration_beats": 0.55,
+      "gain": 0.2049
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 33.64003,
+      "duration_beats": 0.2,
+      "gain": 0.0348
+    },
+    {
+      "part": "lead",
+      "midi": 75,
+      "seconds": 34.1129,
+      "duration_beats": 0.3,
+      "gain": 0.1853
+    },
+    {
+      "part": "lead",
+      "midi": 73,
+      "seconds": 34.35484,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 34.59677,
+      "duration_beats": 0.4,
+      "gain": 0.2093
+    },
+    {
+      "part": "bells",
+      "midi": 85,
+      "seconds": 34.47581,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bells",
+      "midi": 89,
+      "seconds": 34.71774,
+      "duration_beats": 0.14,
+      "gain": 0.034
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 34.83871,
+      "duration_beats": 0.43,
+      "gain": 0.37
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 35.20161,
+      "duration_beats": 0.19,
+      "gain": 0.2775
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 35.44355,
+      "duration_beats": 0.3,
+      "gain": 0.333
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 35.80645,
+      "duration_beats": 0.34,
+      "gain": 0.3589
+    },
+    {
+      "part": "bass",
+      "midi": 44,
+      "seconds": 36.16935,
+      "duration_beats": 0.19,
+      "gain": 0.2886
+    },
+    {
+      "part": "bass",
+      "midi": 37,
+      "seconds": 36.41129,
+      "duration_beats": 0.28,
+      "gain": 0.3367
+    },
+    {
+      "part": "bass",
+      "midi": 49,
+      "seconds": 36.65323,
+      "duration_beats": 0.15,
+      "gain": 0.2627
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 35.08065,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 35.08465,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 35.08865,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 35.09265,
+      "duration_beats": 0.3,
+      "gain": 0.0689
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 35.56452,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 35.56852,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 35.57252,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 35.57652,
+      "duration_beats": 0.24,
+      "gain": 0.0575
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 36.04839,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 36.05239,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 36.05639,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 36.06039,
+      "duration_beats": 0.23,
+      "gain": 0.0632
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 36.29032,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 36.29432,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 36.29832,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 36.30232,
+      "duration_beats": 0.17,
+      "gain": 0.0497
+    },
+    {
+      "part": "chords",
+      "midi": 59,
+      "seconds": 36.53226,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 36.53626,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 65,
+      "seconds": 36.54026,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 36.54426,
+      "duration_beats": 0.3,
+      "gain": 0.071
+    },
+    {
+      "part": "lead",
+      "midi": 85,
+      "seconds": 34.83871,
+      "duration_beats": 0.65,
+      "gain": 0.2158
+    },
+    {
+      "part": "bells",
+      "midi": 97,
+      "seconds": 34.84971,
+      "duration_beats": 0.2,
+      "gain": 0.0366
+    },
+    {
+      "part": "lead",
+      "midi": 83,
+      "seconds": 35.32258,
+      "duration_beats": 0.25,
+      "gain": 0.194
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 35.56452,
+      "duration_beats": 0.55,
+      "gain": 0.2071
+    },
+    {
+      "part": "bells",
+      "midi": 94,
+      "seconds": 35.57552,
+      "duration_beats": 0.2,
+      "gain": 0.0351
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 36.04839,
+      "duration_beats": 0.3,
+      "gain": 0.1875
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 36.29032,
+      "duration_beats": 0.25,
+      "gain": 0.1897
+    },
+    {
+      "part": "lead",
+      "midi": 77,
+      "seconds": 36.53226,
+      "duration_beats": 0.4,
+      "gain": 0.2136
+    },
+    {
+      "part": "bass",
+      "midi": 42,
+      "seconds": 36.77419,
+      "duration_beats": 1.8,
+      "gain": 0.37
+    },
+    {
+      "part": "chords",
+      "midi": 58,
+      "seconds": 36.77419,
+      "duration_beats": 3.1,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 61,
+      "seconds": 36.77819,
+      "duration_beats": 3.1,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 63,
+      "seconds": 36.78219,
+      "duration_beats": 3.1,
+      "gain": 0.0568
+    },
+    {
+      "part": "chords",
+      "midi": 68,
+      "seconds": 36.78619,
+      "duration_beats": 3.1,
+      "gain": 0.0568
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 36.77419,
+      "duration_beats": 0.82,
+      "gain": 0.218
+    },
+    {
+      "part": "lead",
+      "midi": 82,
+      "seconds": 37.37903,
+      "duration_beats": 0.37,
+      "gain": 0.194
+    },
+    {
+      "part": "lead",
+      "midi": 80,
+      "seconds": 37.74194,
+      "duration_beats": 0.37,
+      "gain": 0.1831
+    },
+    {
+      "part": "lead",
+      "midi": 78,
+      "seconds": 38.10484,
+      "duration_beats": 1.05,
+      "gain": 0.2158
+    }
+  ]
+}
