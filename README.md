@@ -12,7 +12,8 @@ A clean full-stack starter running on [vinext](https://github.com/cloudflare/vin
 ## Formatting
 
 Run `npm run format` to format project files with the pinned Oxfmt version, or
-`npm run format:check` to check formatting without writing changes.
+`npm run format:check` to check formatting without writing changes. GitHub Actions
+runs the same check on pull requests and pushes to `develop` and `main`.
 
 Formatting uses two spaces, a line width of 100, double quotes, and semicolons.
 Import, Tailwind class, and package field sorting are disabled. Vendored source,
