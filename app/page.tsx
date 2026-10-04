@@ -8,6 +8,8 @@ import { breeds, ranking, type Breed } from './breeds';
 import { useDiscoAudio } from './use-disco-audio';
 import { SceneTooltip, type SceneHint } from './scene-tooltip';
 
+console.log('HELLO NEKO DISKO!');
+
 const sceneProps = [
   {id:'night',x:49,y:11,w:23,h:23},
   {id:'height',x:24,y:46,w:13,h:17},
