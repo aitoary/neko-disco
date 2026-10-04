@@ -8,8 +8,6 @@ import { breeds, ranking, type Breed } from './breeds';
 import { useDiscoAudio } from './use-disco-audio';
 import { SceneTooltip, type SceneHint } from './scene-tooltip';
 
-console.log('HELLO NEKO DISKO!');
-
 const sceneProps = [
   {id:'night',x:49,y:11,w:23,h:23},
   {id:'height',x:24,y:46,w:13,h:17},
@@ -51,6 +49,7 @@ export default function Home(){
  const [found,setFound]=useState<string[]>([]);const [burst,setBurst]=useState<{x:number;y:number;id:number}|null>(null);
  const [period,setPeriod]=useState(getCurrentJstPeriod);const [question,setQuestion]=useState(0);const [answer,setAnswer]=useState<number|null>(null);const [score,setScore]=useState(0);const [finished,setFinished]=useState(false);
  const lastTrigger=useRef<HTMLElement|null>(null);const burstTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
+ useEffect(()=>{console.log('HELLO NEKO DISKO!');},[]);
  useEffect(()=>{const mq=window.matchMedia('(prefers-reduced-motion: reduce)');if(mq.matches)setMotion(false);const change=()=>setMotion(!mq.matches);mq.addEventListener('change',change);return()=>{mq.removeEventListener('change',change);if(burstTimer.current)clearTimeout(burstTimer.current)}},[]);
  useEffect(()=>{document.documentElement.dataset.motion=motion?'on':'off'},[motion]);
  const discover=(fact:Breed|Fact,e?:React.MouseEvent<HTMLElement>)=>{
