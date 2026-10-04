@@ -1,0 +1,16 @@
+{
+  "source_commit": "dd9fcfdbe0f164a526da30c211d0393e599c092b",
+  "original_files_preserved": 169,
+  "node_version": "24.19.0",
+  "platform": "Linux",
+  "checks": {
+    "npm_ci_clean_dependency_directory": "passed; 687 packages installed from the unchanged lockfile",
+    "portable_npm_run_dev": "passed",
+    "portable_npm_run_build": "passed",
+    "npm_start_local_production": "passed",
+    "homepage_12_breeds": "passed",
+    "image_and_audio_delivery": "passed",
+    "intro_and_loop_wav_bytes": "matched"
+  },
+  "verified_at": "2026-10-03T08:18:54.750371+00:00"
+}

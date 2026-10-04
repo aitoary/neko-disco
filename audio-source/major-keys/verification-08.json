@@ -1,0 +1,42 @@
+{
+  "title": "MOON SUGAR",
+  "premaster": {
+    "input_i": "-14.55",
+    "input_tp": "-2.11",
+    "input_lra": "3.80",
+    "input_thresh": "-24.85",
+    "output_i": "-14.15",
+    "output_tp": "-1.64",
+    "output_lra": "2.00",
+    "output_thresh": "-24.30",
+    "normalization_type": "dynamic",
+    "target_offset": "0.15"
+  },
+  "final_mp3": {
+    "input_i": "-13.99",
+    "input_tp": "-1.25",
+    "input_lra": "3.80",
+    "input_thresh": "-24.30",
+    "output_i": "-14.15",
+    "output_tp": "-1.50",
+    "output_lra": "2.00",
+    "output_thresh": "-24.31",
+    "normalization_type": "dynamic",
+    "target_offset": "0.15"
+  },
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 2
+      }
+    ],
+    "format": {
+      "duration": "39.732245",
+      "size": "1272432"
+    }
+  },
+  "checks": "2-channel 44.1 kHz MP3 decodes; loudness in range; true peak below 0 dBTP"
+}
