@@ -1,80 +1,324 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
-  <title>STAR POP EXPRESS · フル版とループ版 | NEKO DISCO</title>
-  <style>
-    *{box-sizing:border-box}body{margin:0;background:#21152c;color:#fff4df;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.6}main{max-width:780px;margin:auto;padding:56px 24px 64px}header{margin-bottom:32px}.eyebrow{margin:0 0 8px;color:#ee88b8;font-size:14px;letter-spacing:.12em}h1{font-size:clamp(28px,6vw,44px);line-height:1.2;margin:0 0 14px;letter-spacing:-.02em}header p:last-child{margin:0;color:#d3bddf;font-size:16px}.tracks{display:grid;gap:20px}article{padding:24px;background:#2b1e38;border:1px solid #61466c;border-radius:16px}.number{color:#d7ef8b;font-size:14px;letter-spacing:.12em}h2{margin:4px 0 6px;font-size:clamp(20px,4vw,26px);line-height:1.3}.description{margin:0 0 18px;color:#d3bddf;font-size:15px}audio{display:block;width:100%;height:54px;margin:0 0 18px}a.download{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1px solid #d7ef8b;border-radius:8px;color:#d7ef8b;text-decoration:none;font-size:15px;font-weight:600}a.download:hover{background:#d7ef8b;color:#21152c}a:focus-visible{outline:3px solid #ee88b8;outline-offset:4px}.error{color:#ffc4d8;font-size:14px;margin:0 0 12px}footer{margin-top:28px;color:#d3bddf;font-size:14px}footer a{color:#fff4df}@media(max-width:480px){main{padding:32px 16px 40px}article{padding:20px 16px}}
-  button{font:inherit;cursor:pointer}button.loop-button{min-height:44px;padding:9px 16px;background:#d7ef8b;color:#21152c;border:1px solid #d7ef8b;border-radius:8px;font-weight:600}button.loop-button.secondary{background:transparent;color:#d7ef8b}button.loop-button:hover{filter:brightness(1.08)}button:focus-visible,input:focus-visible{outline:3px solid #ee88b8;outline-offset:4px}.loop-controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.loop-readout{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#d3bddf;flex-wrap:wrap}.loop-readout p{margin:0}progress{display:block;width:100%;height:10px;margin:12px 0;accent-color:#ee88b8}.volume-control{display:flex;align-items:center;gap:12px;font-size:14px;margin:16px 0 20px}.volume-control input{width:160px;max-width:60%;accent-color:#d7ef8b}.previous{margin-top:32px}.previous summary{padding:12px 0;cursor:pointer;color:#d3bddf;font-size:15px}.previous .tracks{margin-top:16px}</style>
-</head>
-<body>
-<main>
-  <header>
-    <p class="eyebrow">NEKO DISCO / CANDY PAWS</p>
-    <h1>STAR POP EXPRESS</h1>
-    <p>D♭メジャー / 126 BPM</p>
-  </header>
-  <div class="tracks">
-    <article>
-      <span class="number">FULL VERSION · 約2:20</span>
-      <h2>フルバージョン</h2>
-      <p class="description">イントロ、シンセの掛け合い、ブレイク、最後のサビまで。</p>
-      <audio controls preload="metadata" aria-label="STAR POP EXPRESSのフル版を再生" src="/music-samples/STAR-POP-EXPRESS-full-v1.mp3"></audio>
-      <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
-      <a class="download" href="/music-samples/STAR-POP-EXPRESS-full-v1.mp3" download="STAR-POP-EXPRESS-full-v1.mp3">フル版MP3をダウンロード</a>
-    </article>
-    <article>
-      <span class="number">LOOP VERSION · 本編 約2:02</span>
-      <h2>ループ版</h2>
-      <p class="description">イントロは最初の1回。本編を切れ目なく繰り返します。</p>
-      <div id="loop-player" data-intro="/music-samples/STAR-POP-EXPRESS-intro-v1.wav" data-body="/music-samples/STAR-POP-EXPRESS-loop-v1.wav" data-intro-seconds="7.619047619047619">
-        <div class="loop-controls">
-          <button class="loop-button" id="loop-play" type="button" aria-pressed="false">イントロから再生</button>
-          <button class="loop-button secondary" id="loop-seam" type="button">つなぎ目を聴く</button>
-        </div>
-        <progress id="loop-progress" value="0" max="121.9047619047619" aria-label="ループ本編の再生位置"></progress>
-        <div class="loop-readout">
-          <p id="loop-status" role="status" aria-live="polite">停止中</p>
-          <p id="loop-time">0:00 / 2:02</p>
-        </div>
-        <label class="volume-control" for="loop-volume">音量<input id="loop-volume" type="range" min="0" max="100" value="80"></label>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>STAR POP EXPRESS · フル版とループ版 | NEKO DISCO</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #21152c;
+        color: #fff4df;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Noto Sans JP",
+          sans-serif;
+        line-height: 1.6;
+      }
+      main {
+        max-width: 780px;
+        margin: auto;
+        padding: 56px 24px 64px;
+      }
+      header {
+        margin-bottom: 32px;
+      }
+      .eyebrow {
+        margin: 0 0 8px;
+        color: #ee88b8;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+      }
+      h1 {
+        font-size: clamp(28px, 6vw, 44px);
+        line-height: 1.2;
+        margin: 0 0 14px;
+        letter-spacing: -0.02em;
+      }
+      header p:last-child {
+        margin: 0;
+        color: #d3bddf;
+        font-size: 16px;
+      }
+      .tracks {
+        display: grid;
+        gap: 20px;
+      }
+      article {
+        padding: 24px;
+        background: #2b1e38;
+        border: 1px solid #61466c;
+        border-radius: 16px;
+      }
+      .number {
+        color: #d7ef8b;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+      }
+      h2 {
+        margin: 4px 0 6px;
+        font-size: clamp(20px, 4vw, 26px);
+        line-height: 1.3;
+      }
+      .description {
+        margin: 0 0 18px;
+        color: #d3bddf;
+        font-size: 15px;
+      }
+      audio {
+        display: block;
+        width: 100%;
+        height: 54px;
+        margin: 0 0 18px;
+      }
+      a.download {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 8px 16px;
+        border: 1px solid #d7ef8b;
+        border-radius: 8px;
+        color: #d7ef8b;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      a.download:hover {
+        background: #d7ef8b;
+        color: #21152c;
+      }
+      a:focus-visible {
+        outline: 3px solid #ee88b8;
+        outline-offset: 4px;
+      }
+      .error {
+        color: #ffc4d8;
+        font-size: 14px;
+        margin: 0 0 12px;
+      }
+      footer {
+        margin-top: 28px;
+        color: #d3bddf;
+        font-size: 14px;
+      }
+      footer a {
+        color: #fff4df;
+      }
+      @media (max-width: 480px) {
+        main {
+          padding: 32px 16px 40px;
+        }
+        article {
+          padding: 20px 16px;
+        }
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      button.loop-button {
+        min-height: 44px;
+        padding: 9px 16px;
+        background: #d7ef8b;
+        color: #21152c;
+        border: 1px solid #d7ef8b;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      button.loop-button.secondary {
+        background: transparent;
+        color: #d7ef8b;
+      }
+      button.loop-button:hover {
+        filter: brightness(1.08);
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #ee88b8;
+        outline-offset: 4px;
+      }
+      .loop-controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 14px 0;
+      }
+      .loop-readout {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 14px;
+        color: #d3bddf;
+        flex-wrap: wrap;
+      }
+      .loop-readout p {
+        margin: 0;
+      }
+      progress {
+        display: block;
+        width: 100%;
+        height: 10px;
+        margin: 12px 0;
+        accent-color: #ee88b8;
+      }
+      .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        margin: 16px 0 20px;
+      }
+      .volume-control input {
+        width: 160px;
+        max-width: 60%;
+        accent-color: #d7ef8b;
+      }
+      .previous {
+        margin-top: 32px;
+      }
+      .previous summary {
+        padding: 12px 0;
+        cursor: pointer;
+        color: #d3bddf;
+        font-size: 15px;
+      }
+      .previous .tracks {
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">NEKO DISCO / CANDY PAWS</p>
+        <h1>STAR POP EXPRESS</h1>
+        <p>D♭メジャー / 126 BPM</p>
+      </header>
+      <div class="tracks">
+        <article>
+          <span class="number">FULL VERSION · 約2:20</span>
+          <h2>フルバージョン</h2>
+          <p class="description">イントロ、シンセの掛け合い、ブレイク、最後のサビまで。</p>
+          <audio
+            controls
+            preload="metadata"
+            aria-label="STAR POP EXPRESSのフル版を再生"
+            src="/music-samples/STAR-POP-EXPRESS-full-v1.mp3"
+          ></audio>
+          <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
+          <a
+            class="download"
+            href="/music-samples/STAR-POP-EXPRESS-full-v1.mp3"
+            download="STAR-POP-EXPRESS-full-v1.mp3"
+            >フル版MP3をダウンロード</a
+          >
+        </article>
+        <article>
+          <span class="number">LOOP VERSION · 本編 約2:02</span>
+          <h2>ループ版</h2>
+          <p class="description">イントロは最初の1回。本編を切れ目なく繰り返します。</p>
+          <div
+            id="loop-player"
+            data-intro="/music-samples/STAR-POP-EXPRESS-intro-v1.wav"
+            data-body="/music-samples/STAR-POP-EXPRESS-loop-v1.wav"
+            data-intro-seconds="7.619047619047619"
+          >
+            <div class="loop-controls">
+              <button class="loop-button" id="loop-play" type="button" aria-pressed="false">
+                イントロから再生
+              </button>
+              <button class="loop-button secondary" id="loop-seam" type="button">
+                つなぎ目を聴く
+              </button>
+            </div>
+            <progress
+              id="loop-progress"
+              value="0"
+              max="121.9047619047619"
+              aria-label="ループ本編の再生位置"
+            ></progress>
+            <div class="loop-readout">
+              <p id="loop-status" role="status" aria-live="polite">停止中</p>
+              <p id="loop-time">0:00 / 2:02</p>
+            </div>
+            <label class="volume-control" for="loop-volume"
+              >音量<input id="loop-volume" type="range" min="0" max="100" value="80"
+            /></label>
+          </div>
+          <a
+            class="download"
+            href="/music-samples/STAR-POP-EXPRESS-loop-v1.wav"
+            download="STAR-POP-EXPRESS-loop-v1.wav"
+            >本編ループWAVをダウンロード（約22 MB）</a
+          >
+        </article>
       </div>
-      <a class="download" href="/music-samples/STAR-POP-EXPRESS-loop-v1.wav" download="STAR-POP-EXPRESS-loop-v1.wav">本編ループWAVをダウンロード（約22 MB）</a>
-    </article>
-  </div>
-  <details class="previous">
-    <summary>制作サンプル（約40秒）</summary>
-  <div class="tracks">
-    <article>
-      <span class="number">DEMO 08 · 0:40</span>
-      <h2>MOON SUGAR</h2>
-      <p class="description">上昇するフックと弾むベース。Bメジャー / 128 BPM</p>
-      <audio controls preload="metadata" aria-label="MOON SUGARを再生" src="/music-samples/MOON-SUGAR-demo-08.mp3"></audio>
-      <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
-      <a class="download" href="/music-samples/MOON-SUGAR-demo-08.mp3" download="MOON-SUGAR-demo-08.mp3">MP3をダウンロード</a>
-    </article>
-    <article>
-      <span class="number">DEMO 09 · 0:40</span>
-      <h2>STAR POP EXPRESS</h2>
-      <p class="description">きらめくシンセのコール＆レスポンス。D♭メジャー / 126 BPM</p>
-      <audio controls preload="metadata" aria-label="STAR POP EXPRESSを再生" src="/music-samples/STAR-POP-EXPRESS-demo-09.mp3"></audio>
-      <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
-      <a class="download" href="/music-samples/STAR-POP-EXPRESS-demo-09.mp3" download="STAR-POP-EXPRESS-demo-09.mp3">MP3をダウンロード</a>
-    </article>
-    <article>
-      <span class="number">DEMO 10 · 0:41</span>
-      <h2>SUGAR SATELLITE</h2>
-      <p class="description">跳ねるメロディーと甘いハーモニー。G♭メジャー / 124 BPM</p>
-      <audio controls preload="metadata" aria-label="SUGAR SATELLITEを再生" src="/music-samples/SUGAR-SATELLITE-demo-10.mp3"></audio>
-      <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
-      <a class="download" href="/music-samples/SUGAR-SATELLITE-demo-10.mp3" download="SUGAR-SATELLITE-demo-10.mp3">MP3をダウンロード</a>
-    </article>
-  </div>
-  </details>
-  <footer><a href="/">NEKO DISCOに戻る</a></footer>
-</main>
-<script src="/music-samples-loop.js"></script>
-</body>
+      <details class="previous">
+        <summary>制作サンプル（約40秒）</summary>
+        <div class="tracks">
+          <article>
+            <span class="number">DEMO 08 · 0:40</span>
+            <h2>MOON SUGAR</h2>
+            <p class="description">上昇するフックと弾むベース。Bメジャー / 128 BPM</p>
+            <audio
+              controls
+              preload="metadata"
+              aria-label="MOON SUGARを再生"
+              src="/music-samples/MOON-SUGAR-demo-08.mp3"
+            ></audio>
+            <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
+            <a
+              class="download"
+              href="/music-samples/MOON-SUGAR-demo-08.mp3"
+              download="MOON-SUGAR-demo-08.mp3"
+              >MP3をダウンロード</a
+            >
+          </article>
+          <article>
+            <span class="number">DEMO 09 · 0:40</span>
+            <h2>STAR POP EXPRESS</h2>
+            <p class="description">きらめくシンセのコール＆レスポンス。D♭メジャー / 126 BPM</p>
+            <audio
+              controls
+              preload="metadata"
+              aria-label="STAR POP EXPRESSを再生"
+              src="/music-samples/STAR-POP-EXPRESS-demo-09.mp3"
+            ></audio>
+            <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
+            <a
+              class="download"
+              href="/music-samples/STAR-POP-EXPRESS-demo-09.mp3"
+              download="STAR-POP-EXPRESS-demo-09.mp3"
+              >MP3をダウンロード</a
+            >
+          </article>
+          <article>
+            <span class="number">DEMO 10 · 0:41</span>
+            <h2>SUGAR SATELLITE</h2>
+            <p class="description">跳ねるメロディーと甘いハーモニー。G♭メジャー / 124 BPM</p>
+            <audio
+              controls
+              preload="metadata"
+              aria-label="SUGAR SATELLITEを再生"
+              src="/music-samples/SUGAR-SATELLITE-demo-10.mp3"
+            ></audio>
+            <p class="error" hidden>再生できない場合は、下のMP3を保存してお聴きください。</p>
+            <a
+              class="download"
+              href="/music-samples/SUGAR-SATELLITE-demo-10.mp3"
+              download="SUGAR-SATELLITE-demo-10.mp3"
+              >MP3をダウンロード</a
+            >
+          </article>
+        </div>
+      </details>
+      <footer><a href="/">NEKO DISCOに戻る</a></footer>
+    </main>
+    <script src="/music-samples-loop.js"></script>
+  </body>
 </html>

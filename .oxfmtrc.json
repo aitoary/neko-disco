@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "endOfLine": "lf",
+  "sortImports": false,
+  "sortTailwindcss": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "node_modules/**",
+    "dist/**",
+    ".next/**",
+    ".vinext/**",
+    ".wrangler/**",
+    ".sites-runtime/**",
+    "out/**",
+    "coverage/**",
+    "build/**",
+    "vendor/**",
+    "components/ui/**",
+    "hooks/use-mobile.ts",
+    "audio-source/**",
+    "public/music-samples/**",
+    "package-lock.json",
+    "tsconfig.tsbuildinfo",
+    "next-env.d.ts",
+    "EXPORT_MANIFEST.json",
+    "EXPORT_VERIFICATION.json"
+  ]
+}
