@@ -38,7 +38,7 @@ const quizzes=[
 ];
 function Cat({index,className=''}:{index:number;className?:string}){
  const breed=breeds[index];
- return <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}><img src={breed.image} alt="" draggable="false" width="512" height="512"/></span>;
+ return <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}><img src={breed.image} alt="" loading="lazy" draggable="false" width="512" height="512"/></span>;
 }
 function BreedName({name}:{name:string}){
  return <>{name.split(/(フォールド|ショートヘア|フォレストキャット)/).filter(Boolean).map((part,i)=><span key={i}>{part}</span>)}</>;
@@ -92,7 +92,7 @@ export default function Home(){
    <div id="dance-floor" className="floor-section">
     <div className="floor-topline"><span><i className="live-dot"/> THE DANCE FLOOR</span><span className="floor-hint"><MousePointer2 size={14}/> 猫もグッズも、タップしてみて</span><span className="floor-count"><Sparkles size={15}/> <b>{found.length.toString().padStart(2,'0')}</b> / 12 猫種</span></div>
     <div className="scene">
-     <img className="scene-image" src="/images/disco-room.webp" alt="中央のミラーボールが輝くディスコ。キャットタワーや段ボール、爪とぎが並ぶ部屋に、12猫種が集まっています。" fetchPriority="high" width="1536" height="1024"/>
+     <img className="scene-image" src="/images/disco-room.webp" alt="中央のミラーボールが輝くディスコ。キャットタワーや段ボール、爪とぎが並ぶ部屋に、12猫種が集まっています。" loading="lazy" width="1536" height="1024"/>
      <div className="scene-glow" aria-hidden="true"/>
      {sceneProps.map(s=>{const f=facts.find(f=>f.id===s.id)!;return <button key={s.id} className={`hotspot prop-hotspot spot-${s.id}`} style={{left:`${s.x}%`,top:`${s.y}%`,width:`${s.w}%`,height:`${s.h}%`}} aria-label={`${f.label}：猫の生態を知る`} {...sceneHintEvents(`prop-${s.id}`,f.label,'猫の生態を知る')} onClick={e=>discover(f,e)}><span className="prop-mark"><Sparkles size={13}/></span></button>})}
      {breeds.map((breed,i)=><button key={breed.id} data-breed={breed.id} className={`hotspot scene-cat ${found.includes(breed.id)?'discovered':''}`} style={{left:`${breed.scene.x}%`,top:`${breed.scene.y}%`,width:`${breed.scene.size}%`,zIndex:Math.round(breed.scene.y),'--i':i} as CSSProperties} aria-label={`${breed.name}を知る${found.includes(breed.id)?'（発見済み）':''}`} {...sceneHintEvents(`breed-${breed.id}`,breed.name,`猫種別${breed.rank}位 · タップで会いにいく`)} onClick={e=>discover(breed,e)}><Cat index={i}/><span className="hotspot-mark">{found.includes(breed.id)?<Check size={14}/>:<Plus size={15}/>}</span></button>)}
