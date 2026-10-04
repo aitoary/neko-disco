@@ -9,6 +9,16 @@ A clean full-stack starter running on [vinext](https://github.com/cloudflare/vin
 - Managed Linux: managed Linux runtime with Bash, `flock`, `curl`, `sha256sum`, and GNU `timeout`
 - Git is required only for publishing
 
+## Formatting
+
+Run `npm run format` to format project files with the pinned Oxfmt version, or
+`npm run format:check` to check formatting without writing changes.
+
+Formatting uses two spaces, a line width of 100, double quotes, and semicolons.
+Import, Tailwind class, and package field sorting are disabled. Vendored source,
+generated files, and audio source artifacts are excluded in `.oxfmtrc.json`.
+ESLint continues to handle code quality checks with `npm run lint`.
+
 ## Sites Lifecycle
 
 The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
