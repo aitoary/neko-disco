@@ -19,6 +19,11 @@ Import, Tailwind class, and package field sorting are disabled. Vendored source,
 generated files, and audio source artifacts are excluded in `.oxfmtrc.json`.
 ESLint continues to handle code quality checks with `npm run lint`.
 
+Zed's project settings in `.zed/settings.json` run the locally installed Oxfmt
+on save for JavaScript, TypeScript, TSX, CSS, JSON/JSONC, HTML, Markdown, and YAML.
+Run the project dependency install first; no editor extension or global formatter
+installation is required. Open this repository root as the Zed project.
+
 ## Sites Lifecycle
 
 The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
