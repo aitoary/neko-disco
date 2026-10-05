@@ -2302,16 +2302,10 @@ html[data-motion="off"] .fact-visual .cat-sprite {
   .fixed-capsule {
     --capsule-inline-gap: 13px;
     --capsule-bottom-gap: 14px;
-    --capsule-height: 43px;
+    --capsule-height: 44px;
     padding: 9px 13px;
     font-size: 11px;
     gap: 6px;
-  }
-  .back-to-floor {
-    /* Keep both full labels readable without moving the discovery counter. */
-    bottom: calc(
-      var(--capsule-bottom-gap) + env(safe-area-inset-bottom, 0px) + var(--capsule-height) + 12px
-    );
   }
   .discovery-pill b {
     font-size: 19px;
@@ -2611,6 +2605,33 @@ html[data-motion="off"] .fact-visual .cat-sprite {
   }
   .quiz-stamp {
     bottom: 145px;
+  }
+}
+/* Keep the fixed capsules side by side, including the all-breeds-found icon. */
+@media (max-width: 400px) {
+  .fixed-capsule {
+    --capsule-inline-gap: 8px;
+    padding-inline: 8px;
+    gap: 4px;
+  }
+}
+@media (max-width: 360px) {
+  .fixed-capsule {
+    --capsule-inline-gap: 6px;
+    padding-inline: 6px;
+    gap: 3px;
+    font-size: 11px;
+  }
+  .fixed-capsule svg {
+    width: 15px;
+    height: 15px;
+  }
+  .discovery-pill b {
+    font-size: 17px;
+    margin-left: 2px;
+  }
+  .discovery-pill small {
+    font-size: 13px;
   }
 }
 /* Twelve real breeds, shared across the floor, cards, and portraits. */
