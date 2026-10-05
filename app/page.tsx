@@ -20,6 +20,7 @@ import { Slider } from "@/components/ui/slider";
 import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { useDiscoAudio } from "./use-disco-audio";
+import { useDiscoMotion } from "./use-disco-motion";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
 import { BackToFloor } from "./back-to-floor";
@@ -130,7 +131,7 @@ export default function Home() {
   const { soundState, toggleSound } = useDiscoAudio();
   const sound = soundState === "playing" || soundState === "loading";
   const [sceneHint, setSceneHint] = useState<SceneHint | null>(null);
-  const [motion, setMotion] = useState(true);
+  const { motion, setMotion } = useDiscoMotion();
   const [selected, setSelected] = useState<Breed | Fact | null>(null);
   const [found, setFound] = useState<string[]>([]);
   const [burst, setBurst] = useState<{ x: number; y: number; id: number } | null>(null);
@@ -145,12 +146,7 @@ export default function Home() {
     console.log("HELLO NEKO DISKO!");
   }, []);
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) setMotion(false);
-    const change = () => setMotion(!mq.matches);
-    mq.addEventListener("change", change);
     return () => {
-      mq.removeEventListener("change", change);
       if (burstTimer.current) clearTimeout(burstTimer.current);
     };
   }, []);
