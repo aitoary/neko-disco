@@ -21,6 +21,7 @@ import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { useDiscoAudio } from "./use-disco-audio";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
+import { SceneLighting } from "./scene-lighting";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -339,7 +340,7 @@ export default function Home() {
               width="1536"
               height="1024"
             />
-            <div className="scene-glow" aria-hidden="true" />
+            <SceneLighting />
             {sceneProps.map((s) => {
               const f = facts.find((f) => f.id === s.id)!;
               return (
