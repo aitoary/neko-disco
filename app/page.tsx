@@ -22,6 +22,7 @@ import { breeds, ranking, type Breed } from "./breeds";
 import { useDiscoAudio } from "./use-disco-audio";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
+import { BackToFloor } from "./back-to-floor";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -720,7 +721,6 @@ export default function Home() {
             </span>
           </a>
           <span>踊るのも、休むのも、ねこの自由。</span>
-          <a href="#top">BACK TO TOP ↑</a>
         </div>
         <div className="footer-bottom">
           <p>ここは空想のディスコ。ほんもののねこには、静かな居場所と新鮮なお水を。</p>
@@ -774,6 +774,7 @@ export default function Home() {
         </b>
         {found.length === 12 && <Sparkles size={18} />}
       </aside>
+      <BackToFloor motionEnabled={motion} />
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {
