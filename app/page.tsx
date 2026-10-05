@@ -20,8 +20,10 @@ import { Slider } from "@/components/ui/slider";
 import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { useDiscoAudio } from "./use-disco-audio";
+import { useDiscoMotion } from "./use-disco-motion";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
+import { BackToFloor } from "./back-to-floor";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -129,7 +131,7 @@ export default function Home() {
   const { soundState, toggleSound } = useDiscoAudio();
   const sound = soundState === "playing" || soundState === "loading";
   const [sceneHint, setSceneHint] = useState<SceneHint | null>(null);
-  const [motion, setMotion] = useState(true);
+  const { motion, setMotion } = useDiscoMotion();
   const [selected, setSelected] = useState<Breed | Fact | null>(null);
   const [found, setFound] = useState<string[]>([]);
   const [burst, setBurst] = useState<{ x: number; y: number; id: number } | null>(null);
@@ -144,12 +146,7 @@ export default function Home() {
     console.log("HELLO NEKO DISKO!");
   }, []);
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) setMotion(false);
-    const change = () => setMotion(!mq.matches);
-    mq.addEventListener("change", change);
     return () => {
-      mq.removeEventListener("change", change);
       if (burstTimer.current) clearTimeout(burstTimer.current);
     };
   }, []);
@@ -720,7 +717,6 @@ export default function Home() {
             </span>
           </a>
           <span>踊るのも、休むのも、ねこの自由。</span>
-          <a href="#top">BACK TO TOP ↑</a>
         </div>
         <div className="footer-bottom">
           <p>ここは空想のディスコ。ほんもののねこには、静かな居場所と新鮮なお水を。</p>
@@ -765,7 +761,7 @@ export default function Home() {
           </div>
         </details>
       </footer>
-      <aside className="discovery-pill" aria-live="polite">
+      <aside className="fixed-capsule discovery-pill" aria-live="polite">
         <PawPrint size={17} />
         <span>出会った猫種</span>
         <b>
@@ -774,6 +770,7 @@ export default function Home() {
         </b>
         {found.length === 12 && <Sparkles size={18} />}
       </aside>
+      <BackToFloor motionEnabled={motion} />
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {

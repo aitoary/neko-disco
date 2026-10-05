@@ -137,7 +137,7 @@
       playButton.textContent = "停止";
       playButton.setAttribute("aria-pressed", "true");
       update();
-    } catch (error) {
+    } catch {
       if (generation !== ownGeneration) return;
       stop();
       showStatus("音源を読み込めませんでした。下のWAVを保存してお聴きください。");
