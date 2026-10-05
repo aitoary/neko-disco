@@ -1304,10 +1304,14 @@ footer {
   gap: 4px;
   text-decoration: underline;
 }
-.discovery-pill {
+.fixed-capsule {
+  --capsule-accent: var(--pink);
+  --capsule-inline-gap: 22px;
+  --capsule-bottom-gap: 20px;
+  --capsule-height: 51px;
   position: fixed;
-  bottom: 20px;
-  right: 22px;
+  bottom: calc(var(--capsule-bottom-gap) + env(safe-area-inset-bottom, 0px));
+  min-height: var(--capsule-height);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1316,11 +1320,14 @@ footer {
   border: 1.5px solid var(--ink);
   border-radius: 40px;
   padding: 12px 17px;
-  box-shadow: 0 3px 0 #ffabd7;
+  box-shadow: 0 3px 0 var(--capsule-accent);
   z-index: 15;
   font-size: 12px;
   font-weight: 700;
   backdrop-filter: blur(10px);
+}
+.discovery-pill {
+  left: calc(var(--capsule-inline-gap) + env(safe-area-inset-left, 0px));
 }
 .discovery-pill > svg {
   color: #8b5592;
@@ -2258,9 +2265,10 @@ html[data-motion="off"] .fact-visual .cat-sprite {
     margin-top: 20px;
     padding-top: 15px;
   }
-  .discovery-pill {
-    bottom: 14px;
-    right: 13px;
+  .fixed-capsule {
+    --capsule-inline-gap: 13px;
+    --capsule-bottom-gap: 14px;
+    --capsule-height: 43px;
     padding: 9px 13px;
     font-size: 11px;
     gap: 6px;
@@ -2554,7 +2562,7 @@ html[data-motion="off"] .fact-visual .cat-sprite {
   .floor-bottom button {
     font-size: 12px;
   }
-  .discovery-pill {
+  .fixed-capsule {
     font-size: 12px;
   }
   .quiz-stamp {

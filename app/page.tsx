@@ -765,7 +765,7 @@ export default function Home() {
           </div>
         </details>
       </footer>
-      <aside className="discovery-pill" aria-live="polite">
+      <aside className="fixed-capsule discovery-pill" aria-live="polite">
         <PawPrint size={17} />
         <span>出会った猫種</span>
         <b>
