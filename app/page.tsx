@@ -19,6 +19,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Slider } from "@/components/ui/slider";
 import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
+import { resolveSelection, type SelectionKey } from "./selection";
 import { useDiscoAudio } from "./use-disco-audio";
 import { useDiscoMotion } from "./use-disco-motion";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
@@ -132,7 +133,10 @@ export default function Home() {
   const sound = soundState === "playing" || soundState === "loading";
   const [sceneHint, setSceneHint] = useState<SceneHint | null>(null);
   const { motion, setMotion } = useDiscoMotion();
-  const [selected, setSelected] = useState<Breed | Fact | null>(null);
+  const [selection, setSelection] = useState<SelectionKey | null>(null);
+  const resolvedSelection = resolveSelection(selection, breeds, facts);
+  const selected = resolvedSelection?.item ?? null;
+  const selectedBreedIndex = resolvedSelection?.kind === "breed" ? resolvedSelection.index : null;
   const [found, setFound] = useState<string[]>([]);
   const [burst, setBurst] = useState<{ x: number; y: number; id: number } | null>(null);
   const [period, setPeriod] = useState(getCurrentJstPeriod);
@@ -167,7 +171,7 @@ export default function Home() {
       if (burstTimer.current) clearTimeout(burstTimer.current);
       burstTimer.current = setTimeout(() => setBurst(null), 900);
     }
-    setSelected(fact);
+    setSelection("name" in fact ? { kind: "breed", id: fact.id } : { kind: "fact", id: fact.id });
   };
   const sceneHintEvents = (id: string, label: string, detail: string) => {
     const show = (e: React.MouseEvent<HTMLButtonElement> | React.FocusEvent<HTMLButtonElement>) =>
@@ -774,7 +778,7 @@ export default function Home() {
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {
-          if (!open) setSelected(null);
+          if (!open) setSelection(null);
         }}
       >
         <DialogContent
@@ -790,7 +794,7 @@ export default function Home() {
               <button
                 className="dialog-close"
                 aria-label="紹介を閉じる"
-                onClick={() => setSelected(null)}
+                onClick={() => setSelection(null)}
               >
                 <X size={21} />
               </button>
@@ -808,7 +812,7 @@ export default function Home() {
                         <small>位</small>
                       </b>
                     </span>
-                    <Cat index={breeds.indexOf(selected)} />
+                    {selectedBreedIndex !== null && <Cat index={selectedBreedIndex} />}
                     <span className="fact-sound">{selected.catchphrase}</span>
                   </div>
                   <div className="fact-copy breed-copy">
@@ -838,7 +842,7 @@ export default function Home() {
                       <a href={selected.source} target="_blank" rel="noreferrer">
                         猫種の参考：{selected.sourceName}
                       </a>
-                      <button className="dark-button" onClick={() => setSelected(null)}>
+                      <button className="dark-button" onClick={() => setSelection(null)}>
                         なるほど、にゃ！ <Check size={16} />
                       </button>
                     </div>
@@ -862,7 +866,7 @@ export default function Home() {
                       <a href={selected.source} target="_blank" rel="noreferrer">
                         参考：Cats Protection
                       </a>
-                      <button className="dark-button" onClick={() => setSelected(null)}>
+                      <button className="dark-button" onClick={() => setSelection(null)}>
                         なるほど、にゃ！ <Check size={16} />
                       </button>
                     </div>
