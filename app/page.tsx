@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
+import { periods, quizzes } from "./activities";
 import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { resolveSelection, type SelectionKey } from "./selection";
@@ -33,40 +34,6 @@ const sceneProps = [
   { id: "scratch", x: 89, y: 60, w: 8, h: 22 },
   { id: "water", x: 88, y: 35, w: 10, h: 15 },
 ];
-const periods = [
-  {
-    time: "06:00",
-    label: "あさ",
-    headline: "朝いちばんの、わくわく。",
-    text: "空が明るくなるころ、猫のハンター気分もスイッチオン。起きたら少しだけ、おもちゃで遊ぼう。",
-    breed: 1,
-    mood: "PLAY TIME",
-  },
-  {
-    time: "12:00",
-    label: "ひる",
-    headline: "おひるねも、全力です。",
-    text: "静かな場所で、のびのびお昼寝。次の冒険に備えて、しっかりエネルギーをためる時間。",
-    breed: 8,
-    mood: "NAP TIME",
-  },
-  {
-    time: "18:00",
-    label: "ゆうがた",
-    headline: "そろそろ、ねこの時間。",
-    text: "夕暮れは、猫が活発になりやすい時間帯。追いかけて、飛びついて。遊びのリズムに付き合ってみよう。",
-    breed: 11,
-    mood: "GOLDEN HOUR",
-  },
-  {
-    time: "00:00",
-    label: "よる",
-    headline: "夜ふかしも、マイペース。",
-    text: "夜に活動する子も、ぐっすり眠る子も。人との暮らしや年齢に合わせて、生活のリズムは変わります。",
-    breed: 6,
-    mood: "MY OWN PACE",
-  },
-];
 function getCurrentJstPeriod() {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Tokyo",
@@ -82,32 +49,6 @@ function getCurrentJstPeriod() {
   if (time < 15) return 1;
   return 2;
 }
-const quizzes = [
-  {
-    q: "青い目が特徴の、ふわふわな猫は？",
-    choices: ["アメリカンショートヘア", "ラグドール", "ロシアンブルー"],
-    answer: 1,
-    explain:
-      "ラグドールは青い目とセミロングの毛、大きな体が特徴。名前には「ぬいぐるみ」という意味があります。",
-    breed: 2,
-  },
-  {
-    q: "ミヌエットのルーツとなった組み合わせは？",
-    choices: ["ペルシャ系 × マンチカン", "ベンガル × ロシアンブルー", "メインクーン × ラグドール"],
-    answer: 0,
-    explain:
-      "ミヌエットは、ペルシャ系の猫とマンチカンをもとに生まれた猫種。丸い顔と大きな目もチャームポイント。",
-    breed: 3,
-  },
-  {
-    q: "ベンガルの「ロゼット」って、どんな模様？",
-    choices: ["まっすぐなしま模様", "全身まっしろ", "輪のような斑点模様"],
-    answer: 2,
-    explain:
-      "ロゼットは、ヒョウを思わせる輪のような斑点模様。ベンガルにはマーブル模様の子もいます。",
-    breed: 11,
-  },
-];
 function Cat({ index, className = "" }: { index: number; className?: string }) {
   const breed = breeds[index];
   return (
