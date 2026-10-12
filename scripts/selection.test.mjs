@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
 
-// Supply the facade's two runtime imports with the project's existing TypeScript compiler.
+// Supply the facades' runtime imports with the project's existing TypeScript compiler.
 function typeScriptModuleUrl(path, imports = {}) {
   let { outputText } = ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
@@ -17,12 +17,16 @@ function typeScriptModuleUrl(path, imports = {}) {
 
 const definitionsUrl = typeScriptModuleUrl("../app/breed-definitions.ts");
 const japaneseTextUrl = typeScriptModuleUrl("../app/breeds-ja.ts");
+const factDefinitionsUrl = typeScriptModuleUrl("../app/fact-definitions.ts");
+const japaneseFactTextUrl = typeScriptModuleUrl("../app/facts-ja.ts");
 const [
   { breeds, ranking },
   { facts },
   { resolveSelection },
   { breedDefinitions },
   { japaneseBreedText },
+  { factDefinitions },
+  { japaneseFactText },
 ] = await Promise.all([
   import(
     typeScriptModuleUrl("../app/breeds.ts", {
@@ -30,10 +34,17 @@ const [
       "./breeds-ja": japaneseTextUrl,
     })
   ),
-  import(typeScriptModuleUrl("../app/facts.ts")),
+  import(
+    typeScriptModuleUrl("../app/facts.ts", {
+      "./fact-definitions": factDefinitionsUrl,
+      "./facts-ja": japaneseFactTextUrl,
+    })
+  ),
   import(typeScriptModuleUrl("../app/selection.ts")),
   import(definitionsUrl),
   import(japaneseTextUrl),
+  import(factDefinitionsUrl),
+  import(japaneseFactTextUrl),
 ]);
 
 test("each catalog has 12 unique stable IDs", () => {
@@ -145,5 +156,37 @@ test("every composed breed field, catalog order, and ranking match the main base
   assert.equal(
     createHash("sha256").update(normalized).digest("hex"),
     "dbdd3b54c4465de0d300694a82e542b067e62df878f9c4b90c108c8d8fc08726",
+  );
+});
+
+test("Japanese fact text has exactly the catalog IDs and no missing or blank fields", () => {
+  assert.deepEqual(
+    Object.keys(japaneseFactText).sort(),
+    factDefinitions.map((fact) => fact.id).sort(),
+  );
+  const fields = ["label", "tag", "title", "body", "tip", "sound"];
+  for (const [id, text] of Object.entries(japaneseFactText)) {
+    for (const field of fields) {
+      assert.equal(typeof text[field], "string", `${id}.${field}`);
+      assert.ok(text[field].trim().length > 0, `${id}.${field} must not be blank`);
+    }
+  }
+});
+
+test("every composed fact field and catalog order match the main baseline", () => {
+  // Captured before splitting data from main 2ae6b14e757d7c3b82d23fe833e6f20923d48161.
+  // Sort object keys only; array order and exact strings remain part of the comparison.
+  const normalized = JSON.stringify(facts, (_, value) =>
+    value && typeof value === "object" && !Array.isArray(value)
+      ? Object.fromEntries(
+          Object.keys(value)
+            .sort()
+            .map((key) => [key, value[key]]),
+        )
+      : value,
+  );
+  assert.equal(
+    createHash("sha256").update(normalized).digest("hex"),
+    "99ad5484fe914473bc1e599b66d901c7e3b782656049763168c5f457f3e524ad",
   );
 });
