@@ -11,9 +11,18 @@ function typeScriptModuleUrl(path) {
   return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
 }
 
-const [{ breedDefinitions }, { englishBreedText }] = await Promise.all([
+const [
+  { breedDefinitions },
+  { englishBreedText },
+  { factDefinitions },
+  { englishFactText },
+  { japaneseFactText },
+] = await Promise.all([
   import(typeScriptModuleUrl("../app/breed-definitions.ts")),
   import(typeScriptModuleUrl("../app/breeds-en.ts")),
+  import(typeScriptModuleUrl("../app/fact-definitions.ts")),
+  import(typeScriptModuleUrl("../app/facts-en.ts")),
+  import(typeScriptModuleUrl("../app/facts-ja.ts")),
 ]);
 
 test("English breed text covers exactly the 12 stable catalog IDs", () => {
@@ -63,6 +72,42 @@ test("English breed text contains no unintended Japanese", () => {
   // No intentional Japanese exceptions in this catalog, including publisher names.
   const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
   for (const [id, text] of Object.entries(englishBreedText)) {
+    for (const [field, value] of Object.entries(text)) {
+      assert.doesNotMatch(value, japanese, `${id}.${field}`);
+    }
+  }
+});
+
+test("English fact text covers exactly the 12 stable catalog IDs", () => {
+  assert.equal(Object.keys(englishFactText).length, 12);
+  assert.deepEqual(
+    Object.keys(englishFactText).sort(),
+    factDefinitions.map((fact) => fact.id).sort(),
+  );
+});
+
+test("English fact entries contain every text field and cannot override shared data", () => {
+  const fields = ["label", "tag", "title", "body", "tip", "sound"].sort();
+  for (const [id, text] of Object.entries(englishFactText)) {
+    assert.deepEqual(Object.keys(text).sort(), fields, id);
+    for (const field of fields) {
+      assert.equal(typeof text[field], "string", `${id}.${field}`);
+      assert.ok(text[field].trim().length > 0, `${id}.${field} must not be blank`);
+    }
+  }
+});
+
+test("English facts retain the existing English tags and scene exclamations", () => {
+  for (const { id } of factDefinitions) {
+    assert.equal(englishFactText[id].tag, japaneseFactText[id].tag, `${id}.tag`);
+    assert.equal(englishFactText[id].sound, japaneseFactText[id].sound, `${id}.sound`);
+  }
+});
+
+test("English fact text contains no unintended Japanese", () => {
+  // No intentional Japanese exceptions in this catalog.
+  const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
+  for (const [id, text] of Object.entries(englishFactText)) {
     for (const [field, value] of Object.entries(text)) {
       assert.doesNotMatch(value, japanese, `${id}.${field}`);
     }
