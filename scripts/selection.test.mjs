@@ -1,19 +1,40 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
 
-// Load these import-free runtime modules with the project's existing TypeScript compiler.
-async function loadTypeScript(path) {
-  const { outputText } = ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
+// Supply the facade's two runtime imports with the project's existing TypeScript compiler.
+function typeScriptModuleUrl(path, imports = {}) {
+  let { outputText } = ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
   });
-  return import(`data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`);
+  for (const [specifier, url] of Object.entries(imports)) {
+    outputText = outputText.replaceAll(JSON.stringify(specifier), JSON.stringify(url));
+  }
+  return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
 }
 
-const [{ breeds }, { facts }, { resolveSelection }] = await Promise.all(
-  ["../app/breeds.ts", "../app/facts.ts", "../app/selection.ts"].map(loadTypeScript),
-);
+const definitionsUrl = typeScriptModuleUrl("../app/breed-definitions.ts");
+const japaneseTextUrl = typeScriptModuleUrl("../app/breeds-ja.ts");
+const [
+  { breeds, ranking },
+  { facts },
+  { resolveSelection },
+  { breedDefinitions },
+  { japaneseBreedText },
+] = await Promise.all([
+  import(
+    typeScriptModuleUrl("../app/breeds.ts", {
+      "./breed-definitions": definitionsUrl,
+      "./breeds-ja": japaneseTextUrl,
+    })
+  ),
+  import(typeScriptModuleUrl("../app/facts.ts")),
+  import(typeScriptModuleUrl("../app/selection.ts")),
+  import(definitionsUrl),
+  import(japaneseTextUrl),
+]);
 
 test("each catalog has 12 unique stable IDs", () => {
   for (const items of [breeds, facts]) {
@@ -84,4 +105,45 @@ test("no selection or an unknown ID does not select another item", () => {
 test("a removed item does not resolve to the next catalog entry", () => {
   const key = { kind: "breed", id: breeds[0].id };
   assert.equal(resolveSelection(key, breeds.slice(1), facts), null);
+});
+
+test("Japanese breed text has exactly the catalog IDs and no missing or blank fields", () => {
+  assert.deepEqual(
+    Object.keys(japaneseBreedText).sort(),
+    breedDefinitions.map((breed) => breed.id).sort(),
+  );
+  const fields = [
+    "name",
+    "catchphrase",
+    "intro",
+    "trait",
+    "appearance",
+    "personality",
+    "detail",
+    "sourceName",
+  ];
+  for (const [id, text] of Object.entries(japaneseBreedText)) {
+    for (const field of fields) {
+      assert.equal(typeof text[field], "string", `${id}.${field}`);
+      assert.ok(text[field].trim().length > 0, `${id}.${field} must not be blank`);
+    }
+  }
+});
+
+test("every composed breed field, catalog order, and ranking match the main baseline", () => {
+  // Captured before splitting data from main a3f7d924b7b246f79fc368976c85911cc1a74db7.
+  // Sort object keys only; array order and exact strings remain part of the comparison.
+  const normalized = JSON.stringify({ breeds, ranking }, (_, value) =>
+    value && typeof value === "object" && !Array.isArray(value)
+      ? Object.fromEntries(
+          Object.keys(value)
+            .sort()
+            .map((key) => [key, value[key]]),
+        )
+      : value,
+  );
+  assert.equal(
+    createHash("sha256").update(normalized).digest("hex"),
+    "dbdd3b54c4465de0d300694a82e542b067e62df878f9c4b90c108c8d8fc08726",
+  );
 });
