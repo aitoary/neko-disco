@@ -20,6 +20,8 @@ const [
   { periodDefinitions, quizDefinitions },
   { englishPeriodText, englishQuizText },
   { japanesePeriodText },
+  { japaneseInteractionText },
+  { englishInteractionText },
 ] = await Promise.all([
   import(typeScriptModuleUrl("../app/breed-definitions.ts")),
   import(typeScriptModuleUrl("../app/breeds-en.ts")),
@@ -29,6 +31,8 @@ const [
   import(typeScriptModuleUrl("../app/activity-definitions.ts")),
   import(typeScriptModuleUrl("../app/activities-en.ts")),
   import(typeScriptModuleUrl("../app/activities-ja.ts")),
+  import(typeScriptModuleUrl("../app/interactions-ja.ts")),
+  import(typeScriptModuleUrl("../app/interactions-en.ts")),
 ]);
 
 test("English breed text covers exactly the 12 stable catalog IDs", () => {
@@ -205,5 +209,80 @@ test("English activity text contains no unintended Japanese", () => {
         }
       }
     }
+  }
+});
+
+function interactionEntries(text, prefix = "") {
+  return Object.entries(text).flatMap(([key, value]) => {
+    const path = prefix ? `${prefix}.${key}` : key;
+    return value !== null && typeof value === "object"
+      ? interactionEntries(value, path)
+      : [[path, value]];
+  });
+}
+
+test("interaction dictionaries have exactly matching fields and nonblank text", () => {
+  const japanese = interactionEntries(japaneseInteractionText);
+  const english = interactionEntries(englishInteractionText);
+  assert.deepEqual(english.map(([path]) => path).sort(), japanese.map(([path]) => path).sort());
+  for (const entries of [japanese, english]) {
+    for (const [path, value] of entries) {
+      assert.equal(typeof value, "string", path);
+      assert.ok(value.trim().length > 0, `${path} must not be blank`);
+    }
+  }
+});
+
+test("interaction name and rank placeholders match in both languages", () => {
+  const expected = {
+    "discovery.breedLabel": ["name"],
+    "discovery.foundBreedLabel": ["name"],
+    "discovery.factLabel": ["label"],
+    "discovery.breedHint": ["rank"],
+    "discovery.cardLabel": ["name", "rank"],
+  };
+  for (const text of [japaneseInteractionText, englishInteractionText]) {
+    for (const [path, value] of interactionEntries(text)) {
+      const parameters = [...value.matchAll(/\{([^{}]+)\}/g)].map((match) => match[1]).sort();
+      assert.deepEqual(parameters, expected[path] ?? [], path);
+    }
+  }
+});
+
+test("Japanese fixed interaction text matches the existing page and back-to-floor copy", () => {
+  const source = ["../app/page.tsx", "../app/back-to-floor.tsx"]
+    .map((path) => readFileSync(new URL(path, import.meta.url), "utf8"))
+    .join("\n");
+  for (const [path, value] of interactionEntries(japaneseInteractionText)) {
+    // SOUND captions and name/rank templates are assembled from expressions in the existing UI.
+    if (path.startsWith("sound.buttons.") || value.includes("{")) continue;
+    assert.ok(source.includes(value), `${path} must retain existing Japanese copy`);
+  }
+  assert.deepEqual(japaneseInteractionText.sound.buttons, {
+    off: "SOUND OFF",
+    loading: "LOADING…",
+    playing: "SOUND ON",
+    error: "SOUND RETRY",
+  });
+});
+
+test("interaction dictionaries retain the existing English performance labels", () => {
+  assert.deepEqual(englishInteractionText.sound.buttons, japaneseInteractionText.sound.buttons);
+  assert.equal(
+    englishInteractionText.navigation.backToFloor,
+    japaneseInteractionText.navigation.backToFloor,
+  );
+  assert.equal(englishInteractionText.quiz.eyebrow, japaneseInteractionText.quiz.eyebrow);
+  assert.equal(
+    englishInteractionText.quiz.resultEyebrow,
+    japaneseInteractionText.quiz.resultEyebrow,
+  );
+});
+
+test("English interaction text contains no unintended Japanese", () => {
+  // No intentional Japanese exceptions in this dictionary.
+  const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
+  for (const [path, value] of interactionEntries(englishInteractionText)) {
+    assert.doesNotMatch(value, japanese, path);
   }
 });
