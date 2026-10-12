@@ -17,12 +17,18 @@ const [
   { factDefinitions },
   { englishFactText },
   { japaneseFactText },
+  { periodDefinitions, quizDefinitions },
+  { englishPeriodText, englishQuizText },
+  { japanesePeriodText },
 ] = await Promise.all([
   import(typeScriptModuleUrl("../app/breed-definitions.ts")),
   import(typeScriptModuleUrl("../app/breeds-en.ts")),
   import(typeScriptModuleUrl("../app/fact-definitions.ts")),
   import(typeScriptModuleUrl("../app/facts-en.ts")),
   import(typeScriptModuleUrl("../app/facts-ja.ts")),
+  import(typeScriptModuleUrl("../app/activity-definitions.ts")),
+  import(typeScriptModuleUrl("../app/activities-en.ts")),
+  import(typeScriptModuleUrl("../app/activities-ja.ts")),
 ]);
 
 test("English breed text covers exactly the 12 stable catalog IDs", () => {
@@ -110,6 +116,94 @@ test("English fact text contains no unintended Japanese", () => {
   for (const [id, text] of Object.entries(englishFactText)) {
     for (const [field, value] of Object.entries(text)) {
       assert.doesNotMatch(value, japanese, `${id}.${field}`);
+    }
+  }
+});
+
+test("English activity text covers exactly the 4 period and 3 quiz IDs", () => {
+  for (const [definitions, text, count] of [
+    [periodDefinitions, englishPeriodText, 4],
+    [quizDefinitions, englishQuizText, 3],
+  ]) {
+    assert.equal(Object.keys(text).length, count);
+    assert.deepEqual(Object.keys(text).sort(), definitions.map((item) => item.id).sort());
+  }
+});
+
+test("English activity entries contain complete text only, including all quiz choices", () => {
+  for (const [text, fields] of [
+    [englishPeriodText, ["label", "headline", "text", "mood"]],
+    [englishQuizText, ["q", "choices", "explain"]],
+  ]) {
+    for (const [id, item] of Object.entries(text)) {
+      assert.deepEqual(Object.keys(item).sort(), [...fields].sort(), id);
+      for (const field of fields) {
+        const value = item[field];
+        if (field === "choices") {
+          assert.ok(Array.isArray(value), `${id}.${field}`);
+          assert.equal(value.length, 3, `${id}.${field}`);
+        } else {
+          assert.equal(typeof value, "string", `${id}.${field}`);
+        }
+        for (const entry of Array.isArray(value) ? value : [value]) {
+          assert.equal(typeof entry, "string", `${id}.${field}`);
+          assert.ok(entry.trim().length > 0, `${id}.${field} must not be blank`);
+        }
+      }
+    }
+  }
+});
+
+test("English periods retain the existing English mood labels", () => {
+  for (const { id } of periodDefinitions) {
+    assert.equal(englishPeriodText[id].mood, japanesePeriodText[id].mood, id);
+  }
+});
+
+test("English quiz choices retain the Japanese order, correct answer, and breed association", () => {
+  // Reviewed translations in the original choice order; Japanese wording is pinned by activity.test.
+  const expected = {
+    "ragdoll-eyes": {
+      breedId: "ragdoll",
+      answer: 1,
+      choices: [
+        englishBreedText["american-shorthair"].name,
+        englishBreedText.ragdoll.name,
+        englishBreedText["russian-blue"].name,
+      ],
+    },
+    "minuet-roots": {
+      breedId: "minuet",
+      answer: 0,
+      choices: [
+        `Persian-related cats × ${englishBreedText.munchkin.name}`,
+        `${englishBreedText.bengal.name} × ${englishBreedText["russian-blue"].name}`,
+        `${englishBreedText["maine-coon"].name} × ${englishBreedText.ragdoll.name}`,
+      ],
+    },
+    "bengal-rosettes": {
+      breedId: "bengal",
+      answer: 2,
+      choices: ["Straight stripes", "Solid white", "Ring-like spots"],
+    },
+  };
+  for (const { id, answer, breed } of quizDefinitions) {
+    assert.deepEqual(englishQuizText[id].choices, expected[id].choices, `${id}.choices`);
+    assert.equal(answer, expected[id].answer, `${id}.answer`);
+    assert.equal(breedDefinitions[breed].id, expected[id].breedId, `${id}.breed`);
+  }
+});
+
+test("English activity text contains no unintended Japanese", () => {
+  // No intentional Japanese exceptions in either activity catalog.
+  const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
+  for (const text of [englishPeriodText, englishQuizText]) {
+    for (const [id, item] of Object.entries(text)) {
+      for (const [field, value] of Object.entries(item)) {
+        for (const entry of Array.isArray(value) ? value : [value]) {
+          assert.doesNotMatch(entry, japanese, `${id}.${field}`);
+        }
+      }
     }
   }
 });
