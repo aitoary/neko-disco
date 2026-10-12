@@ -22,6 +22,8 @@ const [
   { japanesePeriodText },
   { japaneseInteractionText },
   { englishInteractionText },
+  { japanesePageText },
+  { englishPageText },
 ] = await Promise.all([
   import(typeScriptModuleUrl("../app/breed-definitions.ts")),
   import(typeScriptModuleUrl("../app/breeds-en.ts")),
@@ -33,6 +35,8 @@ const [
   import(typeScriptModuleUrl("../app/activities-ja.ts")),
   import(typeScriptModuleUrl("../app/interactions-ja.ts")),
   import(typeScriptModuleUrl("../app/interactions-en.ts")),
+  import(typeScriptModuleUrl("../app/page-ja.ts")),
+  import(typeScriptModuleUrl("../app/page-en.ts")),
 ]);
 
 test("English breed text covers exactly the 12 stable catalog IDs", () => {
@@ -283,6 +287,85 @@ test("English interaction text contains no unintended Japanese", () => {
   // No intentional Japanese exceptions in this dictionary.
   const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
   for (const [path, value] of interactionEntries(englishInteractionText)) {
+    assert.doesNotMatch(value, japanese, path);
+  }
+});
+
+test("page dictionaries have exactly matching fields, line counts, and nonblank text", () => {
+  const japanese = interactionEntries(japanesePageText);
+  const english = interactionEntries(englishPageText);
+  assert.deepEqual(english.map(([path]) => path).sort(), japanese.map(([path]) => path).sort());
+  for (const entries of [japanese, english]) {
+    for (const [path, value] of entries) {
+      assert.equal(typeof value, "string", path);
+      assert.ok(value.trim().length > 0, `${path} must not be blank`);
+    }
+  }
+});
+
+test("page attribution and survey placeholders match in both languages", () => {
+  const expected = {
+    "ranking.citation": ["publisher", "title"],
+    "ranking.publishedNote": ["published"],
+    "ranking.population": ["period"],
+    "footer.sourceIntro": ["publisher"],
+    "detail.breedSource": ["sourceName"],
+  };
+  for (const text of [japanesePageText, englishPageText]) {
+    for (const [path, value] of interactionEntries(text)) {
+      const parameters = [...value.matchAll(/\{([^{}]+)\}/g)].map((match) => match[1]).sort();
+      assert.deepEqual(parameters, expected[path] ?? [], path);
+    }
+  }
+});
+
+test("Japanese fixed page fragments retain the main source wording", () => {
+  const source = ["../app/page.tsx", "../app/breeds.ts"]
+    .map((path) => readFileSync(new URL(path, import.meta.url), "utf8"))
+    .join("\n");
+  for (const [path, value] of interactionEntries(japanesePageText)) {
+    // Attribution templates join existing JSX expressions; their parts are reviewed with the source.
+    if (value.includes("{")) continue;
+    assert.ok(source.includes(value), `${path} must retain existing Japanese copy`);
+  }
+});
+
+test("English ranking retains the publication date, period, population, and mixed-category exclusion", () => {
+  assert.equal(englishPageText.ranking.published, "January 20, 2026");
+  assert.equal(englishPageText.ranking.period, "January 1–December 31, 2025");
+  assert.match(englishPageText.ranking.scope, /1–12.*survey's mixed-cat category/);
+  assert.match(englishPageText.ranking.population, /insurance.*contracts began during \{period\}/);
+  assert.match(englishPageText.ranking.population, /not a ranking of all pet cats in Japan/);
+  assert.ok(englishPageText.ranking.publisher.includes(englishBreedText.ragdoll.sourceName));
+});
+
+test("footer reference captions correspond to the existing unique source URL order", () => {
+  const captions = new Map([
+    [
+      "https://www.cats.org.uk/help-and-advice/home-and-environment/cats-at-night",
+      "Night-time activity",
+    ],
+    ["https://www.cats.org.uk/help-and-advice/cat-behaviour/cat-body-language", "Body language"],
+    ["https://www.cats.org.uk/help-and-advice/cat-behaviour/cats-and-play", "Cats and play"],
+    ["https://www.cats.org.uk/help-and-advice/cat-behaviour/cats-hiding", "Hiding"],
+    ["https://www.cats.org.uk/help-and-advice/cat-behaviour/cats-and-sleep", "Cats and sleep"],
+    ["https://www.cats.org.uk/help-and-advice/diet/feeding", "Food and water"],
+    ["https://www.cats.org.uk/help-and-advice/cat-behaviour/scratching", "Scratching"],
+    ["https://www.cats.org.uk/cats-blog/why-do-cats-have-whiskers", "Whiskers"],
+  ]);
+  const sources = [...new Set(factDefinitions.map((fact) => fact.source))];
+  assert.equal(sources.length, 8);
+  assert.ok(sources.every((source) => captions.has(source)));
+  assert.deepEqual(
+    englishPageText.footer.sourceTopics,
+    sources.map((source) => captions.get(source)),
+  );
+});
+
+test("English page text contains no unintended Japanese", () => {
+  // The citation title is translated too; there are no intentional Japanese exceptions.
+  const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
+  for (const [path, value] of interactionEntries(englishPageText)) {
     assert.doesNotMatch(value, japanese, path);
   }
 });
