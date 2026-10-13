@@ -21,8 +21,7 @@ import { periods, quizzes } from "./activities";
 import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { resolveSelection, type SelectionKey } from "./selection";
-import { useDiscoAudio } from "./use-disco-audio";
-import { useDiscoMotion } from "./use-disco-motion";
+import { useDiscoSession } from "./disco-session";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
 import { BackToFloor } from "./back-to-floor";
@@ -34,21 +33,6 @@ const sceneProps = [
   { id: "scratch", x: 89, y: 60, w: 8, h: 22 },
   { id: "water", x: 88, y: 35, w: 10, h: 15 },
 ];
-function getCurrentJstPeriod() {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Tokyo",
-    hour: "2-digit",
-    minute: "2-digit",
-    hourCycle: "h23",
-  }).formatToParts(new Date());
-  const hour = Number(parts.find((part) => part.type === "hour")?.value ?? 0);
-  const minute = Number(parts.find((part) => part.type === "minute")?.value ?? 0);
-  const time = hour + minute / 60;
-  if (time < 3 || time >= 21) return 3;
-  if (time < 9) return 0;
-  if (time < 15) return 1;
-  return 2;
-}
 function Cat({ index, className = "" }: { index: number; className?: string }) {
   const breed = breeds[index];
   return (
@@ -70,21 +54,26 @@ function BreedName({ name }: { name: string }) {
   );
 }
 export default function Home() {
-  const { soundState, toggleSound } = useDiscoAudio();
+  const {
+    state: { soundState, motion, found, period, question, answer, score, finished },
+    actions: {
+      toggleSound,
+      setMotion,
+      setFound,
+      setPeriod,
+      setQuestion,
+      setAnswer,
+      setScore,
+      setFinished,
+    },
+  } = useDiscoSession();
   const sound = soundState === "playing" || soundState === "loading";
   const [sceneHint, setSceneHint] = useState<SceneHint | null>(null);
-  const { motion, setMotion } = useDiscoMotion();
   const [selection, setSelection] = useState<SelectionKey | null>(null);
   const resolvedSelection = resolveSelection(selection, breeds, facts);
   const selected = resolvedSelection?.item ?? null;
   const selectedBreedIndex = resolvedSelection?.kind === "breed" ? resolvedSelection.index : null;
-  const [found, setFound] = useState<string[]>([]);
   const [burst, setBurst] = useState<{ x: number; y: number; id: number } | null>(null);
-  const [period, setPeriod] = useState(getCurrentJstPeriod);
-  const [question, setQuestion] = useState(0);
-  const [answer, setAnswer] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
   const lastTrigger = useRef<HTMLElement | null>(null);
   const burstTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
@@ -95,9 +84,6 @@ export default function Home() {
       if (burstTimer.current) clearTimeout(burstTimer.current);
     };
   }, []);
-  useEffect(() => {
-    document.documentElement.dataset.motion = motion ? "on" : "off";
-  }, [motion]);
   const discover = (fact: Breed | Fact, e?: React.MouseEvent<HTMLElement>) => {
     setSceneHint(null);
     lastTrigger.current = (e?.currentTarget as HTMLElement) ?? null;

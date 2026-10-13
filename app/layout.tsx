@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DiscoSessionProvider } from "./disco-session";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "NEKO DISCO｜猫とあそぶ、夜のひみつ基地",
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        <DiscoSessionProvider>{children}</DiscoSessionProvider>
+      </body>
     </html>
   );
 }
