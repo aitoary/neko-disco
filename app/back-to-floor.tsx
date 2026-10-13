@@ -2,8 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PawPrint } from "lucide-react";
+import type { InteractionText } from "./interaction-text";
 
-export function BackToFloor({ motionEnabled }: { motionEnabled: boolean }) {
+export function BackToFloor({
+  motionEnabled,
+  text,
+}: {
+  motionEnabled: boolean;
+  text: Pick<InteractionText["navigation"], "backToTop" | "backToFloor">;
+}) {
   const [visible, setVisible] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
 
@@ -58,12 +65,12 @@ export function BackToFloor({ motionEnabled }: { motionEnabled: boolean }) {
       type="button"
       className="fixed-capsule back-to-floor"
       data-visible={visible}
-      aria-label="ページ上部へ戻る"
+      aria-label={text.backToTop}
       aria-hidden={!visible}
       disabled={!visible}
       onClick={returnToTop}
     >
-      BACK TO THE FLOOR{" "}
+      {text.backToFloor}{" "}
       <span className="back-to-floor-icon" aria-hidden="true">
         <PawPrint size={17} />
       </span>

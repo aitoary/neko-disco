@@ -23,6 +23,7 @@ import { breeds, ranking, type Breed } from "./breeds";
 import { resolveSelection, type SelectionKey } from "./selection";
 import { useDiscoSession } from "./disco-session";
 import { japanesePageText as pageText } from "./page-ja";
+import { japaneseInteractionText as interactionText } from "./interactions-ja";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
 import { BackToFloor } from "./back-to-floor";
@@ -130,7 +131,7 @@ export default function Home() {
   return (
     <main id="top" className={`site ${motion ? "" : "still"}`}>
       <a className="skip-link" href="#dance-floor">
-        ダンスフロアへスキップ
+        {interactionText.navigation.skipFloor}
       </a>
       <div className="disco-reflections" aria-hidden="true">
         {Array.from({ length: 30 }, (_, i) => (
@@ -166,40 +167,28 @@ export default function Home() {
             className={`control sound ${sound ? "active" : ""}`}
             aria-pressed={sound}
             aria-busy={soundState === "loading"}
-            aria-label={
-              soundState === "loading"
-                ? "音楽の読み込みを中止"
-                : sound
-                  ? "音楽をオフにする"
-                  : soundState === "error"
-                    ? "音楽を再試行する"
-                    : "STAR POP EXPRESSを再生する"
-            }
+            aria-label={interactionText.sound.actions[soundState]}
             title={
               soundState === "error"
-                ? "音楽を読み込めませんでした。もう一度クリックしてお試しください。"
-                : "STAR POP EXPRESS · イントロ＋ループ"
+                ? interactionText.sound.errorTitle
+                : interactionText.sound.trackTitle
             }
             onClick={toggleSound}
           >
             {sound ? <Volume2 size={16} /> : <VolumeX size={16} />}
-            <span>
-              {soundState === "loading"
-                ? "LOADING…"
-                : `SOUND ${soundState === "error" ? "RETRY" : sound ? "ON" : "OFF"}`}
-            </span>
+            <span>{interactionText.sound.buttons[soundState]}</span>
           </button>
           <span className="sr-only" role="status">
             {soundState === "loading"
-              ? "音楽を読み込んでいます"
+              ? interactionText.sound.loadingStatus
               : soundState === "error"
-                ? "音楽を読み込めませんでした。SOUNDボタンで再試行できます。"
+                ? interactionText.sound.errorStatus
                 : ""}
           </span>
           <button
             className="control motion"
             aria-pressed={!motion}
-            aria-label={motion ? "アニメーションを止める" : "アニメーションを再生する"}
+            aria-label={motion ? interactionText.motion.pause : interactionText.motion.resume}
             onClick={() => setMotion(!motion)}
           >
             {motion ? <Pause size={16} /> : <Play size={16} />}
@@ -214,7 +203,10 @@ export default function Home() {
           </p>
           <button
             className="hero-cat hero-cat-left"
-            aria-label={`${breeds[0].name}を知る`}
+            aria-label={interactionText.discovery.breedLabel.replace(
+              "{name}",
+              () => breeds[0].name,
+            )}
             onClick={(e) => discover(breeds[0], e)}
           >
             <Cat index={0} />
@@ -226,7 +218,10 @@ export default function Home() {
           </h1>
           <button
             className="hero-cat hero-cat-right"
-            aria-label={`${breeds[1].name}を知る`}
+            aria-label={interactionText.discovery.breedLabel.replace(
+              "{name}",
+              () => breeds[1].name,
+            )}
             onClick={(e) => discover(breeds[1], e)}
           >
             <Cat index={1} />
@@ -254,10 +249,11 @@ export default function Home() {
               <i className="live-dot" /> THE DANCE FLOOR
             </span>
             <span className="floor-hint">
-              <MousePointer2 size={14} /> 猫もグッズも、タップしてみて
+              <MousePointer2 size={14} /> {interactionText.discovery.floorHint}
             </span>
             <span className="floor-count">
-              <Sparkles size={15} /> <b>{found.length.toString().padStart(2, "0")}</b> / 12 猫種
+              <Sparkles size={15} /> <b>{found.length.toString().padStart(2, "0")}</b> / 12{" "}
+              {interactionText.discovery.countLabel}
             </span>
           </div>
           <div className="scene">
@@ -277,8 +273,8 @@ export default function Home() {
                   key={s.id}
                   className={`hotspot prop-hotspot spot-${s.id}`}
                   style={{ left: `${s.x}%`, top: `${s.y}%`, width: `${s.w}%`, height: `${s.h}%` }}
-                  aria-label={`${f.label}：猫の生態を知る`}
-                  {...sceneHintEvents(`prop-${s.id}`, f.label, "猫の生態を知る")}
+                  aria-label={interactionText.discovery.factLabel.replace("{label}", () => f.label)}
+                  {...sceneHintEvents(`prop-${s.id}`, f.label, interactionText.discovery.factHint)}
                   onClick={(e) => discover(f, e)}
                 >
                   <span className="prop-mark">
@@ -301,11 +297,14 @@ export default function Home() {
                     "--i": i,
                   } as CSSProperties
                 }
-                aria-label={`${breed.name}を知る${found.includes(breed.id) ? "（発見済み）" : ""}`}
+                aria-label={(found.includes(breed.id)
+                  ? interactionText.discovery.foundBreedLabel
+                  : interactionText.discovery.breedLabel
+                ).replace("{name}", () => breed.name)}
                 {...sceneHintEvents(
                   `breed-${breed.id}`,
                   breed.name,
-                  `猫種別${breed.rank}位 · タップで会いにいく`,
+                  interactionText.discovery.breedHint.replace("{rank}", () => String(breed.rank)),
                 )}
                 onClick={(e) => discover(breed, e)}
               >
@@ -327,7 +326,9 @@ export default function Home() {
             <button
               onClick={(e) => discover(breeds.find((f) => !found.includes(f.id)) ?? breeds[0], e)}
             >
-              {found.length === 12 ? "12猫種、みんなに会えた！" : "まだ会っていない猫に会う"}{" "}
+              {found.length === 12
+                ? interactionText.discovery.allFoundButton
+                : interactionText.discovery.unseenButton}{" "}
               <Sparkles size={15} />
             </button>
           </div>
@@ -392,7 +393,9 @@ export default function Home() {
               key={breed.id}
               data-breed-card={breed.id}
               onClick={(e) => discover(breed, e)}
-              aria-label={`猫種別${breed.rank}位 ${breed.name}の紹介を開く`}
+              aria-label={interactionText.discovery.cardLabel
+                .replace("{rank}", () => String(breed.rank))
+                .replace("{name}", () => breed.name)}
             >
               <div className="card-top">
                 <span className="card-rank">
@@ -465,7 +468,10 @@ export default function Home() {
             <button
               key={period}
               onClick={(e) => discover(breeds[p.breed], e)}
-              aria-label={`${breeds[p.breed].name}を知る`}
+              aria-label={interactionText.discovery.breedLabel.replace(
+                "{name}",
+                () => breeds[p.breed].name,
+              )}
             >
               <Cat index={p.breed} />
               <span className="time-breed-name">{breeds[p.breed].name}</span>
@@ -526,7 +532,7 @@ export default function Home() {
           {!finished ? (
             <>
               <div className="quiz-progress">
-                <span>CAT QUIZ</span>
+                <span>{interactionText.quiz.eyebrow}</span>
                 <div>
                   {quizzes.map((_, i) => (
                     <span className={i <= question ? "done" : ""} key={i} />
@@ -561,15 +567,15 @@ export default function Home() {
                 <div className="quiz-feedback" role="status">
                   <strong>
                     {answer === quizzes[question].answer
-                      ? "大正解、にゃんとすばらしい！"
-                      : "おしい！ ねこのひみつをひとつ発見。"}
+                      ? interactionText.quiz.correct
+                      : interactionText.quiz.incorrect}
                   </strong>
                   <p>{quizzes[question].explain}</p>
                   <button
                     className="quiz-review"
                     onClick={(e) => discover(breeds[quizzes[question].breed], e)}
                   >
-                    この猫の紹介を見る
+                    {interactionText.quiz.reviewBreed}
                   </button>
                   <button
                     className="dark-button"
@@ -581,26 +587,30 @@ export default function Home() {
                       }
                     }}
                   >
-                    {question === 2 ? "結果を見る" : "次のクイズへ"}
+                    {question === 2 ? interactionText.quiz.results : interactionText.quiz.next}
                   </button>
                 </div>
               ) : (
-                <p className="quiz-prompt">ぴんときた答えを選んでね。</p>
+                <p className="quiz-prompt">{interactionText.quiz.prompt}</p>
               )}
             </>
           ) : (
             <div className="quiz-result" role="status">
               <Sparkles size={38} />
-              <p>YOU ARE A NEKO LOVER!</p>
+              <p>{interactionText.quiz.resultEyebrow}</p>
               <h3>
                 {score}
                 <small> / 3</small>
               </h3>
-              <h4>{score === 3 ? "立派な、ねこ博士。" : "ねこと、もっと仲よくなれたね。"}</h4>
+              <h4>
+                {score === 3
+                  ? interactionText.quiz.perfectResult
+                  : interactionText.quiz.otherResult}
+              </h4>
               <p>
-                正解しても、まちがえても。
+                {interactionText.quiz.resultMessage[0]}
                 <br />
-                知るほど、ねこが好きになる。
+                {interactionText.quiz.resultMessage[1]}
               </p>
               <button
                 className="dark-button"
@@ -611,7 +621,7 @@ export default function Home() {
                   setScore(0);
                 }}
               >
-                <RotateCcw size={17} /> もう一度あそぶ
+                <RotateCcw size={17} /> {interactionText.quiz.retry}
               </button>
             </div>
           )}
@@ -632,7 +642,11 @@ export default function Home() {
           {[8, 6, 1, 0, 2, 9].map((n) => {
             const f = breeds[n];
             return (
-              <button key={n} aria-label={`${f.name}を知る`} onClick={(e) => discover(f, e)}>
+              <button
+                key={n}
+                aria-label={interactionText.discovery.breedLabel.replace("{name}", () => f.name)}
+                onClick={(e) => discover(f, e)}
+              >
                 <Cat index={n} />
               </button>
             );
@@ -682,14 +696,14 @@ export default function Home() {
       </footer>
       <aside className="fixed-capsule discovery-pill" aria-live="polite">
         <PawPrint size={17} />
-        <span>出会った猫種</span>
+        <span>{interactionText.discovery.progressLabel}</span>
         <b>
           {found.length}
           <small> / 12</small>
         </b>
         {found.length === 12 && <Sparkles size={18} />}
       </aside>
-      <BackToFloor motionEnabled={motion} />
+      <BackToFloor motionEnabled={motion} text={interactionText.navigation} />
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {
@@ -708,7 +722,7 @@ export default function Home() {
             <>
               <button
                 className="dialog-close"
-                aria-label="紹介を閉じる"
+                aria-label={interactionText.detail.close}
                 onClick={() => setSelection(null)}
               >
                 <X size={21} />
@@ -760,7 +774,7 @@ export default function Home() {
                         )}
                       </a>
                       <button className="dark-button" onClick={() => setSelection(null)}>
-                        なるほど、にゃ！ <Check size={16} />
+                        {interactionText.detail.confirm} <Check size={16} />
                       </button>
                     </div>
                   </div>
@@ -784,7 +798,7 @@ export default function Home() {
                         {pageText.detail.factSource}
                       </a>
                       <button className="dark-button" onClick={() => setSelection(null)}>
-                        なるほど、にゃ！ <Check size={16} />
+                        {interactionText.detail.confirm} <Check size={16} />
                       </button>
                     </div>
                   </div>
