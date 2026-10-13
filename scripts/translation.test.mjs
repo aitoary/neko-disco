@@ -253,21 +253,98 @@ test("interaction name and rank placeholders match in both languages", () => {
   }
 });
 
-test("Japanese fixed interaction text matches the existing page and back-to-floor copy", () => {
-  const source = ["../app/page.tsx", "../app/back-to-floor.tsx"]
-    .map((path) => readFileSync(new URL(path, import.meta.url), "utf8"))
-    .join("\n");
-  for (const [path, value] of interactionEntries(japaneseInteractionText)) {
-    // SOUND captions and name/rank templates are assembled from expressions in the existing UI.
-    if (path.startsWith("sound.buttons.") || value.includes("{")) continue;
-    assert.ok(source.includes(value), `${path} must retain existing Japanese copy`);
-  }
-  assert.deepEqual(japaneseInteractionText.sound.buttons, {
-    off: "SOUND OFF",
-    loading: "LOADING…",
-    playing: "SOUND ON",
-    error: "SOUND RETRY",
+test("Japanese interaction text retains the main wording and state labels", () => {
+  // Pin the copy from main 3453038 before connecting the interaction dictionary.
+  assert.deepEqual(japaneseInteractionText, {
+    sound: {
+      buttons: {
+        off: "SOUND OFF",
+        loading: "LOADING…",
+        playing: "SOUND ON",
+        error: "SOUND RETRY",
+      },
+      actions: {
+        off: "STAR POP EXPRESSを再生する",
+        loading: "音楽の読み込みを中止",
+        playing: "音楽をオフにする",
+        error: "音楽を再試行する",
+      },
+      trackTitle: "STAR POP EXPRESS · イントロ＋ループ",
+      errorTitle: "音楽を読み込めませんでした。もう一度クリックしてお試しください。",
+      loadingStatus: "音楽を読み込んでいます",
+      errorStatus: "音楽を読み込めませんでした。SOUNDボタンで再試行できます。",
+    },
+    motion: {
+      pause: "アニメーションを止める",
+      resume: "アニメーションを再生する",
+    },
+    navigation: {
+      skipFloor: "ダンスフロアへスキップ",
+      backToTop: "ページ上部へ戻る",
+      backToFloor: "BACK TO THE FLOOR",
+    },
+    discovery: {
+      floorHint: "猫もグッズも、タップしてみて",
+      countLabel: "猫種",
+      progressLabel: "出会った猫種",
+      unseenButton: "まだ会っていない猫に会う",
+      allFoundButton: "12猫種、みんなに会えた！",
+      breedLabel: "{name}を知る",
+      foundBreedLabel: "{name}を知る（発見済み）",
+      factLabel: "{label}：猫の生態を知る",
+      factHint: "猫の生態を知る",
+      breedHint: "猫種別{rank}位 · タップで会いにいく",
+      cardLabel: "猫種別{rank}位 {name}の紹介を開く",
+    },
+    quiz: {
+      eyebrow: "CAT QUIZ",
+      correct: "大正解、にゃんとすばらしい！",
+      incorrect: "おしい！ ねこのひみつをひとつ発見。",
+      reviewBreed: "この猫の紹介を見る",
+      next: "次のクイズへ",
+      results: "結果を見る",
+      prompt: "ぴんときた答えを選んでね。",
+      resultEyebrow: "YOU ARE A NEKO LOVER!",
+      perfectResult: "立派な、ねこ博士。",
+      otherResult: "ねこと、もっと仲よくなれたね。",
+      resultMessage: ["正解しても、まちがえても。", "知るほど、ねこが好きになる。"],
+      retry: "もう一度あそぶ",
+    },
+    detail: {
+      close: "紹介を閉じる",
+      confirm: "なるほど、にゃ！",
+    },
   });
+});
+
+test("the page and back-to-floor reference every Japanese interaction dictionary field", () => {
+  const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const backToFloor = readFileSync(new URL("../app/back-to-floor.tsx", import.meta.url), "utf8");
+  assert.ok(
+    page.includes(
+      'import { japaneseInteractionText as interactionText } from "./interactions-ja";',
+    ),
+  );
+  assert.doesNotMatch(page, /from ["']\.\/interactions-en["']/u);
+  assert.doesNotMatch(backToFloor, /from ["']\.\/interactions-(?:ja|en)["']/u);
+  assert.ok(page.includes("text={interactionText.navigation}"));
+  for (const [path] of interactionEntries(japaneseInteractionText)) {
+    if (path === "navigation.backToTop" || path === "navigation.backToFloor") {
+      assert.ok(
+        backToFloor.includes(`text.${path.split(".")[1]}`),
+        `${path} must reach the button`,
+      );
+      continue;
+    }
+    // Sound labels use the existing state directly; message line indices remain explicit.
+    const reference = path
+      .replace(/^(sound\.(?:buttons|actions))\.[^.]+$/u, "$1[soundState]")
+      .replace(/\.(\d+)$/u, "[$1]");
+    assert.ok(
+      page.includes(`interactionText.${reference}`),
+      `${path} must be connected to the page`,
+    );
+  }
 });
 
 test("interaction dictionaries retain the existing English performance labels", () => {
