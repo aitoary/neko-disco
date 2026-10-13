@@ -317,8 +317,9 @@ test("Japanese interaction text retains the main wording and state labels", () =
   });
 });
 
-test("the page and back-to-floor reference every Japanese interaction dictionary field", () => {
+test("the server page passes Japanese interaction copy to the client page and back-to-floor", () => {
   const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   const backToFloor = readFileSync(new URL("../app/back-to-floor.tsx", import.meta.url), "utf8");
   assert.ok(
     page.includes(
@@ -326,8 +327,10 @@ test("the page and back-to-floor reference every Japanese interaction dictionary
     ),
   );
   assert.doesNotMatch(page, /from ["']\.\/interactions-en["']/u);
+  assert.ok(page.includes("interactionText={interactionText}"));
+  assert.doesNotMatch(clientPage, /from ["']\.\/interactions-(?:ja|en)["']/u);
   assert.doesNotMatch(backToFloor, /from ["']\.\/interactions-(?:ja|en)["']/u);
-  assert.ok(page.includes("text={interactionText.navigation}"));
+  assert.ok(clientPage.includes("text={interactionText.navigation}"));
   for (const [path] of interactionEntries(japaneseInteractionText)) {
     if (path === "navigation.backToTop" || path === "navigation.backToFloor") {
       assert.ok(
@@ -341,7 +344,7 @@ test("the page and back-to-floor reference every Japanese interaction dictionary
       .replace(/^(sound\.(?:buttons|actions))\.[^.]+$/u, "$1[soundState]")
       .replace(/\.(\d+)$/u, "[$1]");
     assert.ok(
-      page.includes(`interactionText.${reference}`),
+      clientPage.includes(`interactionText.${reference}`),
       `${path} must be connected to the page`,
     );
   }
@@ -493,17 +496,41 @@ test("Japanese page text retains the main wording and explicit line boundaries",
   });
 });
 
-test("the page imports Japanese copy and references every page dictionary field", () => {
+test("the server page passes Japanese copy and the client references every page dictionary field", () => {
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   assert.ok(source.includes('import { japanesePageText as pageText } from "./page-ja";'));
   assert.doesNotMatch(source, /from ["']\.\/page-en["']/);
+  assert.ok(source.includes("pageText={pageText}"));
+  assert.doesNotMatch(clientPage, /from ["']\.\/page-(?:ja|en)["']/u);
   for (const [path] of interactionEntries(japanesePageText)) {
     // Source topics are indexed by the existing source URL order; other line indices are explicit.
     const reference = path.startsWith("footer.sourceTopics.")
       ? "footer.sourceTopics[i]"
       : path.replace(/\.(\d+)$/u, "[$1]");
-    assert.ok(source.includes(`pageText.${reference}`), `${path} must be connected to the page`);
+    assert.ok(
+      clientPage.includes(`pageText.${reference}`),
+      `${path} must be connected to the page`,
+    );
   }
+});
+
+test("the server entry supplies data to the shared client view without moving session ownership", () => {
+  const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
+  const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(page, /["']use client["']/u);
+  assert.ok(page.includes('import DiscoPage from "./disco-page";'));
+  assert.ok(page.includes("<DiscoPage"));
+  for (const name of ["breeds", "facts", "periods", "quizzes"]) {
+    assert.ok(page.includes(`${name}={${name}}`), `${name} must be passed to the client view`);
+  }
+  assert.ok(page.includes("rankingUrl={ranking.url}"));
+  assert.match(clientPage, /^"use client";/u);
+  assert.doesNotMatch(clientPage, /from ["']\.\/(?:breeds|facts|activities)(?:-(?:ja|en))?["']/u);
+  assert.ok(clientPage.includes("= useDiscoSession();"));
+  assert.doesNotMatch(page + clientPage, /DiscoSessionProvider/u);
+  assert.ok(layout.includes("<DiscoSessionProvider>{children}</DiscoSessionProvider>"));
 });
 
 test("English ranking retains the publication date, period, population, and mixed-category exclusion", () => {
