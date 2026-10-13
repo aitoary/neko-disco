@@ -22,6 +22,7 @@ import { facts, type Fact } from "./facts";
 import { breeds, ranking, type Breed } from "./breeds";
 import { resolveSelection, type SelectionKey } from "./selection";
 import { useDiscoSession } from "./disco-session";
+import { japanesePageText as pageText } from "./page-ja";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
 import { BackToFloor } from "./back-to-floor";
@@ -148,17 +149,17 @@ export default function Home() {
         ))}
       </div>
       <header className="header">
-        <a href="#top" className="brand" aria-label="NEKO DISCO トップ">
+        <a href="#top" className="brand" aria-label={pageText.header.homeLabel}>
           <PawPrint size={25} fill="currentColor" />
           <span>
             NEKO<span className="brand-light">DISCO</span>
-            <small>夜のねこ研究所</small>
+            <small>{pageText.header.tagline}</small>
           </span>
         </a>
-        <nav aria-label="メインメニュー">
-          <a href="#dance-floor">フロアであそぶ</a>
-          <a href="#residents">12猫種に会う</a>
-          <a href="#quiz">ねこクイズ</a>
+        <nav aria-label={pageText.header.menuLabel}>
+          <a href="#dance-floor">{pageText.header.floorLink}</a>
+          <a href="#residents">{pageText.header.residentsLink}</a>
+          <a href="#quiz">{pageText.header.quizLink}</a>
         </nav>
         <div className="header-controls">
           <button
@@ -217,7 +218,7 @@ export default function Home() {
             onClick={(e) => discover(breeds[0], e)}
           >
             <Cat index={0} />
-            <span className="tiny-bubble">にゃんと、開店。</span>
+            <span className="tiny-bubble">{pageText.hero.openingBubble}</span>
           </button>
           <h1 id="hero-title">
             NEKO <span>DISCO</span>
@@ -229,21 +230,21 @@ export default function Home() {
             onClick={(e) => discover(breeds[1], e)}
           >
             <Cat index={1} />
-            <span className="tiny-bubble">きみも踊る？</span>
+            <span className="tiny-bubble">{pageText.hero.danceBubble}</span>
           </button>
           <div className="hero-subline">
             <h2>
-              踊る。ねむる。
+              {pageText.hero.heading[0]}
               <br className="mobile-break" />
-              ときどき、ねこを知る。
+              {pageText.hero.heading[1]}
             </h2>
             <p>
-              ここは、ねこたちの夜のひみつ基地。
+              {pageText.hero.intro[0]}
               <br />
-              気になるあの子に、ちょっとさわってみよう。
+              {pageText.hero.intro[1]}
             </p>
             <button className="primary-button" onClick={goFloor}>
-              <PawPrint size={19} /> フロアにあそびに行く
+              <PawPrint size={19} /> {pageText.hero.floorButton}
             </button>
           </div>
         </div>
@@ -263,7 +264,7 @@ export default function Home() {
             <img
               className="scene-image"
               src="/images/disco-room.webp"
-              alt="中央のミラーボールが輝くディスコ。キャットタワーや段ボール、爪とぎが並ぶ部屋に、12猫種が集まっています。"
+              alt={pageText.floor.sceneAlt}
               loading="lazy"
               width="1536"
               height="1024"
@@ -318,11 +319,11 @@ export default function Home() {
               NO RULES.
               <br />
               JUST <b>MEOW.</b>
-              <span>好きなペースで、どうぞ。</span>
+              <span>{pageText.floor.stickerNote}</span>
             </div>
           </div>
           <div className="floor-bottom">
-            <span>踊らなくても、寝ちゃっても。ねこだもの。</span>
+            <span>{pageText.floor.caption}</span>
             <button
               onClick={(e) => discover(breeds.find((f) => !found.includes(f.id)) ?? breeds[0], e)}
             >
@@ -336,7 +337,7 @@ export default function Home() {
         <div>
           {Array.from({ length: 4 }, (_, i) => (
             <span key={i}>
-              EAT. SLEEP. MEOW. REPEAT. <PawPrint /> ねこって、なんかいい。{" "}
+              EAT. SLEEP. MEOW. REPEAT. <PawPrint /> {pageText.marquee}{" "}
               <span className="star">✳</span>{" "}
             </span>
           ))}
@@ -348,18 +349,18 @@ export default function Home() {
           <div>
             <p className="eyebrow">12 BREEDS. 12 PERSONALITIES. / 01</p>
             <h2>
-              みんな、ちがって。
+              {pageText.residents.heading[0]}
               <br />
-              <span>みんな、ねこ。</span>
+              <span>{pageText.residents.heading[1]}</span>
             </h2>
           </div>
           <p>
-            人気ランキングから集まった、12猫種。
+            {pageText.residents.intro[0]}
             <br />
-            耳も、毛並みも、性格も。それぞれの魅力を。
+            {pageText.residents.intro[1]}
             <br />
             <span className="little-note">
-              <MousePointer2 size={15} /> 気になるねこをタップ
+              <MousePointer2 size={15} /> {pageText.residents.tapHint}
             </span>
           </p>
         </div>
@@ -367,20 +368,21 @@ export default function Home() {
           <span className="ranking-badge">2026 RANKING</span>
           <div>
             <p>
-              <b>人気順に、12猫種をご紹介。</b>{" "}
-              ミックスを除いた猫種別の順位を、1〜12位で表示しています。
+              <b>{pageText.ranking.heading}</b> {pageText.ranking.scope}
             </p>
             <p>
-              出典：
+              {pageText.ranking.sourceLabel}
               <a href={ranking.url} target="_blank" rel="noreferrer">
-                {ranking.publisher}「{ranking.title}」
+                {pageText.ranking.citation
+                  .replace("{publisher}", () => pageText.ranking.publisher)
+                  .replace("{title}", () => pageText.ranking.title)}
               </a>
-              （{ranking.published}発表）
+              {pageText.ranking.publishedNote.replace(
+                "{published}",
+                () => pageText.ranking.published,
+              )}
             </p>
-            <p>
-              集計：{ranking.period}
-              に同社の保険へ加入し、契約が開始された猫。国内すべての飼育猫を対象とした順位ではありません。
-            </p>
+            <p>{pageText.ranking.population.replace("{period}", () => pageText.ranking.period)}</p>
           </div>
         </div>
         <div className="resident-grid">
@@ -433,27 +435,25 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <p className="breed-note">
-          毛色・模様・体格・性格には個体差があります。イラストは、それぞれの猫種の一例を表現しています。
-        </p>
+        <p className="breed-note">{pageText.residents.individualNote}</p>
       </section>
 
       <section id="cat-time" className="cat-time section-wrap">
         <div className="time-copy">
           <p className="eyebrow">A DAY IN CAT TIME / 02</p>
           <h2>
-            時計よりも、
+            {pageText.daily.heading[0]}
             <br />
-            <span>ねこの気分。</span>
+            <span>{pageText.daily.heading[1]}</span>
           </h2>
           <p>
-            ねこたちの一日は、
+            {pageText.daily.intro[0]}
             <br />
-            遊びとお昼寝の、いいリズム。
+            {pageText.daily.intro[1]}
             <br />
-            時間を動かして、のぞいてみよう。
+            {pageText.daily.intro[2]}
           </p>
-          <small>これは一例。リズムには個体差があります。</small>
+          <small>{pageText.daily.note}</small>
         </div>
         <div className={`time-panel time-${period}`}>
           <div className="time-display">
@@ -482,7 +482,7 @@ export default function Home() {
             max={3}
             step={1}
             onValueChange={(v) => setPeriod(v[0])}
-            aria-label="ねこの一日：朝、昼、夕方、夜"
+            aria-label={pageText.daily.sliderLabel}
           />
           <div className="time-labels">
             {periods.map((t, i) => (
@@ -511,14 +511,14 @@ export default function Home() {
           </span>
           <p className="eyebrow">ONE LAST THING / 03</p>
           <h2>
-            きみの、
+            {pageText.quiz.heading[0]}
             <br />
-            ねこ理解度は？
+            {pageText.quiz.heading[1]}
           </h2>
           <p>
-            フロアで会った猫たちを、
+            {pageText.quiz.intro[0]}
             <br />
-            3つのクイズでおさらい。
+            {pageText.quiz.intro[1]}
           </p>
           <Cat index={2} />
         </div>
@@ -621,12 +621,12 @@ export default function Home() {
       <section className="closing">
         <p className="eyebrow">THANKS FOR HANGING OUT.</p>
         <h2>
-          好きなペースで。
+          {pageText.closing.heading[0]}
           <br />
-          また、あそぼう。
+          {pageText.closing.heading[1]}
         </h2>
         <button onClick={goFloor} className="primary-button">
-          <PawPrint size={19} /> もうひと踊りする
+          <PawPrint size={19} /> {pageText.closing.button}
         </button>
         <div className="closing-cats">
           {[8, 6, 1, 0, 2, 9].map((n) => {
@@ -644,49 +644,37 @@ export default function Home() {
           <a className="brand" href="#top">
             <PawPrint size={24} />
             <span>
-              NEKO DISCO<small>夜のねこ研究所</small>
+              NEKO DISCO<small>{pageText.header.tagline}</small>
             </span>
           </a>
-          <span>踊るのも、休むのも、ねこの自由。</span>
+          <span>{pageText.footer.tagline}</span>
         </div>
         <div className="footer-bottom">
-          <p>ここは空想のディスコ。ほんもののねこには、静かな居場所と新鮮なお水を。</p>
+          <p>{pageText.footer.safetyNote}</p>
           <span>© 2026 NEKO DISCO</span>
         </div>
         <details className="sources">
-          <summary>ランキング・猫種・生態の参考資料</summary>
+          <summary>{pageText.footer.sourceSummary}</summary>
           <p>
-            ランキングは{ranking.publisher}
-            の2026年版を使用。猫種の紹介は同社の猫種別飼い方ガイドとCFAの資料、生態の説明はCats
-            Protectionの公開資料を参考にしています。猫種ごとの紹介にも出典リンクがあります。
+            {pageText.footer.sourceIntro.replace("{publisher}", () => pageText.ranking.publisher)}
           </p>
           <div>
             <a href={ranking.url} target="_blank" rel="noreferrer">
-              2026年版 人気飼育猫種ランキング
+              {pageText.footer.rankingLink}
             </a>
             <a
               href="https://www.ipet-ins.com/cat-insurance/breed/"
               target="_blank"
               rel="noreferrer"
             >
-              第一アイペット — 猫種別飼い方ガイド
+              {pageText.footer.breedLink}
             </a>
             <a href="https://cfa.org/breeds/" target="_blank" rel="noreferrer">
-              CFA — 猫種ガイド
+              {pageText.footer.cfaLink}
             </a>
             {Array.from(new Set(facts.map((f) => f.source))).map((url, i) => (
               <a key={url} href={url} target="_blank" rel="noreferrer">
-                Cats Protection —{" "}
-                {[
-                  "夜の活動",
-                  "ボディランゲージ",
-                  "猫と遊び",
-                  "隠れる行動",
-                  "猫の眠り",
-                  "食事と水",
-                  "爪とぎ",
-                  "ひげの役割",
-                ][i] ?? "猫の行動"}
+                Cats Protection — {pageText.footer.sourceTopics[i] ?? pageText.footer.fallbackTopic}
               </a>
             ))}
           </div>
@@ -732,11 +720,12 @@ export default function Home() {
                       2026 RANKING
                       <br />
                       <small>
-                        猫種別<span className="rank-context">ミックスを除く</span>
+                        {pageText.detail.breedRankLabel}
+                        <span className="rank-context">{pageText.detail.mixedExcluded}</span>
                       </small>
                       <b>
                         {String(selected.rank).padStart(2, "0")}
-                        <small>位</small>
+                        <small>{pageText.detail.rankUnit}</small>
                       </b>
                     </span>
                     {selectedBreedIndex !== null && <Cat index={selectedBreedIndex} />}
@@ -750,11 +739,11 @@ export default function Home() {
                     <DialogDescription className="fact-body">{selected.intro}</DialogDescription>
                     <dl className="breed-details">
                       <div>
-                        <dt>見た目の特徴</dt>
+                        <dt>{pageText.detail.appearance}</dt>
                         <dd>{selected.appearance}</dd>
                       </div>
                       <div>
-                        <dt>性格の傾向</dt>
+                        <dt>{pageText.detail.personality}</dt>
                         <dd>{selected.personality}</dd>
                       </div>
                     </dl>
@@ -762,12 +751,13 @@ export default function Home() {
                       <PawPrint size={20} />
                       <span>{selected.detail}</span>
                     </p>
-                    <p className="individual-note">
-                      性格や見た目には個体差があります。イラストは一例です。
-                    </p>
+                    <p className="individual-note">{pageText.detail.individualNote}</p>
                     <div className="fact-actions">
                       <a href={selected.source} target="_blank" rel="noreferrer">
-                        猫種の参考：{selected.sourceName}
+                        {pageText.detail.breedSource.replace(
+                          "{sourceName}",
+                          () => selected.sourceName,
+                        )}
                       </a>
                       <button className="dark-button" onClick={() => setSelection(null)}>
                         なるほど、にゃ！ <Check size={16} />
@@ -791,7 +781,7 @@ export default function Home() {
                     </p>
                     <div className="fact-actions">
                       <a href={selected.source} target="_blank" rel="noreferrer">
-                        参考：Cats Protection
+                        {pageText.detail.factSource}
                       </a>
                       <button className="dark-button" onClick={() => setSelection(null)}>
                         なるほど、にゃ！ <Check size={16} />
