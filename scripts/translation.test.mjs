@@ -3,12 +3,36 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
 
-// These data modules have no runtime imports; use the existing compiler and Node test runner.
-function typeScriptModuleUrl(path) {
-  const { outputText } = ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
+// Supply data-module imports with the existing compiler and Node test runner.
+function typeScriptModuleUrl(path, imports = {}) {
+  let { outputText } = ts.transpileModule(readFileSync(new URL(path, import.meta.url), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
   });
+  for (const [specifier, url] of Object.entries(imports)) {
+    outputText = outputText.replaceAll(JSON.stringify(specifier), JSON.stringify(url));
+  }
   return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
+}
+
+const dataModuleUrls = Object.fromEntries(
+  [
+    "breed-definitions",
+    "breeds-ja",
+    "breeds-en",
+    "fact-definitions",
+    "facts-ja",
+    "facts-en",
+    "activity-definitions",
+    "activities-ja",
+    "activities-en",
+    "interactions-ja",
+    "interactions-en",
+    "page-ja",
+    "page-en",
+  ].map((name) => [`./${name}`, typeScriptModuleUrl(`../app/${name}.ts`)]),
+);
+for (const name of ["breeds", "facts", "activities"]) {
+  dataModuleUrls[`./${name}`] = typeScriptModuleUrl(`../app/${name}.ts`, dataModuleUrls);
 }
 
 const [
@@ -24,20 +48,101 @@ const [
   { englishInteractionText },
   { japanesePageText },
   { englishPageText },
+  { breeds, ranking },
+  { facts },
+  { periods, quizzes },
+  { getDiscoPageData },
 ] = await Promise.all([
-  import(typeScriptModuleUrl("../app/breed-definitions.ts")),
-  import(typeScriptModuleUrl("../app/breeds-en.ts")),
-  import(typeScriptModuleUrl("../app/fact-definitions.ts")),
-  import(typeScriptModuleUrl("../app/facts-en.ts")),
-  import(typeScriptModuleUrl("../app/facts-ja.ts")),
-  import(typeScriptModuleUrl("../app/activity-definitions.ts")),
-  import(typeScriptModuleUrl("../app/activities-en.ts")),
-  import(typeScriptModuleUrl("../app/activities-ja.ts")),
-  import(typeScriptModuleUrl("../app/interactions-ja.ts")),
-  import(typeScriptModuleUrl("../app/interactions-en.ts")),
-  import(typeScriptModuleUrl("../app/page-ja.ts")),
-  import(typeScriptModuleUrl("../app/page-en.ts")),
+  import(dataModuleUrls["./breed-definitions"]),
+  import(dataModuleUrls["./breeds-en"]),
+  import(dataModuleUrls["./fact-definitions"]),
+  import(dataModuleUrls["./facts-en"]),
+  import(dataModuleUrls["./facts-ja"]),
+  import(dataModuleUrls["./activity-definitions"]),
+  import(dataModuleUrls["./activities-en"]),
+  import(dataModuleUrls["./activities-ja"]),
+  import(dataModuleUrls["./interactions-ja"]),
+  import(dataModuleUrls["./interactions-en"]),
+  import(dataModuleUrls["./page-ja"]),
+  import(dataModuleUrls["./page-en"]),
+  import(dataModuleUrls["./breeds"]),
+  import(dataModuleUrls["./facts"]),
+  import(dataModuleUrls["./activities"]),
+  import(typeScriptModuleUrl("../app/disco-page-data.ts", dataModuleUrls)),
 ]);
+
+test("Japanese page data exactly matches the existing catalogs and dictionaries", () => {
+  assert.deepEqual(getDiscoPageData("ja"), {
+    breeds,
+    facts,
+    periods,
+    quizzes,
+    pageText: japanesePageText,
+    interactionText: japaneseInteractionText,
+    rankingUrl: ranking.url,
+  });
+});
+
+test("English page data retains every shared catalog field and uses the English text", () => {
+  const english = getDiscoPageData("en");
+  for (const [items, baseline, text, sharedFields] of [
+    [
+      english.breeds,
+      breeds,
+      englishBreedText,
+      ["id", "english", "rank", "image", "color", "source", "scene"],
+    ],
+    [english.facts, facts, englishFactText, ["id", "sprite", "color", "source"]],
+  ]) {
+    assert.deepEqual(
+      items.map((item) => item.id),
+      baseline.map((item) => item.id),
+    );
+    for (const [index, item] of items.entries()) {
+      assert.deepEqual(Object.keys(item).sort(), Object.keys(baseline[index]).sort());
+      for (const field of sharedFields) {
+        assert.deepEqual(item[field], baseline[index][field], `${item.id}.${field}`);
+      }
+      for (const [field, value] of Object.entries(text[item.id])) {
+        assert.deepEqual(item[field], value, `${item.id}.${field}`);
+      }
+    }
+  }
+  assert.deepEqual(english.pageText, englishPageText);
+  assert.deepEqual(english.interactionText, englishInteractionText);
+  assert.equal(english.rankingUrl, ranking.url);
+  assert.deepEqual(Object.keys(english).sort(), Object.keys(getDiscoPageData("ja")).sort());
+});
+
+test("English activities retain time, catalog references, and correct answer positions", () => {
+  const english = getDiscoPageData("en");
+  assert.equal(english.periods.length, periods.length);
+  for (const [index, period] of english.periods.entries()) {
+    assert.deepEqual(Object.keys(period).sort(), Object.keys(periods[index]).sort());
+    assert.equal(period.time, periods[index].time);
+    assert.equal(period.breed, periods[index].breed);
+    for (const [field, value] of Object.entries(englishPeriodText[periodDefinitions[index].id])) {
+      assert.deepEqual(period[field], value, `period ${index}.${field}`);
+    }
+  }
+  assert.equal(english.quizzes.length, quizzes.length);
+  for (const [index, quiz] of english.quizzes.entries()) {
+    assert.deepEqual(Object.keys(quiz).sort(), Object.keys(quizzes[index]).sort());
+    assert.equal(quiz.answer, quizzes[index].answer);
+    assert.equal(quiz.breed, quizzes[index].breed);
+    for (const [field, value] of Object.entries(englishQuizText[quizDefinitions[index].id])) {
+      assert.deepEqual(quiz[field], value, `quiz ${index}.${field}`);
+    }
+  }
+  assert.deepEqual(
+    english.quizzes.map((quiz) => english.breeds[quiz.breed].id),
+    ["ragdoll", "minuet", "bengal"],
+  );
+});
+
+test("unsupported page locales do not silently fall back to Japanese", () => {
+  assert.throws(() => getDiscoPageData("fr"), RangeError);
+});
 
 test("English breed text covers exactly the 12 stable catalog IDs", () => {
   assert.equal(Object.keys(englishBreedText).length, 12);
@@ -321,13 +426,8 @@ test("the server page passes Japanese interaction copy to the client page and ba
   const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   const backToFloor = readFileSync(new URL("../app/back-to-floor.tsx", import.meta.url), "utf8");
-  assert.ok(
-    page.includes(
-      'import { japaneseInteractionText as interactionText } from "./interactions-ja";',
-    ),
-  );
+  assert.deepEqual(getDiscoPageData("ja").interactionText, japaneseInteractionText);
   assert.doesNotMatch(page, /from ["']\.\/interactions-en["']/u);
-  assert.ok(page.includes("interactionText={interactionText}"));
   assert.doesNotMatch(clientPage, /from ["']\.\/interactions-(?:ja|en)["']/u);
   assert.doesNotMatch(backToFloor, /from ["']\.\/interactions-(?:ja|en)["']/u);
   assert.ok(clientPage.includes("text={interactionText.navigation}"));
@@ -499,9 +599,8 @@ test("Japanese page text retains the main wording and explicit line boundaries",
 test("the server page passes Japanese copy and the client references every page dictionary field", () => {
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
-  assert.ok(source.includes('import { japanesePageText as pageText } from "./page-ja";'));
+  assert.deepEqual(getDiscoPageData("ja").pageText, japanesePageText);
   assert.doesNotMatch(source, /from ["']\.\/page-en["']/);
-  assert.ok(source.includes("pageText={pageText}"));
   assert.doesNotMatch(clientPage, /from ["']\.\/page-(?:ja|en)["']/u);
   for (const [path] of interactionEntries(japanesePageText)) {
     // Source topics are indexed by the existing source URL order; other line indices are explicit.
@@ -521,12 +620,10 @@ test("the server entry supplies data to the shared client view without moving se
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(page, /["']use client["']/u);
   assert.ok(page.includes('import DiscoPage from "./disco-page";'));
-  assert.ok(page.includes("<DiscoPage"));
-  for (const name of ["breeds", "facts", "periods", "quizzes"]) {
-    assert.ok(page.includes(`${name}={${name}}`), `${name} must be passed to the client view`);
-  }
-  assert.ok(page.includes("rankingUrl={ranking.url}"));
+  assert.ok(page.includes('import { getDiscoPageData } from "./disco-page-data";'));
+  assert.ok(page.includes('<DiscoPage {...getDiscoPageData("ja")} />'));
   assert.match(clientPage, /^"use client";/u);
+  assert.doesNotMatch(clientPage, /from ["']\.\/disco-page-data["']/u);
   assert.doesNotMatch(clientPage, /from ["']\.\/(?:breeds|facts|activities)(?:-(?:ja|en))?["']/u);
   assert.ok(clientPage.includes("= useDiscoSession();"));
   assert.doesNotMatch(page + clientPage, /DiscoSessionProvider/u);
