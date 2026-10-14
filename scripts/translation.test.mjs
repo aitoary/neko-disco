@@ -29,6 +29,7 @@ const dataModuleUrls = Object.fromEntries(
     "interactions-en",
     "page-ja",
     "page-en",
+    "language-menu-text",
   ].map((name) => [`./${name}`, typeScriptModuleUrl(`../app/${name}.ts`)]),
 );
 for (const name of ["breeds", "facts", "activities"]) {
@@ -52,6 +53,7 @@ const [
   { facts },
   { periods, quizzes },
   { getDiscoPageData },
+  { japaneseLanguageMenuText, englishLanguageMenuText },
 ] = await Promise.all([
   import(dataModuleUrls["./breed-definitions"]),
   import(dataModuleUrls["./breeds-en"]),
@@ -69,7 +71,32 @@ const [
   import(dataModuleUrls["./facts"]),
   import(dataModuleUrls["./activities"]),
   import(typeScriptModuleUrl("../app/disco-page-data.ts", dataModuleUrls)),
+  import(dataModuleUrls["./language-menu-text"]),
 ]);
+
+test("language menu dictionaries have matching nonblank fields and a current-language placeholder", () => {
+  const japanese = interactionEntries(japaneseLanguageMenuText);
+  const english = interactionEntries(englishLanguageMenuText);
+  assert.deepEqual(
+    japanese.map(([path]) => path),
+    english.map(([path]) => path),
+  );
+  for (const dictionary of [japaneseLanguageMenuText, englishLanguageMenuText]) {
+    for (const [path, value] of interactionEntries(dictionary)) {
+      assert.ok(value.trim().length > 0, `${path} must not be blank`);
+    }
+    assert.equal((dictionary.menuLabel.match(/\{language\}/gu) ?? []).length, 1);
+    assert.deepEqual(dictionary.names, { ja: "日本語", en: "English" });
+  }
+});
+
+test("English language menu copy keeps Japanese only in the Japanese autonym", () => {
+  const japanese = /[\p{Script_Extensions=Hiragana}\p{Script_Extensions=Katakana}\p{Script=Han}]/u;
+  for (const [path, value] of interactionEntries(englishLanguageMenuText)) {
+    if (path === "names.ja") continue; // Managed intentional Japanese exception.
+    assert.doesNotMatch(value, japanese, path);
+  }
+});
 
 test("Japanese page data exactly matches the existing catalogs and dictionaries", () => {
   assert.deepEqual(getDiscoPageData("ja"), {
