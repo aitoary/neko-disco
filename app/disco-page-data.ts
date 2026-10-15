@@ -16,7 +16,9 @@ import { japaneseInteractionText } from "./interactions-ja";
 import { englishInteractionText } from "./interactions-en";
 
 // Called by the server entry; only the selected language is passed to the client view.
-export function getDiscoPageData(locale: Locale): ComponentProps<typeof DiscoPage> {
+export function getDiscoPageData(
+  locale: Locale,
+): Omit<ComponentProps<typeof DiscoPage>, "locale" | "languageMenuText"> {
   switch (locale) {
     case "ja":
       return {

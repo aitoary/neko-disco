@@ -66,6 +66,21 @@
 .header.language-menu-header .header-controls {
   align-items: center;
 }
+.language-save-notice {
+  position: fixed;
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 12px 18px;
+  border: 1px solid var(--pink);
+  border-radius: 16px;
+  background: #1a1222;
+  color: var(--cream);
+  font-size: 13px;
+  z-index: 60;
+}
 @media (max-width: 449px) {
   .header.language-menu-header {
     height: 127px;

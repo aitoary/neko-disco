@@ -450,7 +450,7 @@ test("Japanese interaction text retains the main wording and state labels", () =
 });
 
 test("the server page passes Japanese interaction copy to the client page and back-to-floor", () => {
-  const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const page = readFileSync(new URL("../app/[locale]/page.tsx", import.meta.url), "utf8");
   const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   const backToFloor = readFileSync(new URL("../app/back-to-floor.tsx", import.meta.url), "utf8");
   assert.deepEqual(getDiscoPageData("ja").interactionText, japaneseInteractionText);
@@ -624,7 +624,7 @@ test("Japanese page text retains the main wording and explicit line boundaries",
 });
 
 test("the server page passes Japanese copy and the client references every page dictionary field", () => {
-  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const source = readFileSync(new URL("../app/[locale]/page.tsx", import.meta.url), "utf8");
   const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   assert.deepEqual(getDiscoPageData("ja").pageText, japanesePageText);
   assert.doesNotMatch(source, /from ["']\.\/page-en["']/);
@@ -642,13 +642,15 @@ test("the server page passes Japanese copy and the client references every page 
 });
 
 test("the server entry supplies data to the shared client view without moving session ownership", () => {
-  const page = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const page = readFileSync(new URL("../app/[locale]/page.tsx", import.meta.url), "utf8");
   const clientPage = readFileSync(new URL("../app/disco-page.tsx", import.meta.url), "utf8");
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(page, /["']use client["']/u);
-  assert.ok(page.includes('import DiscoPage from "./disco-page";'));
-  assert.ok(page.includes('import { getDiscoPageData } from "./disco-page-data";'));
-  assert.ok(page.includes('<DiscoPage {...getDiscoPageData("ja")} />'));
+  assert.ok(page.includes('import DiscoPage from "../disco-page";'));
+  assert.ok(page.includes('import { getDiscoPageData } from "../disco-page-data";'));
+  assert.ok(page.includes("{...getDiscoPageData(locale)}"));
+  assert.ok(page.includes("if (!isLocale(locale)) notFound();"));
+  assert.ok(page.includes("locale={locale}"));
   assert.match(clientPage, /^"use client";/u);
   assert.doesNotMatch(clientPage, /from ["']\.\/disco-page-data["']/u);
   assert.doesNotMatch(clientPage, /from ["']\.\/(?:breeds|facts|activities)(?:-(?:ja|en))?["']/u);

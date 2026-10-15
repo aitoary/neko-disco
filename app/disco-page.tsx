@@ -27,6 +27,10 @@ import type { InteractionText } from "./interaction-text";
 import { SceneTooltip, type SceneHint } from "./scene-tooltip";
 import { SceneLighting } from "./scene-lighting";
 import { BackToFloor } from "./back-to-floor";
+import type { Locale } from "./locale";
+import { LanguageMenu } from "./language-menu";
+import type { LanguageMenuText } from "./language-menu-text";
+import { useLocaleNavigation } from "./locale-navigation-provider";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -55,6 +59,8 @@ function BreedName({ name }: { name: string }) {
   );
 }
 type DiscoPageProps = {
+  locale: Locale;
+  languageMenuText: LanguageMenuText;
   breeds: Breed[];
   facts: Fact[];
   periods: Period[];
@@ -65,6 +71,8 @@ type DiscoPageProps = {
 };
 
 export default function DiscoPage({
+  locale,
+  languageMenuText,
   breeds,
   facts,
   periods,
@@ -73,6 +81,8 @@ export default function DiscoPage({
   interactionText,
   rankingUrl,
 }: DiscoPageProps) {
+  const { hrefs, saveFailed, selectLanguage, completeNavigation, focusDestination } =
+    useLocaleNavigation();
   const {
     state: { soundState, motion, found, period, question, answer, score, finished },
     actions: {
@@ -95,6 +105,9 @@ export default function DiscoPage({
   const [burst, setBurst] = useState<{ x: number; y: number; id: number } | null>(null);
   const lastTrigger = useRef<HTMLElement | null>(null);
   const burstTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    completeNavigation(locale);
+  }, [locale, completeNavigation]);
   useEffect(() => {
     console.log("HELLO NEKO DISKO!");
   }, []);
@@ -146,7 +159,7 @@ export default function DiscoPage({
       ?.scrollIntoView({ behavior: motion ? "smooth" : "instant", block: "start" });
   const p = periods[period];
   return (
-    <main id="top" className={`site ${motion ? "" : "still"}`}>
+    <main id="top" lang={locale} className={`site ${motion ? "" : "still"}`}>
       <a className="skip-link" href="#dance-floor">
         {interactionText.navigation.skipFloor}
       </a>
@@ -166,7 +179,7 @@ export default function DiscoPage({
           />
         ))}
       </div>
-      <header className="header">
+      <header className="header language-menu-header">
         <a href="#top" className="brand" aria-label={pageText.header.homeLabel}>
           <PawPrint size={25} fill="currentColor" />
           <span>
@@ -180,6 +193,12 @@ export default function DiscoPage({
           <a href="#quiz">{pageText.header.quizLink}</a>
         </nav>
         <div className="header-controls">
+          <LanguageMenu
+            locale={locale}
+            hrefs={hrefs}
+            text={languageMenuText}
+            onSelect={selectLanguage}
+          />
           <button
             className={`control sound ${sound ? "active" : ""}`}
             aria-pressed={sound}
@@ -721,6 +740,11 @@ export default function DiscoPage({
         {found.length === 12 && <Sparkles size={18} />}
       </aside>
       <BackToFloor motionEnabled={motion} text={interactionText.navigation} />
+      {saveFailed ? (
+        <p className="language-save-notice" role="status">
+          {languageMenuText.saveFailure}
+        </p>
+      ) : null}
       <Dialog
         open={!!selected}
         onOpenChange={(open) => {
@@ -732,7 +756,8 @@ export default function DiscoPage({
           showCloseButton={false}
           onCloseAutoFocus={(e) => {
             e.preventDefault();
-            lastTrigger.current?.focus();
+            if (lastTrigger.current?.isConnected) lastTrigger.current.focus();
+            else if (window.location.pathname !== `/${locale}`) focusDestination();
           }}
         >
           {selected && (
