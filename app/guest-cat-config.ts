@@ -1,17 +1,27 @@
 import type { Locale } from "./locale";
 
-export type GuestCatState = "hidden" | "running" | "stopped" | "dialog";
+export type GuestCatState =
+  | "hidden"
+  | "running"
+  | "stopped"
+  | "dialog"
+  | "closing"
+  | "waitingToExit"
+  | "exiting";
 export type GuestCatEvent =
   | { type: "appear"; motionEnabled: boolean }
   | { type: "tap" }
   | { type: "finish" }
-  | { type: "dismiss" };
+  | { type: "dismiss" }
+  | { type: "dialogClosed" }
+  | { type: "exit" };
 
 export const guestCatConfig = {
   runImage: "/images/guest-cat/egyptian-mau-run.png",
   lookbackImage: "/images/guest-cat/egyptian-mau-lookback.png",
   appearDelayMs: 2500,
   crossingDurationMs: 4800,
+  exitDelayMs: 1000,
   size: "clamp(76px, 15vw, 170px)",
   bottom: "10%",
 } as const;
@@ -23,9 +33,13 @@ export function guestCatReducer(state: GuestCatState, event: GuestCatEvent): Gue
     case "tap":
       return state === "running" ? "stopped" : state === "stopped" ? "dialog" : state;
     case "finish":
-      return state === "running" ? "hidden" : state;
+      return state === "running" || state === "exiting" ? "hidden" : state;
     case "dismiss":
-      return state === "dialog" ? "hidden" : state;
+      return state === "dialog" ? "closing" : state;
+    case "dialogClosed":
+      return state === "closing" ? "waitingToExit" : state;
+    case "exit":
+      return state === "waitingToExit" ? "exiting" : state;
   }
 }
 

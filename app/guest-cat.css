@@ -27,6 +27,9 @@
   outline: 2px dashed var(--cream);
   outline-offset: -6px;
 }
+.guest-cat-button:disabled {
+  pointer-events: none;
+}
 .guest-cat-button::before {
   content: "";
   position: absolute;
@@ -75,6 +78,6 @@
 }
 @keyframes guest-cat-stride {
   50% {
-    transform: translateY(-2px) rotate(-1deg);
+    transform: translateY(-2.5%) rotate(-1deg);
   }
 }

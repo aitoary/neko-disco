@@ -10,11 +10,12 @@ export function GuestCatSprite({
   motionEnabled: boolean;
   direction?: "left" | "right";
 }) {
+  const running = state === "running" || state === "exiting";
   return (
     <span
       className="guest-cat-sprite"
       aria-hidden="true"
-      data-running={state === "running" && motionEnabled}
+      data-running={running && motionEnabled}
       data-direction={direction}
     >
       {/* Load both original PNGs eagerly so the first tap never waits for the other pose. */}
@@ -22,7 +23,7 @@ export function GuestCatSprite({
         <Image
           key={pose}
           className="guest-cat-image"
-          data-active={(state === "running" ? "running" : "stopped") === pose}
+          data-active={(running ? "running" : "stopped") === pose}
           src={pose === "running" ? guestCatConfig.runImage : guestCatConfig.lookbackImage}
           width={1254}
           height={1254}

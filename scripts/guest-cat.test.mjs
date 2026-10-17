@@ -24,7 +24,32 @@ test("the hidden guest runs, stops on the first tap and opens details only on th
   state = next(state, { type: "tap" });
   assert.equal(state, "dialog");
   assert.equal(next(state, { type: "tap" }), "dialog");
-  assert.equal(next(state, { type: "dismiss" }), "hidden");
+  state = next(state, { type: "dismiss" });
+  assert.equal(state, "closing");
+  assert.equal(next(state, { type: "exit" }), "closing");
+  state = next(state, { type: "dialogClosed" });
+  assert.equal(state, "waitingToExit");
+  state = next(state, { type: "exit" });
+  assert.equal(state, "exiting");
+  assert.equal(next(state, { type: "finish" }), "hidden");
+});
+
+test("only closing the guest dialog starts its exit, and exit interactions cannot interrupt it", () => {
+  for (const state of ["hidden", "running", "stopped", "closing", "waitingToExit", "exiting"]) {
+    assert.equal(next(state, { type: "dismiss" }), state);
+  }
+  for (const state of ["closing", "waitingToExit", "exiting"]) {
+    assert.equal(next(state, { type: "tap" }), state);
+    assert.equal(next(state, { type: "appear", motionEnabled: true }), state);
+  }
+  assert.equal(next("waitingToExit", { type: "finish" }), "waitingToExit");
+  for (const state of ["hidden", "running", "stopped", "dialog", "closing", "exiting"]) {
+    assert.equal(next(state, { type: "exit" }), state);
+  }
+  for (const state of ["hidden", "running", "stopped", "dialog", "waitingToExit", "exiting"]) {
+    assert.equal(next(state, { type: "dialogClosed" }), state);
+  }
+  assert.equal(config.exitDelayMs, 1000);
 });
 
 test("a guest that crosses without a tap disappears instead of opening details", () => {
