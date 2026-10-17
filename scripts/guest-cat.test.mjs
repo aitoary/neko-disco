@@ -78,11 +78,15 @@ test("the PoC uses the two supplied PNGs and a slower four-to-five second crossi
 
 test("the guest has no ranking, discovery-count or persistence ownership and uses the existing dialog", () => {
   const runner = readFileSync(new URL("../app/guest-cat-runner.tsx", import.meta.url), "utf8");
+  const scheduler = readFileSync(
+    new URL("../app/use-guest-cat-schedule.ts", import.meta.url),
+    "utf8",
+  );
   assert.doesNotMatch(
     runner,
     /setFound|useDiscoSession|localStorage|sessionStorage|breedDefinitions/u,
   );
   assert.ok(runner.includes('from "@/components/ui/dialog"'));
-  assert.ok(runner.includes("observer.disconnect();"));
+  assert.ok(scheduler.includes("observer.disconnect();"));
   assert.ok(runner.includes("flight.current?.cancel();"));
 });

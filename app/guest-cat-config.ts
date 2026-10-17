@@ -19,7 +19,6 @@ export type GuestCatEvent =
 export const guestCatConfig = {
   runImage: "/images/guest-cat/egyptian-mau-run.png",
   lookbackImage: "/images/guest-cat/egyptian-mau-lookback.png",
-  appearDelayMs: 2500,
   crossingDurationMs: 4800,
   exitDelayMs: 1000,
   size: "clamp(76px, 15vw, 170px)",

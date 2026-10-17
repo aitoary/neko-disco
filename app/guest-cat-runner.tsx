@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useRef, type CSSProperties } from "react";
+import { useEffect, useEffectEvent, useReducer, useRef, type CSSProperties } from "react";
 import { Check, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import type { Locale } from "./locale";
@@ -19,20 +19,24 @@ export function GuestCatRunner({
   locale,
   motionEnabled,
   onInteract,
+  onFinish,
 }: {
   locale: Locale;
   motionEnabled: boolean;
   onInteract: () => void;
+  onFinish: () => void;
 }) {
-  const [state, dispatch] = useReducer(guestCatReducer, "hidden");
+  const [state, dispatch] = useReducer(guestCatReducer, "running");
   const track = useRef<HTMLDivElement>(null);
   const flight = useRef<Animation | null>(null);
-  const currentMotion = useRef(motionEnabled);
   const exitWaitRemaining = useRef<number>(guestCatConfig.exitDelayMs);
   const text = guestCatText[locale];
+  const finish = useEffectEvent(() => {
+    dispatch({ type: "finish" });
+    onFinish();
+  });
 
   useEffect(() => {
-    currentMotion.current = motionEnabled;
     if (state === "hidden") {
       flight.current?.cancel();
       flight.current = null;
@@ -45,7 +49,7 @@ export function GuestCatRunner({
       );
       // Motion-off encounters start at the track's existing stationary midpoint.
       flight.current.currentTime = state === "running" ? 0 : guestCatConfig.crossingDurationMs / 2;
-      flight.current.onfinish = () => dispatch({ type: "finish" });
+      flight.current.onfinish = () => finish();
     }
 
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -83,41 +87,7 @@ export function GuestCatRunner({
   }, [state, motionEnabled]);
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const scene = document.querySelector("#dance-floor .scene");
-    if (!scene) return;
-    let inView = false;
-    let remaining: number = guestCatConfig.appearDelayMs;
-    let startedAt: number | undefined;
-    const pauseAppearance = () => {
-      clearTimeout(timer);
-      if (startedAt !== undefined) {
-        remaining = Math.max(0, remaining - (performance.now() - startedAt));
-        startedAt = undefined;
-      }
-    };
-    const scheduleAppearance = () => {
-      pauseAppearance();
-      if (!inView || document.hidden) return;
-      startedAt = performance.now();
-      timer = setTimeout(() => {
-        document.removeEventListener("visibilitychange", scheduleAppearance);
-        dispatch({ type: "appear", motionEnabled: currentMotion.current });
-      }, remaining);
-    };
-    // One encounter per mount, delayed until the floor is actually in view.
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      observer.disconnect();
-      inView = true;
-      scheduleAppearance();
-    });
-    document.addEventListener("visibilitychange", scheduleAppearance);
-    observer.observe(scene);
     return () => {
-      observer.disconnect();
-      pauseAppearance();
-      document.removeEventListener("visibilitychange", scheduleAppearance);
       flight.current?.cancel();
       flight.current = null;
     };

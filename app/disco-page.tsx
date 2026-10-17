@@ -31,7 +31,7 @@ import type { Locale } from "./locale";
 import { LanguageMenu } from "./language-menu";
 import type { LanguageMenuText } from "./language-menu-text";
 import { useLocaleNavigation } from "./locale-navigation-provider";
-import { GuestCatRunner } from "./guest-cat-runner";
+import { GuestCatEncounter } from "./guest-cat-encounter";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -351,9 +351,10 @@ export default function DiscoPage({
                 </span>
               </button>
             ))}
-            <GuestCatRunner
+            <GuestCatEncounter
               locale={locale}
               motionEnabled={motion}
+              dialogOpen={selected !== null}
               onInteract={() => setSceneHint(null)}
             />
             <div className="floor-sticker" aria-hidden="true">
