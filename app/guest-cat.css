@@ -1,10 +1,16 @@
+.guest-cat-layer {
+  position: absolute;
+  inset: 0;
+  /* Above resident hover/focus (120) and prop hover (130), inside .scene's isolation. */
+  z-index: 140;
+  pointer-events: none;
+}
 .guest-cat-track {
   position: absolute;
   left: calc(-1 * var(--guest-cat-size));
   right: 0;
   bottom: var(--guest-cat-bottom);
   height: var(--guest-cat-size);
-  z-index: 110;
   pointer-events: none;
   transform: translateX(50%);
 }
@@ -22,10 +28,20 @@
   background: none;
   touch-action: manipulation;
   pointer-events: auto;
+  /* Both original PNGs have transparent space above ~15% and below ~93%.
+     Retain the full tail, ears and paws, with a small touch allowance. */
+  clip-path: inset(13% 0 5% 0);
 }
 .guest-cat-button:focus-visible {
   outline: 2px dashed var(--cream);
-  outline-offset: -6px;
+  outline-offset: -2px;
+}
+.guest-cat-button:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 14% 1% 6%;
+  border: 2px dashed var(--cream);
+  border-radius: 12px;
 }
 .guest-cat-button:disabled {
   pointer-events: none;

@@ -106,26 +106,28 @@ export function GuestCatRunner({
 
   return (
     <>
-      <div
-        ref={track}
-        className="guest-cat-track"
-        data-state={state}
-        style={
-          {
-            "--guest-cat-size": guestCatConfig.size,
-            "--guest-cat-bottom": guestCatConfig.bottom,
-          } as CSSProperties
-        }
-      >
-        <button
-          type="button"
-          className="guest-cat-button"
-          aria-label={state === "running" ? text.stop : text.open}
-          disabled={state === "closing" || state === "waitingToExit" || state === "exiting"}
-          onClick={activate}
+      <div className="guest-cat-layer">
+        <div
+          ref={track}
+          className="guest-cat-track"
+          data-state={state}
+          style={
+            {
+              "--guest-cat-size": guestCatConfig.size,
+              "--guest-cat-bottom": guestCatConfig.bottom,
+            } as CSSProperties
+          }
         >
-          <GuestCatSprite state={state} motionEnabled={motionEnabled} />
-        </button>
+          <button
+            type="button"
+            className="guest-cat-button"
+            aria-label={state === "running" ? text.stop : text.open}
+            disabled={state === "closing" || state === "waitingToExit" || state === "exiting"}
+            onClick={activate}
+          >
+            <GuestCatSprite state={state} motionEnabled={motionEnabled} />
+          </button>
+        </div>
       </div>
       <Dialog open={state === "dialog"} onOpenChange={(open) => !open && dismiss()}>
         <DialogContent
