@@ -23,6 +23,7 @@ export const guestCatConfig = {
   exitDelayMs: 1000,
   size: "clamp(76px, 15vw, 170px)",
   bottom: "10%",
+  source: "https://cfa.org/breed/egyptian-mau/",
 } as const;
 
 export function guestCatReducer(state: GuestCatState, event: GuestCatEvent): GuestCatState {
@@ -47,22 +48,23 @@ export const guestCatText = {
     name: "エジプシャンマウ",
     stop: "横切るエジプシャンマウを止める",
     open: "エジプシャンマウの説明を開く",
-    badge: "フロアのお客さま",
-    intro: "フロアを横切る、斑点模様のお客さま。呼び止めると、こちらを振り返ってくれました。",
+    intro:
+      "エジプシャンマウは、自然なスポット模様が特徴の短毛種。しなやかな体と高い運動能力を持ち、活発に遊ぶことが大好きな猫です。",
     detail:
-      "今夜はひと休みしに来たみたい。12匹のランキングや発見数には含まれない、フロアのゲストです。",
+      "グリーンの瞳も印象的で、家族には愛情深い一方、知らない人には少し慎重な一面もあります。",
+    source: "出典：CFA（The Cat Fanciers’ Association）",
     close: "説明を閉じる",
     confirm: "またね、にゃ！",
   },
   en: {
     name: "Egyptian Mau",
     stop: "Stop the Egyptian Mau crossing the floor",
-    open: "Meet the Egyptian Mau",
-    badge: "A guest on the floor",
+    open: "Read about the Egyptian Mau",
     intro:
-      "A spotted guest dashes across the floor. Call them over, and they'll stop for a look back.",
+      "The Egyptian Mau is a shorthaired breed with a naturally spotted coat. With a graceful body and remarkable athletic ability, this active cat loves to play.",
     detail:
-      "Just dropping in for a breather tonight. This guest isn't part of the 12-breed ranking or your discovery count.",
+      "Their striking green eyes are another distinctive feature. Affectionate with family, they can be a little cautious around people they don't know.",
+    source: "Source: CFA (The Cat Fanciers’ Association)",
     close: "Close details",
     confirm: "See you, meow!",
   },

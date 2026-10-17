@@ -148,11 +148,14 @@ export function GuestCatRunner({
             <GuestCatSprite state="stopped" motionEnabled={false} />
           </div>
           <div className="fact-copy">
-            <p className="eyebrow">GUEST CAT · {text.badge}</p>
+            <p className="eyebrow">GUEST CAT</p>
             <DialogTitle className="fact-title">{text.name}</DialogTitle>
             <DialogDescription className="fact-body">{text.intro}</DialogDescription>
             <p className="guest-cat-detail">{text.detail}</p>
             <div className="fact-actions">
+              <a href={guestCatConfig.source} target="_blank" rel="noreferrer">
+                {text.source}
+              </a>
               <button type="button" className="dark-button" onClick={dismiss}>
                 {text.confirm} <Check size={16} />
               </button>
