@@ -31,6 +31,7 @@ import type { Locale } from "./locale";
 import { LanguageMenu } from "./language-menu";
 import type { LanguageMenuText } from "./language-menu-text";
 import { useLocaleNavigation } from "./locale-navigation-provider";
+import { GuestCatRunner } from "./guest-cat-runner";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -279,7 +280,7 @@ export default function DiscoPage({
             </button>
           </div>
         </div>
-        <div id="dance-floor" className="floor-section">
+        <div id="dance-floor" className="floor-section" tabIndex={-1}>
           <div className="floor-topline">
             <span>
               <i className="live-dot" /> THE DANCE FLOOR
@@ -350,6 +351,11 @@ export default function DiscoPage({
                 </span>
               </button>
             ))}
+            <GuestCatRunner
+              locale={locale}
+              motionEnabled={motion}
+              onInteract={() => setSceneHint(null)}
+            />
             <div className="floor-sticker" aria-hidden="true">
               NO RULES.
               <br />
