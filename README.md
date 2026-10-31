@@ -123,6 +123,111 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 
 Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
 
+## Event schedule
+
+Edit `config/events.json` to register each year's event periods. All dates use JST
+with an explicit `+09:00` offset; start is inclusive and end is exclusive. The
+current config registers Halloween 2026 only. Artwork and code stay in place
+outside the configured periods.
+
+To reuse Halloween next year, append an entry like this to the JSON array (this
+example is not registered in the current config):
+
+```json
+{
+  "event": "halloween",
+  "year": 2027,
+  "start": "2027-10-31T00:00:00+09:00",
+  "end": "2027-11-01T05:00:00+09:00"
+}
+```
+
+Use one entry per event/year. The start date must belong to `year`; the end may
+cross into the next year. Entry order does not matter. An unregistered year does
+not run automatically. Remove an entry to cancel that year's event; `[]` leaves
+every event unscheduled. Other event names can be registered when their own
+presentation is implemented; a Christmas entry alone does not add Christmas
+artwork or activate the Halloween presentation.
+
+After editing, run `node --test scripts/halloween-floor.test.mjs`, type checking
+and the normal build before release. The tests load the actual config and reject
+invalid dates, missing JST offsets, year mismatches, reversed periods and
+duplicate event/year entries. Config changes take effect after rebuilding,
+releasing and reloading the page. This is a versioned config file, with no admin
+screen, database or remote runtime fetch.
+
+### Halloween preview
+
+The floor event runs from October 31, 2026 at 00:00 through November 2 at 02:00 JST
+(end exclusive), as registered in `config/events.json`.
+
+With `npm run dev`, visit `/ja?halloween=on#dance-floor` for the event or
+`/ja?halloween=off#dance-floor` for the ordinary floor. The same query works on
+`/en`. Without the query, the configured event dates apply. Production ignores
+this preview query and always uses the configured periods. The label, lantern
+and lighting share this switch; the existing motion control still governs the
+lighting.
+
+### Expiry and rollback plan
+
+All seasonal page colors, decorations, cat accessories and bats use the same
+`useHalloweenFloor()` flag. Outside the registered Halloween periods the flag is
+false, the seasonal attributes and components are removed, and bat animations
+are cancelled on unmount. Visible tabs recheck at the boundary; hidden/restored tabs recheck on
+visibility, page restore and focus. Time comes from the device clock. No annual
+recurrence, persisted event state, server setting or expiry deployment is needed.
+
+Seasonal styles live in `app/halloween.css`, imported only by the page integration.
+The cat stacking rule is limited to an active Halloween scene. Shared
+`app/globals.css`, the original image assets and guest-cat implementation are
+unchanged. Keep future event edits in the seasonal files and conditional page
+integration so they can be removed together.
+
+The initial commits are separated by intent:
+
+| Commit    | Responsibility                                                           | Removal order              |
+| --------- | ------------------------------------------------------------------------ | -------------------------- |
+| `c607678` | Fixed dates, client subscription, development preview and schedule tests | After presentation removal |
+| `3eb2138` | Seasonal presentation, stylesheet, artwork and page integration          | First                      |
+| `917218c` | Preview, rollback and verification notes                                 | Independently removable    |
+
+Normally, retain the implementation and manage dates in `config/events.json`.
+For an early return to the ordinary page, remove the active schedule entry and
+release the updated config. To remove the entire presentation, revert `3eb2138`.
+This removes the page integration and all seasonal presentation together, leaving the unused schedule
+module inert. For full code removal, revert follow-up schedule/config changes
+before reverting `c607678`, then remove this documentation when it is no longer
+needed. Revert preserves subsequent history;
+if later edits conflict, resolve those edits rather than resetting the branch.
+Rebuild and deploy the reverted version through the normal, separately authorized
+workflow. These rollback actions have not been executed.
+
+### Verification status
+
+On local Node.js v22.16.0, all 106 Node tests, TypeScript checking, formatting and
+the production build passed after stylesheet separation. ESLint reported zero
+errors and the two acknowledged existing `no-img-element` warnings. PC checks
+before stylesheet separation confirmed cat-detail open/close, discovery-count
+updates and the motion button's state change. The earlier production bundle was
+also checked for fixed dates and removal of development-query reads.
+
+After schedule externalization, all 109 Node tests, TypeScript checking, targeted
+ESLint and the production build passed. The added cases cover config validation,
+explicit multi-year scheduling and timer resumption at a later configured year.
+These checks do not replace the outstanding browser acceptance checks below.
+
+SP screenshot comparison, actual animation stop/resume, guest-cat browser behavior
+and visual rechecking after stylesheet separation remain incomplete. Browser
+investigation stopped at the approved stopping condition; these are outstanding
+acceptance checks, not successful checks or an approved deferral. Reconsider them
+before accepting or releasing the event.
+
+The acknowledged Node `glob` experimental warning remains recorded. The schedule
+externalization build also reported `PLUGIN_TIMINGS` (client phase 3.40 seconds); its
+disposition remains unresolved. No warning suppression, dependency changes or
+build-configuration changes were made. This is a work-in-progress snapshot, not
+release acceptance.
+
 ## Diagnostic Commands
 
 - `npm run install:ci`: perform the one locked dependency install
