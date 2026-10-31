@@ -1,10 +1,10 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { halloweenFloorEnd, halloweenFloorStart, isHalloweenFloor } from "./halloween-floor-period";
+import { isHalloweenFloor, nextHalloweenFloorBoundary } from "./halloween-floor-period";
 
 export function getHalloweenFloorSnapshot() {
-  // Local visual QA only. Production always uses the fixed 2026 dates.
+  // Local visual QA only. Production always uses the configured event periods.
   if (process.env.NODE_ENV === "development") {
     const preview = new URLSearchParams(window.location.search).get("halloween");
     if (preview === "on") return true;
@@ -22,8 +22,8 @@ export function subscribeToHalloweenFloor(onChange: () => void) {
     if (document.hidden) return;
 
     const now = Date.now();
-    const boundary = now < halloweenFloorStart ? halloweenFloorStart : halloweenFloorEnd;
-    if (now < boundary) {
+    const boundary = nextHalloweenFloorBoundary(now);
+    if (boundary !== undefined) {
       // Recheck the wall clock, while waking exactly at nearby event boundaries.
       timer = setTimeout(sync, Math.min(60_000, boundary - now));
     }

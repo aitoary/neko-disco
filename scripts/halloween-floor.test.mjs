@@ -15,17 +15,44 @@ function moduleUrl(path, imports = {}) {
   return `data:text/javascript;base64,${Buffer.from(outputText).toString("base64")}`;
 }
 
-const periodUrl = moduleUrl("../app/halloween-floor-period.ts");
-const {
-  halloweenFloorStart: start,
-  halloweenFloorEnd: end,
-  isHalloweenFloor,
-} = await import(periodUrl);
-const { getHalloweenFloorSnapshot, subscribeToHalloweenFloor, useHalloweenFloor } = await import(
-  moduleUrl("../app/use-halloween-floor.ts", {
+const configuredEvents = JSON.parse(
+  readFileSync(new URL("../config/events.json", import.meta.url), "utf8"),
+);
+const scheduleUrl = moduleUrl("../app/event-schedule.ts", {
+  "../config/events.json": `data:text/javascript,${encodeURIComponent(`export default ${JSON.stringify(configuredEvents)}`)}`,
+});
+// Loading the actual config also checks it; behavioral fixtures stay independent
+// so next year's config additions do not require rewriting date assertions.
+const { parseEventSchedule } = await import(scheduleUrl);
+const halloween2026 = {
+  event: "halloween",
+  year: 2026,
+  start: "2026-10-31T00:00:00+09:00",
+  end: "2026-11-01T05:00:00+09:00",
+};
+const halloween2027 = {
+  event: "halloween",
+  year: 2027,
+  start: "2027-10-31T00:00:00+09:00",
+  end: "2027-11-01T05:00:00+09:00",
+};
+function periodModuleUrl(entries) {
+  return moduleUrl("../app/halloween-floor-period.ts", {
+    "./event-schedule": `data:text/javascript,${encodeURIComponent(`export const eventSchedule = ${JSON.stringify(parseEventSchedule(entries))}`)}`,
+  });
+}
+function hookModuleUrl(periodUrl) {
+  return moduleUrl("../app/use-halloween-floor.ts", {
     react: import.meta.resolve("react"),
     "./halloween-floor-period": periodUrl,
-  })
+  });
+}
+const periodUrl = periodModuleUrl([halloween2026]);
+const start = Date.parse(halloween2026.start);
+const end = Date.parse(halloween2026.end);
+const { isHalloweenFloor } = await import(periodUrl);
+const { getHalloweenFloorSnapshot, subscribeToHalloweenFloor, useHalloweenFloor } = await import(
+  hookModuleUrl(periodUrl)
 );
 
 function browserClock(t, initialTime) {
@@ -76,6 +103,81 @@ test("the one-off JST event includes its start and excludes 05:00 on November 1"
   ])
     assert.equal(isHalloweenFloor(time), expected);
   assert.equal(isHalloweenFloor(Date.parse("2026-10-31T16:00:00-04:00")), false);
+});
+
+test("schedule config rejects invalid dates, ambiguous zones, wrong years and duplicate entries", () => {
+  for (const patch of [
+    { event: "" },
+    { event: undefined },
+    { year: 2026.5 },
+    { year: 2027 },
+    { start: "2026-10-31T00:00:00" },
+    { start: "2026-10-30T15:00:00Z" },
+    { start: "2026-02-30T00:00:00+09:00" },
+    { start: "2026-10-31T24:00:00+09:00" },
+    { end: halloween2026.start },
+    { end: "2026-10-30T00:00:00+09:00" },
+    { end: "invalid" },
+  ]) {
+    assert.throws(
+      () => parseEventSchedule([{ ...halloween2026, ...patch }]),
+      /config\/events.json/,
+    );
+  }
+  assert.throws(() => parseEventSchedule([halloween2026, halloween2026]), /duplicate event\/year/);
+  assert.doesNotThrow(() =>
+    parseEventSchedule([
+      {
+        event: "new-year",
+        year: 2026,
+        start: "2026-12-31T23:00:00+09:00",
+        end: "2027-01-01T05:00:00+09:00",
+      },
+    ]),
+  );
+});
+
+test("only explicitly configured Halloween years run, independent of entry order or other events", async () => {
+  const christmas = {
+    event: "christmas",
+    year: 2026,
+    start: "2026-12-24T00:00:00+09:00",
+    end: "2026-12-26T00:00:00+09:00",
+  };
+  const periods = await import(periodModuleUrl([halloween2027, christmas, halloween2026]));
+  const nextStart = Date.parse(halloween2027.start);
+  const nextEnd = Date.parse(halloween2027.end);
+  assert.equal(periods.isHalloweenFloor(end), false);
+  assert.equal(periods.isHalloweenFloor(Date.parse(christmas.start)), false);
+  assert.equal(periods.nextHalloweenFloorBoundary(end), nextStart);
+  assert.equal(periods.isHalloweenFloor(nextStart - 1), false);
+  assert.equal(periods.isHalloweenFloor(nextStart), true);
+  assert.equal(periods.isHalloweenFloor(nextEnd - 1), true);
+  assert.equal(periods.isHalloweenFloor(nextEnd), false);
+  assert.equal(periods.nextHalloweenFloorBoundary(nextEnd), undefined);
+  assert.equal(periods.isHalloweenFloor(Date.parse("2028-10-31T12:00:00+09:00")), false);
+  const empty = await import(periodModuleUrl([]));
+  assert.equal(empty.isHalloweenFloor(start), false);
+  assert.equal(empty.nextHalloweenFloorBoundary(start), undefined);
+});
+
+test("a tab spanning two configured years schedules the next start after the first event ends", async (t) => {
+  const clock = browserClock(t, end);
+  const nextStart = Date.parse(halloween2027.start);
+  const hook = await import(hookModuleUrl(periodModuleUrl([halloween2026, halloween2027])));
+  const snapshots = [];
+  const unsubscribe = hook.subscribeToHalloweenFloor(() =>
+    snapshots.push(hook.getHalloweenFloorSnapshot()),
+  );
+  assert.equal([...clock.timers.values()][0].delay, 60_000);
+  clock.setTime(nextStart - 1);
+  clock.browser.dispatchEvent(new Event("pageshow"));
+  assert.equal([...clock.timers.values()][0].delay, 1);
+  clock.setTime(nextStart);
+  [...clock.timers.values()][0].callback();
+  assert.deepEqual(snapshots, [false, false, true]);
+  unsubscribe();
+  assert.equal(clock.timers.size, 0);
 });
 
 test("preview on/off works only in development; production always follows the clock", (t) => {

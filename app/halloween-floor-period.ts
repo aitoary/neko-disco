@@ -1,7 +1,12 @@
-// This is a one-off event: start inclusive, end exclusive, both fixed in JST.
-export const halloweenFloorStart = Date.parse("2026-10-31T00:00:00+09:00");
-export const halloweenFloorEnd = Date.parse("2026-11-01T05:00:00+09:00");
+import { eventSchedule } from "./event-schedule";
+
+const periods = eventSchedule.filter(({ event }) => event === "halloween");
+const boundaries = periods.flatMap(({ start, end }) => [start, end]).sort((a, b) => a - b);
 
 export function isHalloweenFloor(now: number) {
-  return now >= halloweenFloorStart && now < halloweenFloorEnd;
+  return periods.some(({ start, end }) => now >= start && now < end);
+}
+
+export function nextHalloweenFloorBoundary(now: number) {
+  return boundaries.find((boundary) => boundary > now);
 }
