@@ -32,6 +32,11 @@ import { LanguageMenu } from "./language-menu";
 import type { LanguageMenuText } from "./language-menu-text";
 import { useLocaleNavigation } from "./locale-navigation-provider";
 import { GuestCatEncounter } from "./guest-cat-encounter";
+import { HalloweenCostume } from "./halloween-costume";
+import { HalloweenBats } from "./halloween-bats";
+import { useHalloweenFloor } from "./use-halloween-floor";
+import { HalloweenDecorations, HalloweenPartyTrim } from "./halloween-decorations";
+import "./halloween.css";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -40,10 +45,20 @@ const sceneProps = [
   { id: "scratch", x: 89, y: 60, w: 8, h: 22 },
   { id: "water", x: 88, y: 35, w: 10, h: 15 },
 ];
-function Cat({ image, className = "" }: { image: string; className?: string }) {
+function Cat({
+  image,
+  className = "",
+  costume,
+}: {
+  image: string;
+  className?: string;
+  costume?: string;
+}) {
   return (
     <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}>
+      {costume ? <HalloweenCostume breed={costume} behind /> : null}
       <img src={image} alt="" loading="lazy" draggable="false" width="512" height="512" />
+      {costume ? <HalloweenCostume breed={costume} /> : null}
     </span>
   );
 }
@@ -98,6 +113,7 @@ export default function DiscoPage({
     },
   } = useDiscoSession();
   const sound = soundState === "playing" || soundState === "loading";
+  const halloween = useHalloweenFloor();
   const [sceneHint, setSceneHint] = useState<SceneHint | null>(null);
   const [selection, setSelection] = useState<SelectionKey | null>(null);
   const resolvedSelection = resolveSelection(selection, breeds, facts);
@@ -160,7 +176,12 @@ export default function DiscoPage({
       ?.scrollIntoView({ behavior: motion ? "smooth" : "instant", block: "start" });
   const p = periods[period];
   return (
-    <main id="top" lang={locale} className={`site ${motion ? "" : "still"}`}>
+    <main
+      id="top"
+      lang={locale}
+      data-halloween={halloween ? "true" : undefined}
+      className={`site ${motion ? "" : "still"}`}
+    >
       <a className="skip-link" href="#dance-floor">
         {interactionText.navigation.skipFloor}
       </a>
@@ -235,8 +256,11 @@ export default function DiscoPage({
 
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-heading">
+          {halloween ? <HalloweenPartyTrim /> : null}
+          {halloween ? <p className="halloween-invitation">OCT 31 · ONE NIGHT ONLY</p> : null}
           <p className="eyebrow">
-            <span /> ALL CATS WELCOME. ALL NIGHT LONG.
+            <span />{" "}
+            {halloween ? "ALL CATS WELCOME. TRICK OR MEOW!" : "ALL CATS WELCOME. ALL NIGHT LONG."}
           </p>
           <button
             className="hero-cat hero-cat-left"
@@ -251,7 +275,7 @@ export default function DiscoPage({
           </button>
           <h1 id="hero-title">
             NEKO <span>DISCO</span>
-            <i aria-hidden="true">✳</i>
+            <i aria-hidden="true">{halloween ? "☾" : "✳"}</i>
           </h1>
           <button
             className="hero-cat hero-cat-right"
@@ -281,9 +305,12 @@ export default function DiscoPage({
           </div>
         </div>
         <div id="dance-floor" className="floor-section" tabIndex={-1}>
-          <div className="floor-topline">
-            <span>
-              <i className="live-dot" /> THE DANCE FLOOR
+          <div className="floor-topline" data-halloween={halloween ? "true" : undefined}>
+            <span className="floor-title">
+              <span className="floor-name">
+                <i className="live-dot" /> THE DANCE FLOOR
+              </span>
+              {halloween ? <span className="halloween-label">HALLOWEEN NIGHT · 10.31</span> : null}
             </span>
             <span className="floor-hint">
               <MousePointer2 size={14} /> {interactionText.discovery.floorHint}
@@ -293,7 +320,7 @@ export default function DiscoPage({
               {interactionText.discovery.countLabel}
             </span>
           </div>
-          <div className="scene">
+          <div className="scene" data-halloween={halloween ? "true" : undefined}>
             <img
               className="scene-image"
               src="/images/disco-room.webp"
@@ -303,6 +330,8 @@ export default function DiscoPage({
               height="1024"
             />
             <SceneLighting />
+            {halloween ? <HalloweenDecorations /> : null}
+            {halloween ? <HalloweenBats motion={motion} /> : null}
             {sceneProps.map((s) => {
               const f = facts.find((f) => f.id === s.id)!;
               return (
@@ -345,7 +374,10 @@ export default function DiscoPage({
                 )}
                 onClick={(e) => discover(breed, e)}
               >
-                <Cat image={breed.image} />
+                <Cat
+                  image={breed.image}
+                  costume={halloween && breed.id !== "scottish-fold" ? breed.id : undefined}
+                />
                 <span className="hotspot-mark">
                   {found.includes(breed.id) ? <Check size={14} /> : <Plus size={15} />}
                 </span>
@@ -381,14 +413,15 @@ export default function DiscoPage({
         <div>
           {Array.from({ length: 4 }, (_, i) => (
             <span key={i}>
-              EAT. SLEEP. MEOW. REPEAT. <PawPrint /> {pageText.marquee}{" "}
-              <span className="star">✳</span>{" "}
+              {halloween ? "TRICK OR MEOW. HALLOWEEN DISCO." : "EAT. SLEEP. MEOW. REPEAT."}{" "}
+              <PawPrint /> {pageText.marquee} <span className="star">✳</span>{" "}
             </span>
           ))}
         </div>
       </div>
 
       <section id="residents" className="residents section-wrap">
+        {halloween ? <HalloweenPartyTrim variant="section" /> : null}
         <div className="section-head">
           <div>
             <p className="eyebrow">12 BREEDS. 12 PERSONALITIES. / 01</p>
@@ -672,6 +705,8 @@ export default function DiscoPage({
       </section>
 
       <section className="closing">
+        {halloween ? <HalloweenPartyTrim variant="closing" /> : null}
+        {halloween ? <p className="halloween-finale">TRICK OR MEOW!</p> : null}
         <p className="eyebrow">THANKS FOR HANGING OUT.</p>
         <h2>
           {pageText.closing.heading[0]}

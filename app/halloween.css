@@ -1,0 +1,337 @@
+/* One-off Halloween 2026 styles; remove the page import to remove this stylesheet. */
+.floor-name {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  white-space: nowrap;
+}
+.halloween-label {
+  padding: 4px 9px;
+  border: 1px solid #ffad5966;
+  border-radius: 5px;
+  background: #ff963f14;
+  color: #ffc17d;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.scene[data-halloween="true"] {
+  --disco-light-primary: #9b5cff;
+  --disco-light-secondary: #ff963f;
+  --disco-light-accent: #ffbf69;
+}
+.scene[data-halloween="true"] .scene-image {
+  filter: brightness(0.72) saturate(0.8);
+}
+.halloween-garland {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: auto;
+}
+.halloween-decorations {
+  position: absolute;
+  inset: 0;
+  /* After lighting at 0, below prop targets at 1 and every resident/guest cat. */
+  z-index: 0;
+  pointer-events: none;
+}
+.halloween-lantern {
+  position: absolute;
+  left: 70.5%;
+  bottom: 52.7%;
+  width: 7%;
+  transform: translateX(-50%);
+}
+.halloween-lantern-left {
+  left: 8%;
+  bottom: 36%;
+  width: 9%;
+  transform: translateX(-50%) rotate(-7deg);
+}
+.halloween-lantern-right {
+  left: 92%;
+  bottom: 29%;
+  width: 11%;
+  transform: translateX(-50%) rotate(5deg);
+}
+.halloween-lantern::before {
+  content: "";
+  position: absolute;
+  inset: 10% -45% -20%;
+  background: radial-gradient(ellipse, #ffb34e52 5%, #ff932422 40%, transparent 72%);
+}
+.halloween-lantern::after {
+  content: "";
+  position: absolute;
+  left: -15%;
+  right: -15%;
+  bottom: 0;
+  height: 16%;
+  background: radial-gradient(ellipse, #ffc46b80, transparent 70%);
+}
+.halloween-lantern svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* One-night party palette: scoped to the same fixed Halloween period. */
+.site[data-halloween="true"] {
+  --pink: #c59aff;
+  --lime: #ffb45f;
+  --cyan: #c5b1ed;
+  background:
+    radial-gradient(ellipse at 15% 4%, #67358e66, transparent 24%),
+    radial-gradient(ellipse at 90% 38%, #743a9860, transparent 27%),
+    radial-gradient(ellipse at 10% 75%, #62318766, transparent 25%), #1d102e;
+}
+.site[data-halloween="true"] .header {
+  border-bottom-color: #b989e355;
+}
+.site[data-halloween="true"] h1 {
+  color: #ffe4b6;
+  text-shadow:
+    0 5px 0 #30123e,
+    0 0 45px #b45fff45;
+}
+.site[data-halloween="true"] h1 > span {
+  color: #ffa853;
+}
+.site[data-halloween="true"] h1 > i {
+  animation: none;
+  color: #e0b9ff;
+}
+.halloween-invitation {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 20px;
+  border: 1px solid #ffb35c;
+  border-radius: 30px;
+  color: #ffd39a;
+  background: #361a48;
+  font:
+    800 15px/1.2 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.23em;
+}
+.halloween-party-trim {
+  position: absolute;
+  inset: 0 0 auto;
+  pointer-events: none;
+}
+.halloween-party-trim svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.halloween-party-trim-hero {
+  opacity: 0.85;
+}
+.halloween-party-trim-section {
+  opacity: 0.65;
+}
+.site[data-halloween="true"] .residents {
+  position: relative;
+  padding-top: 125px;
+}
+.site[data-halloween="true"] .residents > .halloween-party-trim {
+  top: 15px;
+}
+.site[data-halloween="true"] .section-head,
+.site[data-halloween="true"] .closing > :not(.halloween-party-trim) {
+  position: relative;
+}
+.site[data-halloween="true"] .marquee {
+  background: #ffa653;
+  box-shadow: 0 7px 0 #70378d;
+}
+.site[data-halloween="true"] .resident-card {
+  border-color: #634076;
+  box-shadow: 5px 7px 0 #4c2864;
+}
+.site[data-halloween="true"] .resident-card:nth-child(3n + 1) {
+  background: #d3b3ef;
+}
+.site[data-halloween="true"] .resident-card:nth-child(3n + 2) {
+  background: #ffc180;
+}
+.site[data-halloween="true"] .resident-card:nth-child(3n) {
+  background: #e3cbea;
+}
+.site[data-halloween="true"] .cat-stage {
+  background: radial-gradient(ellipse, #fff4db50, transparent 70%);
+}
+.site[data-halloween="true"] .quiz-card {
+  background: #f4d6af;
+}
+.site[data-halloween="true"] .quiz-stamp {
+  background: #c99af2;
+}
+.site[data-halloween="true"] .time-panel {
+  border-color: #b88cde;
+  box-shadow: 8px 8px 0 #4c2864;
+}
+.site[data-halloween="true"] .closing {
+  padding-top: 95px;
+  background: radial-gradient(ellipse at 50% 100%, #733b8e, transparent 75%);
+}
+.halloween-finale {
+  color: #ffb45f;
+  font:
+    900 clamp(36px, 7vw, 90px)/1 "Barlow Condensed",
+    sans-serif;
+  letter-spacing: 0.04em;
+  margin-bottom: 22px;
+}
+.site[data-halloween="true"] footer {
+  background: #170b25;
+  border-color: #9862ba;
+}
+.halloween-candles {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+  width: 5%;
+  height: 8%;
+}
+.halloween-candles-left {
+  left: 35%;
+  bottom: 47%;
+}
+.halloween-candles-right {
+  right: 8%;
+  bottom: 61%;
+}
+.halloween-candles i {
+  position: relative;
+  display: block;
+  width: 23%;
+  height: 55%;
+  background: linear-gradient(90deg, #c99fd9, #fff0d5, #b47ec1);
+  border: 1px solid #59305f;
+  border-radius: 2px;
+}
+.halloween-candles i:nth-child(2) {
+  height: 90%;
+}
+.halloween-candles i::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 30%;
+  min-height: 4px;
+  bottom: 105%;
+  left: 10%;
+  border-radius: 70% 20% 60% 40%;
+  background: #ffe4a0;
+  box-shadow: 0 0 12px 5px #ff9a4166;
+}
+.halloween-floor-ghost {
+  position: absolute;
+  left: 19%;
+  top: 28%;
+  width: 5%;
+  transform: rotate(-12deg);
+}
+.scene .halloween-party-trim {
+  opacity: 0.75;
+}
+@media (max-width: 800px) {
+  .halloween-invitation {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .halloween-party-trim-hero {
+    inset: 25px -80px auto;
+  }
+  .site[data-halloween="true"] .residents {
+    padding-top: 90px;
+  }
+  .site[data-halloween="true"] .closing {
+    padding-top: 65px;
+  }
+}
+
+.halloween-bats {
+  position: absolute;
+  inset: 0;
+  z-index: 110;
+  pointer-events: none;
+}
+.halloween-bat-carrier {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.halloween-flying-bat {
+  display: block;
+  width: 7%;
+  height: auto;
+  transform: scaleX(var(--bat-facing, 1)) rotate(var(--bat-bank, 0deg));
+  filter: drop-shadow(0 3px 2px #16082199);
+}
+.halloween-bat-carrier-1 .halloween-flying-bat {
+  width: 5.5%;
+}
+.halloween-bats .bat-wing {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: halloween-wingbeat 0.28s ease-in-out infinite alternate;
+}
+.halloween-bat-carrier-1 .bat-wing {
+  animation-duration: 0.23s;
+  animation-delay: -0.12s;
+}
+@keyframes halloween-wingbeat {
+  from {
+    transform: scaleX(1) scaleY(0.9);
+  }
+  to {
+    transform: scaleX(0.5) scaleY(1.08);
+  }
+}
+
+.scene[data-halloween="true"] .scene-cat .breed-sprite {
+  position: relative;
+  isolation: isolate;
+}
+.halloween-costume {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+.halloween-costume-back {
+  z-index: -1;
+}
+
+@media (max-width: 800px) {
+  .floor-topline[data-halloween="true"] .floor-title {
+    flex-wrap: wrap;
+    gap: 6px 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .floor-topline[data-halloween="true"] .floor-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .halloween-label {
+    padding: 3px 6px;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+  .scene[data-halloween="true"] .halloween-lantern-bar {
+    width: 8%;
+  }
+}
