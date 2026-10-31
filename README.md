@@ -123,6 +123,69 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 
 Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
 
+## Halloween 2026 preview
+
+The floor event runs from October 31, 2026 at 00:00 through November 1 at 05:00 JST
+(end exclusive). It does not recur in later years.
+
+With `npm run dev`, visit `/ja?halloween=on#dance-floor` for the event or
+`/ja?halloween=off#dance-floor` for the ordinary floor. The same query works on
+`/en`. Without the query, the actual event dates apply. Production ignores this
+preview query and always uses the fixed dates. The label, lantern and lighting
+share this switch; the existing motion control still governs the lighting.
+
+### Expiry and rollback plan
+
+All seasonal page colors, decorations, cat accessories and bats use the same
+`useHalloweenFloor()` flag. At the fixed end time the flag becomes false, the
+seasonal attributes and components are removed, and bat animations are cancelled
+on unmount. Visible tabs recheck at the boundary; hidden/restored tabs recheck on
+visibility, page restore and focus. Time comes from the device clock. No annual
+recurrence, persisted event state, server setting or expiry deployment is needed.
+
+Seasonal styles live in `app/halloween.css`, imported only by the page integration.
+The cat stacking rule is limited to an active Halloween scene. Shared
+`app/globals.css`, the original image assets and guest-cat implementation are
+unchanged. Keep future event edits in the seasonal files and conditional page
+integration so they can be removed together.
+
+The changes are separated by intent:
+
+| Commit                    | Responsibility                                                           | Removal order              |
+| ------------------------- | ------------------------------------------------------------------------ | -------------------------- |
+| `c607678`                 | Fixed dates, client subscription, development preview and schedule tests | After presentation removal |
+| `3eb2138`                 | Seasonal presentation, stylesheet, artwork and page integration          | First                      |
+| This documentation change | Preview, rollback and verification notes                                 | Independently removable    |
+
+For an early return to the ordinary page, revert `3eb2138`. This removes the page
+integration and all seasonal presentation together, leaving the unused schedule
+module inert. For full code removal, revert `c607678` afterwards and remove this
+documentation when it is no longer needed. Revert preserves subsequent history;
+if later edits conflict, resolve those edits rather than resetting the branch.
+Rebuild and deploy the reverted version through the normal, separately authorized
+workflow. These rollback actions have not been executed.
+
+### Verification status
+
+On local Node.js v22.16.0, all 106 Node tests, TypeScript checking, formatting and
+the production build passed after stylesheet separation. ESLint reported zero
+errors and the two acknowledged existing `no-img-element` warnings. PC checks
+before stylesheet separation confirmed cat-detail open/close, discovery-count
+updates and the motion button's state change. The earlier production bundle was
+also checked for fixed dates and removal of development-query reads.
+
+SP screenshot comparison, actual animation stop/resume, guest-cat browser behavior
+and visual rechecking after stylesheet separation remain incomplete. Browser
+investigation stopped at the approved stopping condition; these are outstanding
+acceptance checks, not successful checks or an approved deferral. Reconsider them
+before accepting or releasing the event.
+
+The acknowledged Node `glob` experimental warning remains recorded. The latest
+successful build also reported `PLUGIN_TIMINGS` (client phase 4.29 seconds); its
+disposition remains unresolved. No warning suppression, dependency changes or
+build-configuration changes were made. This is a work-in-progress snapshot, not
+release acceptance.
+
 ## Diagnostic Commands
 
 - `npm run install:ci`: perform the one locked dependency install
