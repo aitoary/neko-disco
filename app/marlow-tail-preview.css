@@ -1,0 +1,61 @@
+.marlow-tail-sprite[data-pose="animate"] .marlow-tail-rotate {
+  animation: marlow-tail-sway 4s ease-in-out infinite;
+}
+.marlow-tail-sprite[data-pose="left"] .marlow-tail-rotate {
+  animation: none;
+  transform: rotate(-2deg);
+}
+.marlow-tail-sprite[data-pose="right"] .marlow-tail-rotate {
+  animation: none;
+  transform: rotate(2deg);
+}
+@keyframes marlow-tail-sway {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  17.5% {
+    transform: rotate(-2deg);
+  }
+  52.5% {
+    transform: rotate(2deg);
+  }
+}
+.marlow-preview-controls {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid currentColor;
+  border-radius: 12px;
+}
+.marlow-preview-controls button {
+  margin: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+}
+.marlow-preview-controls button[aria-pressed="true"] {
+  background: #f4cf66;
+  color: #321a2b;
+}
+.marlow-preview-comparison {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.marlow-preview-comparison figure {
+  width: min(100%, 400px);
+  margin: 0;
+  background: #d6b9a4;
+}
+.marlow-preview-comparison img,
+.marlow-preview-comparison svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+.marlow-preview-comparison figcaption {
+  color: #321a2b;
+  padding: 0.5rem;
+}

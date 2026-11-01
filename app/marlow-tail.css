@@ -1,0 +1,47 @@
+.marlow-tail-sprite {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.marlow-tail-rotate {
+  transform-origin: 327px 406px;
+  transform: rotate(0deg);
+}
+.marlow-tail-sprite[data-pose="rest"] .marlow-tail-rotate {
+  animation: none;
+  transform: rotate(0deg);
+}
+.marlow-tail-sprite[data-pose="twitch"] .marlow-tail-rotate {
+  animation: none;
+  transform: rotate(0deg);
+}
+.marlow-tail-sprite[data-pose="twitch"][data-twitch-active="true"] .marlow-tail-rotate {
+  animation-name: marlow-tail-twitch;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.2, 0, 0.35, 1);
+}
+/* Quick 60ms reaction, 220ms return, 140ms between reactions. No overshoot. */
+@keyframes marlow-tail-twitch {
+  0%,
+  36.842%,
+  55.263%,
+  92.105%,
+  100% {
+    transform: rotate(0deg);
+  }
+  7.895%,
+  63.158% {
+    transform: rotate(-3deg);
+  }
+}
+.still .marlow-tail-sprite[data-pose] .marlow-tail-rotate {
+  animation: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marlow-tail-sprite[data-pose][data-twitch-active] .marlow-tail-rotate {
+    animation: none;
+    transform: none;
+  }
+}

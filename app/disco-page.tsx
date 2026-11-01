@@ -39,9 +39,12 @@ import { HalloweenDecorations, HalloweenPartyTrim } from "./halloween-decoration
 import "./halloween.css";
 import { MauriceBlink } from "./maurice-blink";
 import "./maurice-blink.css";
+import { MarlowTail } from "./marlow-tail";
 
 const AxelMotionPreview =
   process.env.NODE_ENV === "development" ? lazy(() => import("./axel-motion-preview")) : null;
+const MarlowTailPreview =
+  process.env.NODE_ENV === "development" ? lazy(() => import("./marlow-tail-preview")) : null;
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -56,17 +59,30 @@ function Cat({
   costume,
   blinkMotion,
   axelMotion,
+  marlowMotion,
 }: {
   image: string;
   className?: string;
   costume?: string;
   blinkMotion?: boolean;
   axelMotion?: boolean;
+  marlowMotion?: boolean;
 }) {
+  const imageElement = (
+    <img src={image} alt="" loading="lazy" draggable="false" width="512" height="512" />
+  );
+  const catImage =
+    marlowMotion !== undefined ? <MarlowTail motionEnabled={marlowMotion} /> : imageElement;
   const sprite = (
     <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}>
       {costume ? <HalloweenCostume breed={costume} behind /> : null}
-      <img src={image} alt="" loading="lazy" draggable="false" width="512" height="512" />
+      {marlowMotion !== undefined && MarlowTailPreview ? (
+        <Suspense fallback={catImage}>
+          <MarlowTailPreview motionEnabled={marlowMotion}>{catImage}</MarlowTailPreview>
+        </Suspense>
+      ) : (
+        catImage
+      )}
       {blinkMotion !== undefined ? <MauriceBlink motionEnabled={blinkMotion} /> : null}
       {costume ? <HalloweenCostume breed={costume} /> : null}
     </span>
@@ -338,6 +354,7 @@ export default function DiscoPage({
             </span>
           </div>
           {process.env.NODE_ENV === "development" ? <div id="axel-preview-controls" /> : null}
+          {process.env.NODE_ENV === "development" ? <div id="marlow-preview-controls" /> : null}
           <div className="scene" data-halloween={halloween ? "true" : undefined}>
             <img
               className="scene-image"
@@ -397,6 +414,7 @@ export default function DiscoPage({
                   costume={halloween && breed.id !== "scottish-fold" ? breed.id : undefined}
                   blinkMotion={breed.id === "british-shorthair" ? motion : undefined}
                   axelMotion={breed.id === "bengal" ? motion : undefined}
+                  marlowMotion={breed.id === "maine-coon" ? motion : undefined}
                 />
                 <span className="hotspot-mark">
                   {found.includes(breed.id) ? <Check size={14} /> : <Plus size={15} />}
