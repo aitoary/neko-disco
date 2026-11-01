@@ -1,6 +1,6 @@
 import { eventSchedule } from "./event-schedule";
 
-const periods = eventSchedule.filter(({ event }) => event === "halloween");
+const periods = eventSchedule.filter(({ event, enabled }) => event === "halloween" && enabled);
 const boundaries = periods.flatMap(({ start, end }) => [start, end]).sort((a, b) => a - b);
 
 export function isHalloweenFloor(now: number) {

@@ -161,6 +161,53 @@ test("only explicitly configured Halloween years run, independent of entry order
   assert.equal(empty.nextHalloweenFloorBoundary(start), undefined);
 });
 
+test("event switches default to enabled and reject non-boolean values", () => {
+  assert.equal(parseEventSchedule([halloween2026])[0].enabled, true);
+  assert.equal(parseEventSchedule([{ ...halloween2026, enabled: true }])[0].enabled, true);
+  assert.equal(parseEventSchedule([{ ...halloween2026, enabled: false }])[0].enabled, false);
+  for (const enabled of ["false", "true", 0, 1, null]) {
+    assert.throws(
+      () => parseEventSchedule([{ ...halloween2026, enabled }]),
+      /config\/events.json\[0\].enabled/,
+    );
+  }
+});
+
+test("disabled events have no active period or timer boundary while later years remain usable", async () => {
+  const disabled = { ...halloween2026, enabled: false };
+  const periods = await import(periodModuleUrl([disabled, halloween2027]));
+  for (const time of [start - 1, start, end - 1, end]) {
+    assert.equal(periods.isHalloweenFloor(time), false);
+    assert.equal(periods.nextHalloweenFloorBoundary(time), Date.parse(halloween2027.start));
+  }
+  assert.equal(periods.isHalloweenFloor(Date.parse(halloween2027.start)), true);
+  const reenabled = await import(periodModuleUrl([{ ...disabled, enabled: true }]));
+  assert.equal(reenabled.isHalloweenFloor(start), true);
+});
+
+test("the shipped 2026 event stays off in production even with the preview query", async (t) => {
+  const event = configuredEvents.find(({ event, year }) => event === "halloween" && year === 2026);
+  assert.ok(event, "retain the event config for reuse");
+  assert.equal(event.enabled, false);
+  const hook = await import(hookModuleUrl(periodModuleUrl(configuredEvents)));
+  const clock = browserClock(t, Date.parse(event.start));
+  const original = process.env.NODE_ENV;
+  process.env.NODE_ENV = "production";
+  t.after(() => {
+    if (original === undefined) delete process.env.NODE_ENV;
+    else process.env.NODE_ENV = original;
+  });
+  clock.browser.location.search = "?halloween=on";
+  for (const time of [
+    Date.parse(event.start),
+    Date.parse(event.end) - 1,
+    Date.parse("2026-12-31T23:59:59+09:00"),
+  ]) {
+    clock.setTime(time);
+    assert.equal(hook.getHalloweenFloorSnapshot(), false);
+  }
+});
+
 test("a tab spanning two configured years schedules the next start after the first event ends", async (t) => {
   const clock = browserClock(t, end);
   const nextStart = Date.parse(halloween2027.start);

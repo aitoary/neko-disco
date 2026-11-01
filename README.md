@@ -145,7 +145,12 @@ example is not registered in the current config):
 Use one entry per event/year. The start date must belong to `year`; the end may
 cross into the next year. Entry order does not matter. An unregistered year does
 not run automatically. Remove an entry to cancel that year's event; `[]` leaves
-every event unscheduled. Other event names can be registered when their own
+every event unscheduled. Alternatively, set `"enabled": false` on an entry to
+disable that year's event while retaining its dates and artwork for reuse.
+Omitting `enabled` or setting it to `true` enables the configured period.
+Halloween 2026 is disabled following its early closure. Development-only preview
+queries still allow artwork checks; production ignores those queries.
+Other event names can be registered when their own
 presentation is implemented; a Christmas entry alone does not add Christmas
 artwork or activate the Halloween presentation.
 
