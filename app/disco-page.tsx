@@ -40,6 +40,7 @@ import "./halloween.css";
 import { MauriceBlink } from "./maurice-blink";
 import "./maurice-blink.css";
 import { MarlowTail } from "./marlow-tail";
+import { AxelMotion } from "./axel-motion";
 
 const AxelMotionPreview =
   process.env.NODE_ENV === "development" ? lazy(() => import("./axel-motion-preview")) : null;
@@ -87,12 +88,14 @@ function Cat({
       {costume ? <HalloweenCostume breed={costume} /> : null}
     </span>
   );
-  return axelMotion !== undefined && AxelMotionPreview ? (
-    <Suspense fallback={sprite}>
+  if (axelMotion === undefined) return sprite;
+  const axelSprite = <AxelMotion motionEnabled={axelMotion}>{sprite}</AxelMotion>;
+  return AxelMotionPreview ? (
+    <Suspense fallback={axelSprite}>
       <AxelMotionPreview motionEnabled={axelMotion}>{sprite}</AxelMotionPreview>
     </Suspense>
   ) : (
-    sprite
+    axelSprite
   );
 }
 function BreedName({ name }: { name: string }) {
