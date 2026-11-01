@@ -3,6 +3,7 @@ import configuredEvents from "../config/events.json";
 type EventEntry = {
   event: string;
   year: number;
+  enabled?: boolean;
   start: string;
   end: string;
 };
@@ -21,8 +22,11 @@ function parseJstDate(value: string, field: string) {
 
 export function parseEventSchedule(entries: readonly EventEntry[]) {
   const registered = new Set<string>();
-  return entries.map(({ event, year, start, end }, index) => {
+  return entries.map(({ event, year, enabled = true, start, end }, index) => {
     const location = `config/events.json[${index}]`;
+    if (typeof enabled !== "boolean") {
+      throw new Error(`${location}.enabled: use true or false`);
+    }
     if (
       typeof event !== "string" ||
       !/^[a-z][a-z0-9-]*$/.test(event) ||
@@ -40,7 +44,7 @@ export function parseEventSchedule(entries: readonly EventEntry[]) {
     const key = `${event}:${year}`;
     if (registered.has(key)) throw new Error(`${location}: duplicate event/year ${key}`);
     registered.add(key);
-    return { event, year, start: startTime, end: endTime };
+    return { event, year, enabled, start: startTime, end: endTime };
   });
 }
 
