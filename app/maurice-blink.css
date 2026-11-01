@@ -1,0 +1,22 @@
+.maurice-blink {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.maurice-blink[data-closed="true"] {
+  visibility: visible;
+}
+
+.still .maurice-blink {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .maurice-blink {
+    display: none;
+  }
+}

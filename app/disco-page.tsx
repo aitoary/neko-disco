@@ -37,6 +37,8 @@ import { HalloweenBats } from "./halloween-bats";
 import { useHalloweenFloor } from "./use-halloween-floor";
 import { HalloweenDecorations, HalloweenPartyTrim } from "./halloween-decorations";
 import "./halloween.css";
+import { MauriceBlink } from "./maurice-blink";
+import "./maurice-blink.css";
 
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
@@ -49,15 +51,18 @@ function Cat({
   image,
   className = "",
   costume,
+  blinkMotion,
 }: {
   image: string;
   className?: string;
   costume?: string;
+  blinkMotion?: boolean;
 }) {
   return (
     <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}>
       {costume ? <HalloweenCostume breed={costume} behind /> : null}
       <img src={image} alt="" loading="lazy" draggable="false" width="512" height="512" />
+      {blinkMotion !== undefined ? <MauriceBlink motionEnabled={blinkMotion} /> : null}
       {costume ? <HalloweenCostume breed={costume} /> : null}
     </span>
   );
@@ -377,6 +382,7 @@ export default function DiscoPage({
                 <Cat
                   image={breed.image}
                   costume={halloween && breed.id !== "scottish-fold" ? breed.id : undefined}
+                  blinkMotion={breed.id === "british-shorthair" ? motion : undefined}
                 />
                 <span className="hotspot-mark">
                   {found.includes(breed.id) ? <Check size={14} /> : <Plus size={15} />}
