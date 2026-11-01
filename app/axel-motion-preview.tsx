@@ -10,6 +10,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { startAxelMotionLoop } from "./axel-motion-loop";
+import { AxelMotion } from "./axel-motion";
 import "./axel-motion-preview.css";
 
 const patterns = [
@@ -53,7 +54,7 @@ export default function AxelMotionPreview({
     return startAxelMotionLoop(layer.current);
   }, [enabled, motionEnabled, paused, pattern]);
   const controls = enabled ? document.getElementById("axel-preview-controls") : null;
-  if (!controls) return children;
+  if (!controls) return <AxelMotion motionEnabled={motionEnabled}>{children}</AxelMotion>;
 
   const distance = (pattern === "sway" ? 1.5 : 3) * strength;
   const activeSeconds =
