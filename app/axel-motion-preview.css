@@ -1,0 +1,224 @@
+.axel-preview-controls {
+  margin: 12px 0;
+  padding: 12px;
+  border: 2px solid currentColor;
+  background: #fff8ed;
+  color: #211329;
+}
+
+.axel-preview-controls legend {
+  font-weight: 700;
+}
+
+.axel-preview-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.axel-preview-options button {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.axel-preview-options button[aria-pressed="true"] {
+  background: #211329;
+  color: #fff8ed;
+}
+
+.axel-preview-options button:disabled {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.axel-preview-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.axel-preview-controls p {
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+/* This parent owns the prototype transform; .cat-sprite retains its dance. */
+.axel-motion-layer {
+  display: block;
+  width: 100%;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.axel-motion-layer[data-pattern="sway"] {
+  animation-name: axel-preview-sway;
+  animation-duration: 4s;
+}
+
+.axel-motion-layer[data-pattern="sway"][data-speed="fast"] {
+  animation-name: axel-preview-sway-fast;
+  animation-duration: 3.7s;
+}
+
+.axel-motion-layer[data-pattern="hop"] {
+  animation-name: axel-preview-hop;
+  animation-duration: 4.6s;
+}
+
+.axel-motion-layer[data-pattern="hop"][data-speed="fast"] {
+  animation-name: axel-preview-hop-fast;
+  animation-duration: 4.4s;
+}
+
+.axel-motion-layer[data-pattern="loop"][data-loop-phase="sway"] {
+  animation-name: axel-preview-loop-sway;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+.axel-motion-layer[data-pattern="loop"][data-loop-phase="sway"][data-sway-count="2"] {
+  animation-iteration-count: 2;
+}
+
+.axel-motion-layer[data-pattern="loop"][data-loop-phase="sway"][data-sway-count="3"] {
+  animation-iteration-count: 3;
+}
+
+.axel-motion-layer[data-pattern="loop"][data-loop-phase="hop"] {
+  animation-name: axel-preview-loop-hop;
+  animation-duration: 0.6s;
+  animation-iteration-count: 1;
+}
+
+.scene-cat .axel-motion-layer[data-combine-dance="false"] .cat-sprite {
+  animation: none;
+  transform: none;
+}
+
+.still .axel-motion-layer {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .axel-motion-layer {
+    animation: none;
+  }
+}
+
+@keyframes axel-preview-sway {
+  0%,
+  25%,
+  100% {
+    transform: translateX(0);
+  }
+  6.25% {
+    transform: translateX(calc(-1 * var(--axel-distance)));
+  }
+  15.625% {
+    transform: translateX(var(--axel-distance));
+  }
+}
+
+/* The active section is 0.7 / 3.7 of the cycle; the remaining 3s stay still. */
+@keyframes axel-preview-sway-fast {
+  0%,
+  18.918919%,
+  100% {
+    transform: translateX(0);
+  }
+  4.72973% {
+    transform: translateX(calc(-1 * var(--axel-distance)));
+  }
+  11.824324% {
+    transform: translateX(var(--axel-distance));
+  }
+}
+
+/* 0.6s active + 4s rest. Ease out on ascent, accelerate into landing,
+   then a tiny rebound (8% of the jump height) before settling. */
+@keyframes axel-preview-hop {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
+  }
+  4.565217% {
+    transform: translateY(calc(-1 * var(--axel-distance)));
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45);
+  }
+  10.434783% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  11.73913% {
+    transform: translateY(calc(-0.08 * var(--axel-distance)));
+    animation-timing-function: ease-in;
+  }
+  13.043478%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Same poses/easing, 0.4s active + 4s rest; only the active section is faster. */
+@keyframes axel-preview-hop-fast {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
+  }
+  3.181818% {
+    transform: translateY(calc(-1 * var(--axel-distance)));
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45);
+  }
+  7.272727% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  8.181818% {
+    transform: translateY(calc(-0.08 * var(--axel-distance)));
+    animation-timing-function: ease-in;
+  }
+  9.090909%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes axel-preview-loop-sway {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3%);
+  }
+  62.5% {
+    transform: translateX(3%);
+  }
+}
+
+@keyframes axel-preview-loop-hop {
+  0% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.35, 1);
+  }
+  35% {
+    transform: translateY(-6%);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.45);
+  }
+  80% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  90% {
+    transform: translateY(-0.48%);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

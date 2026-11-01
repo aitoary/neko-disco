@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   Check,
   Crown,
@@ -40,6 +40,9 @@ import "./halloween.css";
 import { MauriceBlink } from "./maurice-blink";
 import "./maurice-blink.css";
 
+const AxelMotionPreview =
+  process.env.NODE_ENV === "development" ? lazy(() => import("./axel-motion-preview")) : null;
+
 const sceneProps = [
   { id: "night", x: 49, y: 11, w: 23, h: 23 },
   { id: "height", x: 24, y: 46, w: 13, h: 17 },
@@ -52,19 +55,28 @@ function Cat({
   className = "",
   costume,
   blinkMotion,
+  axelMotion,
 }: {
   image: string;
   className?: string;
   costume?: string;
   blinkMotion?: boolean;
+  axelMotion?: boolean;
 }) {
-  return (
+  const sprite = (
     <span aria-hidden="true" className={`cat-sprite breed-sprite ${className}`}>
       {costume ? <HalloweenCostume breed={costume} behind /> : null}
       <img src={image} alt="" loading="lazy" draggable="false" width="512" height="512" />
       {blinkMotion !== undefined ? <MauriceBlink motionEnabled={blinkMotion} /> : null}
       {costume ? <HalloweenCostume breed={costume} /> : null}
     </span>
+  );
+  return axelMotion !== undefined && AxelMotionPreview ? (
+    <Suspense fallback={sprite}>
+      <AxelMotionPreview motionEnabled={axelMotion}>{sprite}</AxelMotionPreview>
+    </Suspense>
+  ) : (
+    sprite
   );
 }
 function BreedName({ name }: { name: string }) {
@@ -325,6 +337,7 @@ export default function DiscoPage({
               {interactionText.discovery.countLabel}
             </span>
           </div>
+          {process.env.NODE_ENV === "development" ? <div id="axel-preview-controls" /> : null}
           <div className="scene" data-halloween={halloween ? "true" : undefined}>
             <img
               className="scene-image"
@@ -383,6 +396,7 @@ export default function DiscoPage({
                   image={breed.image}
                   costume={halloween && breed.id !== "scottish-fold" ? breed.id : undefined}
                   blinkMotion={breed.id === "british-shorthair" ? motion : undefined}
+                  axelMotion={breed.id === "bengal" ? motion : undefined}
                 />
                 <span className="hotspot-mark">
                   {found.includes(breed.id) ? <Check size={14} /> : <Plus size={15} />}
